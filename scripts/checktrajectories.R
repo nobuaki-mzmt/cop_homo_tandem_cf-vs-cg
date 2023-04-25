@@ -11,8 +11,6 @@ scaled_trajectory()
 
 #------------------------------------------------------------------------------#
 {
-  today <- Sys.Date()
-  
   library(data.table)
   library(stringr)
   
@@ -63,16 +61,16 @@ raw_trajectory <- function(Plot = T, Dataframe = T){
     }
     
     # datafrmae
-    d[,1] <- d[,1]/30
+    d[,1] <- d[,1]
     d <- d[seq(1,54000,6),]
     if(Dataframe){
-      dftemp1 <- data.frame(name, time = d[,1], x=d[,2], y=d[,3])
+      dftemp1 <- data.frame(name, ind = 1, frame = d[,1], x=d[,2], y=d[,3])
       df <- rbind(df,dftemp1)
-      dftemp2 <- data.frame(name, time = d[,1], x=d[,4], y=d[,5])
+      dftemp2 <- data.frame(name, ind = 2, frame = d[,1], x=d[,4], y=d[,5])
       df <- rbind(df,dftemp2)
     }
   }
-  save(df, file = "data/rda/AllData.rda")
+  saveRDS(df, file = "data/rda/AllData.rda", compress="xz")
 }
 #------------------------------------------------------------------------------#
 
@@ -84,7 +82,7 @@ raw_trajectory <- function(Plot = T, Dataframe = T){
 #------------------------------------------------------------------------------#
 scaled_trajectory <- function(Plot = T, Dataframe = T){
   
-  load("data/rda/AllData.rda")
+  df = readRDS("data/rda/AllData.rda")
   
   ind.names <- unique(df$name) 
   df <- na.omit(df)
@@ -98,8 +96,8 @@ scaled_trajectory <- function(Plot = T, Dataframe = T){
     y <- df.temp$y
     xL <- max(x) - min(x)
     yL <- max(y) - min(y)
-    df.temp$x <- (x-min(x))/xL * arena.size
-    df.temp$y <- (y-min(y))/yL * arena.size
+    df.temp$x <- round((x-min(x))/xL * arena.size, 4)
+    df.temp$y <- round((y-min(y))/yL * arena.size, 4)
     
     # plot
     if(Plot){
@@ -107,14 +105,14 @@ scaled_trajectory <- function(Plot = T, Dataframe = T){
         geom_path() + 
         theme_bw() +
         theme(legend.position = "none", aspect.ratio = 1)+ 
-        xlim(c(0,140)) + ylim(c(0,140)) +
+        xlim(c(0,150)) + ylim(c(0,150)) +
         ggtitle(paste(v, ind.names[v]))
       df.temp$speed = c(NA, sqrt( diff(df.temp$x)^2 + diff(df.temp$y)^2 ) )
-      p2 <- ggplot(data=df.temp, aes(x=time, y=speed, col=as.factor(ind), group=as.factor(ind))) +
+      p2 <- ggplot(data=df.temp, aes(x=frame, y=speed, col=as.factor(ind), group=as.factor(ind))) +
         geom_path() + 
         theme_bw() +
         theme(legend.position = "none", aspect.ratio = 1)+ 
-        coord_cartesian(xlim=c(0,1800), ylim=c(0, 30)) +
+        coord_cartesian(xlim=c(0,54000), ylim=c(0, 30)) +
         ggtitle(paste(v, ind.names[v]))
       ggsave(paste0("output/trajectory/scaled/", df.temp$name[1], ".png"), 
              plot = grid.arrange(p1, p2, nrow = 1), width = 6, height = 3)
@@ -127,6 +125,6 @@ scaled_trajectory <- function(Plot = T, Dataframe = T){
     }
     
   }  
-  save(df, file = "data/rda/AllData-scaled.rda")
+  saveRDS(df, file = "data/rda/AllData-scaled.rda", compress="xz")
 }
 #------------------------------------------------------------------------------#
