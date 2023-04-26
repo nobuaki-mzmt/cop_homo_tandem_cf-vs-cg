@@ -1,0 +1,11 @@
+CF-FF 61/61
+CF-FM 50/50
+CF-MM 44/51
+CG-FF 40/40
+CG-FM 40/47
+CG-MM 45/45
+
+CF_MM20 -> only 4 seconds
+CG_FM1 -> missing in Boron
+CG_FM2 -> missing in Boron
+
