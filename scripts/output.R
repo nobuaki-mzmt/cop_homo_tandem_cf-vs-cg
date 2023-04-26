@@ -32,10 +32,7 @@ tandemDuration()
 # Survival analysis of tandem duration
 #------------------------------------------------------------------------------#
 tandemDurationSurv <- function(){
-  idir  = "data/process/"
-  odir  = "output/"
-  fname = paste0(idir, "df_tandem.rda")
-  load(fname)
+  load("data/rda/df_tandem.rda")
   
   # plots
   {
@@ -54,14 +51,13 @@ tandemDurationSurv <- function(){
     )
     ggsurv$plot + scale_x_continuous(breaks = seq(0,600,100)) +
       facet_grid(Treat ~ .) 
-    pdfName <- paste0(odir, "TandemDurationSurv.pdf")  
+    pdfName <- paste0("output/TandemDurationSurv.pdf")  
     ggsave(pdfName, height = 5, width = 3)
   }
   
   # statistics
   {
-    fname <- paste0(odir,"TandemDurationSurv.txt")
-    sink(fname)
+    sink("output/TandemDurationSurv.txt")
     cat("----------------------------------------------\n")
     cat("Cox mixed effect model, for each combinations\n")
     cat("----------------------------------------------\n")
@@ -100,10 +96,7 @@ tandemDurationSurv <- function(){
 # Comparison of overall tandem period
 #------------------------------------------------------------------------------#
 tandemDuration <- function(){
-  idir  = "data/process/"
-  odir  = "output/"
-  fname = paste0(idir, "df_tandem.rda")
-  load(fname)
+  load("data/rda/df_tandem.rda")
   
   # statistics
   {

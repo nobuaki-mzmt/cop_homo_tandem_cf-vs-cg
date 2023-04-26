@@ -16,12 +16,10 @@ rm(list = ls())
   
   # constants
   {
-    arena.size                  <- 140 # mm
-    fps                         <- 5
     min.sep.sec                 <- 2
     min.tandem.sec              <- 5
     threshold.moving.dis.tandem <- 30
-    termite.body.length         <- c(6.970, 6.399, 5.976, 5.436)
+    termite.body.length         <- c(9, 9, 8, 8)
     names(termite.body.length)  <- c("CF-F", "CF-M", "CG-F", "CG-M")
   }
   
@@ -32,102 +30,10 @@ rm(list = ls())
 
 #------------------------------------------------------------------------------#
 process.all <- function(){
-  convert.rda()
   tandem.detect()
 }
 #------------------------------------------------------------------------------#
 
-#------------------------------------------------------------------------------#
-# This function reads all csv files, then
-# 1) downsample in 5FPS
-# 2) scale pixel to mm. 
-#      Given that termites moved throughout the arena, movement range = arena size
-# 3) data.frame as allTrajectoryData.rda
-#------------------------------------------------------------------------------#
-convert.rda <- function(){
-  idir <- "data/raw"
-  odir <- "data/process"
-  
-  # data
-  rawdata  <- list.files(idir, full.names = TRUE,  pattern = ".csv")
-  dataname <- list.files(idir, full.names = FALSE, pattern = ".csv")
-  
-  # downsample, scale and combine in one data.frame
-  df = df.scale <- data.frame()
-  for(v in 1:length(rawdata)){
-    
-    d <- data.frame(fread(rawdata[v], header=T))
-    species = substr(dataname[v], 1, 2)
-    treat   = substr(dataname[v], 4, 5)
-    id      = substr(dataname[v], 6, 7)
-    name    = paste0(v, "-", species, "-", treat, "-", id)
-    print(paste(v, "/", length(rawdata), "->", name))
-    
-    if(dim(d)[1] < 54001){
-      print("The video is shorter than 30min, skip");
-      next()
-    }
-    
-    d <- d[1:(30*60*30+1),]
-    d[,1] <- d[,1]/30
-    d <- d[seq(1,54000,6),]
-    
-    x <- c(d$x0, d$x1)
-    y <- c(d$y0, d$y1)
-    xL <- max(x) - min(x)
-    yL <- max(y) - min(y)
-    d$x0 <- (d$x0-min(x))/xL * arena.size
-    d$y0 <- (d$y0-min(y))/yL * arena.size
-    d$x1 <- (d$x1-min(x))/xL * arena.size
-    d$y1 <- (d$y1-min(y))/yL * arena.size
-    
-    {
-      dftemp1  <- data.frame(species, treat, id, ind = 1, name, time = d[,1], x=d[,2], y=d[,3])
-      df       <- rbind(df,dftemp1)
-      dftemp2  <- data.frame(species, treat, id, ind = 2, name, time = d[,1], x=d[,4], y=d[,5])
-      df       <- rbind(df,dftemp2)
-      dftemp1  <- data.frame(species, treat, id, xL, yL)
-      df.scale <- rbind(df.scale,dftemp1)
-    }
-  }
-  
-  f.name <- paste0(odir, "/allTrajectoryData.rda")
-  save(df, df.scale, file = f.name)
-}
-#------------------------------------------------------------------------------#
-
-
-#------------------------------------------------------------------------------#
-# This function convert pixel to mm for body length
-#------------------------------------------------------------------------------#
-get.bodylength <- function(){
-  
-  d.BL <- data.frame(fread(("data/BL.csv"), header=T))
-  load("data/process/allTrajectoryData.rda")
-  
-  videos = paste0(df.scale$species, "_", df.scale$treat, as.numeric(df.scale$id))
-  body.length = NULL
-  for(i in 1:dim(d.BL)[1]){
-    df.temp = df.scale[videos == d.BL[i,]$Video,]
-    scale.factor <- arena.size/mean(as.numeric(df.temp[,c("xL", "yL")]))
-    body.length = c(body.length, d.BL[i,]$Length/2 * scale.factor)
-  }
-  df.BL <- data.frame(
-    Species = c("CF", "CF", "CG", "CG"),
-    Sex     = c("F",  "M",  "F",  "M" ),
-    BL      = c(
-        mean(body.length[d.BL$Species=="CF" & d.BL$Sex =="F"]),
-        mean(body.length[d.BL$Species=="CF" & d.BL$Sex =="M"]),
-        mean(body.length[d.BL$Species=="CG" & d.BL$Sex =="F"]),
-        mean(body.length[d.BL$Species=="CG" & d.BL$Sex =="M"])
-      )
-  )
-  
-  
-  f.name <- paste0(odir, "/bodylength.txt")
-  write.table(df.BL, file = f.name)
-}
-#------------------------------------------------------------------------------#
 
 #------------------------------------------------------------------------------#
 # This function reads allTrajectoryData.rda files, then
@@ -136,13 +42,10 @@ get.bodylength <- function(){
 #    and for summary for each pair (df_sum_tandem.rda)
 #------------------------------------------------------------------------------#
 tandem.detect <- function(){
-  iodir  <- "data/process"
-  f.name <- paste0(iodir, "/allTrajectoryData.rda")
   
-  load(f.name)
-
+  df = readRDS("data/rda/AllData-scaled.rda")
+  
   # calcurate step length
-  df    <- na.omit(df)
   df$sl <- c(NA, sqrt( diff(df$x)^2 + diff(df$y)^2))
   df$sl[df$time == 0] <- NA
   
@@ -171,8 +74,8 @@ tandem.detect <- function(){
       #    also separation less than "min.tandem.sec" do not count as separation
       #    interaction.threshold = 1.3 * bodylength (averaged between partners)
       {
-        treat   = df.ind1$treat[1]
-        species = df.ind1$species[1]
+        treat   = str_sub(ind.names[i], 4,5)
+        species = str_sub(ind.names[i], 1,2)
         if( species == "CF"){
           if( treat == "FF"){
             interaction.threshold = termite.body.length[1] * 1.3
@@ -247,6 +150,17 @@ tandem.detect <- function(){
         }
       }
     }
+    df.scheme = data.frame(
+      frame = df.temp$frame,
+      sl1 = sl.ind1,
+      sl2 = sl.ind2,
+      name = ind.names[i],
+      scheme
+    )
+    ggplot(df.scheme) +
+      geom_path(aes(x=frame, y=sl1, col=2))+
+      geom_path(aes(x=frame, y=sl2, col=3))+
+      ggtitle(ind.names[i])
     #---------------------------
     
     # tandem survival time
@@ -255,8 +169,8 @@ tandem.detect <- function(){
         tan.timing <- which(tandem)[c(T, diff(which(tandem))>1)]
         tan.end    <- which(tandem)[c(diff(which(tandem))>1,T)]
         df.tandem <-  data.frame(Video    = df.temp$name[1],
-                                 Species  = df.temp$species[1],
-                                 Treat    = df.temp$treat[1],
+                                 Species  = species,
+                                 Treat    = treat,
                                  Tan.time = (tan.end - tan.timing + 1)/5,
                                  Cens     = !(tan.timing[j]==1 || tan.end[j]==length(tandem))
                                  )
@@ -280,8 +194,8 @@ tandem.detect <- function(){
             Cens = c(Cens, 1)
           }
           Video = c(Video, df.temp$name[1])
-          Species = c(Species, df.temp$species[1])
-          Treat = c(Treat, df.temp$treat[1])
+          Species = c(Species, species)
+          Treat = c(Treat, treat)
         }
         res.sep.time <- rbind(res.sep.time, data.frame(Video, Species, Treat, Sep.time=Sep.time/5, Cens))
       }
@@ -292,15 +206,14 @@ tandem.detect <- function(){
     {
       df.pair <- rbind(df.pair, 
                        data.frame(Video   = df.temp$name[1],
-                                  Species = df.temp$species[1],
-                                  Treat   = df.temp$treat[1],
+                                  Species = species,
+                                  Treat   = treat,
                                   Tandem  = sum(tandem)/5))
     }
     
   }
   
-  f.name <- paste0(iodir, "/df_tandem.rda")
-  save(df.tan.time, df.pair, file = f.name)
+  save(df.tan.time, df.pair, file = "data/rda/df_tandem.rda")
   
 }
 #------------------------------------------------------------------------------#
