@@ -53,6 +53,10 @@ tandemDurationSurv <- function(){
       facet_grid(Treat ~ .) 
     pdfName <- paste0("output/TandemDurationSurv.pdf")  
     ggsave(pdfName, height = 5, width = 3)
+    
+    ggsurv$plot + scale_x_continuous(breaks = seq(0,600,100)) +
+      facet_grid(Species ~ .) 
+    
   }
   
   # statistics
