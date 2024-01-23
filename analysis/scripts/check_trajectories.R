@@ -27,11 +27,16 @@ scaled_trajectory()
 #------------------------------------------------------------------------------#
 # reads all csv files and 1) output raw trajectories in .png file
 # 2) convert them in 5FPS and R data.frame saved in .rda files
+# assuming that termites moved throughout the arena, scale the movement range as arena size
+# scaling is performed for each observed arena (pool tandem and separation for each individual)
+# also check speed time development to detect tracking error
 #------------------------------------------------------------------------------#
 raw_trajectory <- function(Plot = T, Dataframe = T){
   options(warn = 0)
 
   # data
+  df_meta <- data.frame(fread("data/bodylength-tmanual/res.csv", header=T))
+  
   rawdata <- list.files("data/raw", full.names = TRUE, pattern = ".csv")
   dataname <- list.files("data/raw", full.names = FALSE, pattern = ".csv")
   
@@ -44,12 +49,23 @@ raw_trajectory <- function(Plot = T, Dataframe = T){
     d <- data.frame(fread(rawdata[v], header=T))
     d <- d[1:(30*60*30+1),]
     
+    name <- str_split(string = dataname[v], ".c")[[1]][1]
     species = substr(dataname[v], 1, 2)
     treat = substr(dataname[v], 4, 5)
     id = substr(dataname[v], 6, 7)
-    name <- paste0(species, "-", treat, "-", id)
     print(paste(v, "/", length(rawdata), "->", name))
 
+    # datafrmae
+    d[,1] <- d[,1]/30
+    d <- d[seq(1,54000,6),]
+    if(Dataframe){
+      dftemp1 <- data.frame(name, ind = 1, frame = d[,1], x=d[,2], y=d[,3])
+      df <- rbind(df,dftemp1)
+      dftemp2 <- data.frame(name, ind = 2, frame = d[,1], x=d[,4], y=d[,5])
+      df <- rbind(df,dftemp2)
+    }
+    
+    
     # plot
     if(Plot){
       png(paste0("output/trajectory/raw/", str_replace(dataname[v], "csv", "png")))
@@ -60,37 +76,6 @@ raw_trajectory <- function(Plot = T, Dataframe = T){
       dev.off()
     }
     
-    # datafrmae
-    d[,1] <- d[,1]
-    d <- d[seq(1,54000,6),]
-    if(Dataframe){
-      dftemp1 <- data.frame(name, ind = 1, frame = d[,1], x=d[,2], y=d[,3])
-      df <- rbind(df,dftemp1)
-      dftemp2 <- data.frame(name, ind = 2, frame = d[,1], x=d[,4], y=d[,5])
-      df <- rbind(df,dftemp2)
-    }
-  }
-  saveRDS(df, file = "data/rda/AllData.rda", compress="xz")
-}
-#------------------------------------------------------------------------------#
-
-
-#------------------------------------------------------------------------------#
-# assuming that termites moved throughout the arena, scale the movement range as arena size
-# scaling is performed for each observed arena (pool tandem and separation for each individual)
-# also check speed time development to detect tracking error
-#------------------------------------------------------------------------------#
-scaled_trajectory <- function(Plot = T, Dataframe = T){
-  
-  df = readRDS("data/rda/AllData.rda")
-  
-  ind.names <- unique(df$name) 
-  df <- na.omit(df)
-  
-  for(v in 1:length(ind.names)){
-    print(paste(v, "/", length(ind.names), "->", ind.names[v]))
-    
-    df.temp <- df[df$name == ind.names[v],]
     
     x <- df.temp$x
     y <- df.temp$y
