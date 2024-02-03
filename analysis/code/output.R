@@ -12,16 +12,14 @@ rm(list = ls())
 #------------------------------------------------------------------------------#
 {
   # packages
-  {
-    library(ggplot2)
-    library(survminer)
-    library(viridis)
-    
-    require(coxme)
-    library(lme4)  
-    library(car)
-    library(multcomp)
-  }
+  library(ggplot2)
+  library(survminer)
+  library(viridis)
+  
+  require(coxme)
+  library(lme4)  
+  library(car)
+  library(multcomp)
 }
 #------------------------------------------------------------------------------#
 
@@ -32,16 +30,14 @@ tandemDuration()
 # Survival analysis of tandem duration
 #------------------------------------------------------------------------------#
 tandemDurationSurv <- function(){
-  load("data/rda/df_tandem.rda")
+  load("data_fmt/df_tandem_fmt.rda")
   
   # plots
   {
-    df.tan.time$Treat = factor(df.tan.time$Treat, levels=c("FM","FF","MM"))
-    theme_set(theme_minimal())
+    df_tandem$treatment = factor(df_tandem$treatment, levels=c("FM","FF","MM"))
     ggsurv = ggsurvplot(
-      fit      = survfit(Surv(Tan.time, Cens) ~ Species + Treat, 
-                         type = "kaplan-meier", 
-                         data = df.tan.time),
+      fit      = survfit(Surv(tan_duration, tan_cens) ~ species + treatment, 
+                         type = "kaplan-meier", data = df_tandem),
       conf.int = TRUE,
       xlab     = "Duration (sec)", 
       ylab     = "Tandem Prob",
@@ -50,13 +46,8 @@ tandemDurationSurv <- function(){
       palette  = rep(viridis(2, option = "E"), each=3)
     )
     ggsurv$plot + scale_x_continuous(breaks = seq(0,600,100)) +
-      facet_grid(Treat ~ .) 
-    pdfName <- paste0("output/TandemDurationSurv.pdf")  
+      facet_grid(treatment ~ .) 
     ggsave(pdfName, height = 5, width = 3)
-    
-    ggsurv$plot + scale_x_continuous(breaks = seq(0,600,100)) +
-      facet_grid(Species ~ .) 
-    
   }
   
   # statistics
@@ -100,7 +91,24 @@ tandemDurationSurv <- function(){
 # Comparison of overall tandem period
 #------------------------------------------------------------------------------#
 tandemDuration <- function(){
-  load("data/rda/df_tandem.rda")
+  load("data_fmt/df_tandem_fmt.rda")
+  df_sum$treatment = factor(df_sum$treatment, levels=c("FM","FF","MM"))
+  ggplot(df_sum, aes(x=treatment, y=tandem_total_duration, 
+                     fill=species, col=species))+
+    geom_boxplot(aes(x=treatment), outlier.shape= NA, 
+                 alpha = .75, width = .2, colour = "black") + 
+    geom_point(aes(x = as.numeric(treatment)-0.2, fill=species), 
+               position = position_jitter(width = 0.05),
+               alpha = 0.75, shape = 19, size=0.5)+
+    scale_fill_viridis(discrete=T, option = "E") +
+    scale_color_viridis(discrete=T, option = "E") +
+    scale_y_continuous(breaks = seq(0,1800,600)) +
+    ylab("Tandem duration (sec)") +
+    xlab("") +
+    theme(legend.position  = c(0.8 , 0.9))+
+    theme_classic()
+  pdfName <- paste0(odir, "TandemDuration.pdf")  
+  ggsave(pdfName, height = 4, width = 4)
   
   # statistics
   {
@@ -142,20 +150,13 @@ tandemDuration <- function(){
   
   # plot
   {
-    ggplot(df.pair, aes(x=Treat, y=Tandem, fill=Species, col=Species))+
-      geom_boxplot(aes(x=Treat), outlier.shape= NA, 
-                   alpha = .75, width = .2, colour = "black") + 
-      geom_point(aes(x = as.numeric(Treat)-0.2, fill=Species), 
-                 position = position_jitter(width = 0.05),
-                 alpha = 0.75, shape = 19, size=0.5)+
-      scale_fill_viridis(discrete=T, option = "E") +
-      scale_color_viridis(discrete=T, option = "E") +
-      scale_y_continuous(breaks = seq(0,1800,600)) +
-      ylab("Tandem duration (sec)") +
-      xlab("") +
-      theme(legend.position  = c(0.8 , 0.9))
-    pdfName <- paste0(odir, "TandemDuration.pdf")  
-    ggsave(pdfName, height = 4, width = 4)
+    
   }
 }
 #------------------------------------------------------------------------------#
+
+load("data_fmt/df_tandem_fmt.rda")
+ggplot(df_sep)+
+  stat_smooth(aes(x=time, y=speed0), col=viridis(2)[1], alpha=.5)+
+  stat_smooth(aes(x=time, y=speed1), col=viridis(2)[2], alpha=.5)+
+  facet_grid(species~treatment)
