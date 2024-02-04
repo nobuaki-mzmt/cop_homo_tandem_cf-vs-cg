@@ -13,6 +13,7 @@ tandem.detect()
 {
   library(data.table)
   library(stringr)
+  library(dplyr)
   
   library(ggplot2)
   library(viridis)
@@ -29,7 +30,6 @@ tandem.detect()
 
 }
 #------------------------------------------------------------------------------#
-library(dplyr)
 
 #------------------------------------------------------------------------------#
 # reads all csv files and 1) output raw trajectories in .png file
@@ -156,11 +156,13 @@ tandem.detect <- function(){
     tan_cens <- rep(1, length(tan_duration))
     tan_cens[tan.sta == 1 | tan.end == 9000] <- 0
     
+    speed_tandem = (df_temp$speed0[tandem]+df_temp$speed1[tandem])/2
     df_sum_temp <- data.frame(
       name =  name_list[i],
       species = str_split(name_list[i], "_")[[1]][1],
       treatment = str_split(name_list[i], "_")[[1]][2],
-      tandem_total_duration = sum(tandem) / fps_analysis
+      tandem_total_duration = sum(tandem) / fps_analysis,
+      speed_tandem = mean(speed_tandem, na.rm=T)
     )
 
     df_tandem_temp <- data.frame(
