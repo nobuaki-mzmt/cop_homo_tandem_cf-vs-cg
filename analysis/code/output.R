@@ -93,38 +93,38 @@ output_tandem_duration <- function(){
     theme_classic()
   ggsave("output/plot_tandem_duration.pdf", height = 4, width = 4)
   
-  # statistics
   y = df_sum$tandem_total_duration / 1800
   df_sum$logit_tandem_prop = log((y+0.01)/(1-y+0.01))
-
+  
   for(i in c("FM", "FF", "MM")){
     res = t.test(logit_tandem_prop ~ species, 
                  data=subset(df_sum, treatment == i))
     print(res)
   }
   
-  cat("----------------------------------------------\n")
-  cat("t.test between combinations, for each species\n")
-  cat("proportion of tandem period was logit transformed\n")
-  cat("by adding 0.01 to avoid infinitive\n")
-  cat("t.test(logitTandem ~ Species)\n")
-  cat("----------------------------------------------\n")
-  
   for(i in c("CF", "CG")){
     res = aov(logit_tandem_prop ~ treatment, 
               data=df_sum[df_sum$species==i,])
-    print(summary(res))
+    print(res)
     print(TukeyHSD(res))
   }
 }
 #------------------------------------------------------------------------------#
 
+#------------------------------------------------------------------------------#
+# Comparison of moving speed
+#------------------------------------------------------------------------------#
+output_speed_comparison <- function (){
+  load("data_fmt/df_tandem_fmt.rda")
+  df_sum$treatment = factor(df_tandem$treatment, levels=c("FM","FF","MM"))
+  
+  # before/after separation
+  ggplot(df_sep)+
+    stat_smooth(aes(x=time, y=speed0), col=viridis(2)[1], alpha=.5)+
+    stat_smooth(aes(x=time, y=speed1), col=viridis(2)[2], alpha=.5)+
+    facet_grid(species~treatment)
+  
+  df_sep
+}
+#------------------------------------------------------------------------------#
 
-load("data_fmt/df_tandem_fmt.rda")
-ggplot(df_sum, aes(x=species, y=speed_tandem, fill=treatment))+
-  geom_boxplot(alpha=.3)
-
-ggplot(df_sep)+
-  stat_smooth(aes(x=time, y=speed0), col=viridis(2)[1], alpha=.5)+
-  stat_smooth(aes(x=time, y=speed1), col=viridis(2)[2], alpha=.5)+
-  facet_grid(species~treatment)

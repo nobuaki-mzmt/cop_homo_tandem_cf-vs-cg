@@ -175,26 +175,28 @@ tandem.detect <- function(){
     
     df_sep_temp <- NULL
     if(length(sep_duration)>0){
-      sep_thresh = 30
+      sep_thresh = 25
       for(i_sep in 1:length(sep_duration)){
-        if(sep_duration[i_sep] > sep_thresh){
-          sep_range <- -10:sep_thresh+tan.end[1]
-          speed0 = (df_temp$speed0[sep_range])
-          speed1 = (df_temp$speed1[sep_range])
-          if(mean(speed0) < mean(speed1)){
-            temp = speed0 
-            speed0 = speed1
-            speed1 = temp
+        if(tan.end[i_sep]>(min.tandem.sec*fps_analysis)+1){
+          if(sep_duration[i_sep] > sep_thresh){
+            sep_range <- -(min.tandem.sec*fps_analysis):sep_thresh+tan.end[i_sep]
+            speed0 = (df_temp$speed0[sep_range])
+            speed1 = (df_temp$speed1[sep_range])
+            if(mean(speed0) < mean(speed1)){
+              temp = speed0 
+              speed0 = speed1
+              speed1 = temp
+            }
+            df_sep_temp_temp <- data.frame(
+              name =  name_list[i],
+              species = str_split(name_list[i], "_")[[1]][1],
+              treatment = str_split(name_list[i], "_")[[1]][2],
+              time = (-(min.tandem.sec*fps_analysis):sep_thresh)/fps_analysis,
+              sep_event = i_sep,
+              speed0, speed1
+            )
+            df_sep_temp <- rbind(df_sep_temp, df_sep_temp_temp)
           }
-          df_sep_temp_temp <- data.frame(
-            name =  name_list[i],
-            species = str_split(name_list[i], "_")[[1]][1],
-            treatment = str_split(name_list[i], "_")[[1]][2],
-            time = (-10:sep_thresh)/fps_analysis,
-            sep_event = i_sep,
-            speed0, speed1
-          )
-          df_sep_temp <- rbind(df_sep_temp, df_sep_temp_temp)
         }
       }
     }
