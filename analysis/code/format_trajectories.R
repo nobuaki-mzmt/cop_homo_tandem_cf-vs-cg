@@ -132,8 +132,8 @@ tandem.detect <- function(){
     print(paste(i, "/", length(name_list), "->", name_list[i]))
     
     df_temp <- subset(df_tra, name==name_list[i])
-    df_temp$speed0 <- c(NA, sqrt(diff(df_temp$x0)^2 + diff(df_temp$y0)^2))
-    df_temp$speed1 <- c(NA, sqrt(diff(df_temp$x1)^2 + diff(df_temp$y1)^2))
+    df_temp$speed0 <- c(NA, sqrt(diff(df_temp$x0)^2 + diff(df_temp$y0)^2))*fps_analysis
+    df_temp$speed1 <- c(NA, sqrt(diff(df_temp$x1)^2 + diff(df_temp$y1)^2))*fps_analysis
     sumbodylength <- sum(as.numeric(subset(df_ind, name==name_list[i])[,2:3]))
     ind_dis = sqrt( (df_temp$x0 - df_temp$x1)^2 + (df_temp$y0 - df_temp$y1)^2 )
     
