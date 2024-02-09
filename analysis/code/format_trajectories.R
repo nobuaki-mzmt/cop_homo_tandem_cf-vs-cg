@@ -24,10 +24,8 @@ tandem.detect()
   fps_analysis <- 5
   dish_mm <- 150
   
-  min.sep.sec                 <- 2
-  min.tandem.sec              <- 5
-  threshold.moving.dis.tandem <- 30
-
+  min.sep.sec <- 2
+  min.tandem.sec <- 5
 }
 #------------------------------------------------------------------------------#
 

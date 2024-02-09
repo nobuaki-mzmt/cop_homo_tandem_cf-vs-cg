@@ -27,7 +27,7 @@ rm(list = ls())
 #------------------------------------------------------------------------------#
 # Survival analysis of tandem duration
 #------------------------------------------------------------------------------#
-plot_tandem_duration_durv <- function(){
+plot_tandem_duration_surv <- function(){
   load("data_fmt/df_tandem_fmt.rda")
   df_tandem$treatment = factor(df_tandem$treatment, levels=c("FM","FF","MM"))
   ggsurv = ggsurvplot(
@@ -60,7 +60,7 @@ plot_tandem_duration_durv <- function(){
     guides(fill = "none")
   ggsave("output/plot_tandem_surv.pdf", height = 5, width = 3)
 }
-stat_tandem_duration_durv <- function(){
+stat_tandem_duration_surv <- function(){
   load("data_fmt/df_tandem_fmt.rda")
   df_tandem$treatment = factor(df_tandem$treatment, levels=c("FM","FF","MM"))
   
