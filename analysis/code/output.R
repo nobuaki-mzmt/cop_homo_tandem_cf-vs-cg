@@ -218,3 +218,93 @@ stat_speed_comparison <- function() {
 }
 #------------------------------------------------------------------------------#
 
+
+#------------------------------------------------------------------------------#
+# Survival analysis of tandem duration across studies
+#------------------------------------------------------------------------------#
+plot_tandem_duration_surv_comp <- function(){
+  
+  load("data_fmt/df_tandem_fmt.rda")
+  df_tandem <- subset(df_tandem, treatment == "FM")
+  df_tandem_comp <- data.frame(df_tandem, experiment = "Florda_2021")
+
+  load("data_fmt/df_tandem_fmt_Mizumoto-etal-2020.rda")
+  df_tandem_comp = rbind(df_tandem_comp,
+                         data.frame(df_tandem, experiment = "Florda_2020"))
+  
+  ggsurv = ggsurvplot(
+    fit      = survfit(Surv(tan_duration, tan_cens) ~ experiment, 
+                       type = "kaplan-meier", data = df_tandem_comp),
+    facet.by = "species",
+    xlim     = c(0,600),
+    conf.int = TRUE,
+    xlab     = "Duration (sec)", 
+    ylab     = "Probability of tandem run",
+    censor   = FALSE
+  )
+  ggsurv + 
+    scale_x_continuous(breaks = seq(0,600,200)) +
+    scale_y_continuous(breaks = seq(0,1,1)) +
+    scale_color_viridis(discrete = T, option = "E") +
+    scale_fill_viridis(discrete = T, option = "E") +
+    facet_wrap(~species, 
+               nrow = 3,
+               ncol = 1,
+               strip.position = "left") +
+    theme_classic()+
+    theme(strip.placement = "outside",
+          strip.background = element_blank(),
+          legend.position = c(0.8, 0.9),
+          panel.grid = element_blank(),
+          legend.title = element_blank(),
+          legend.text = element_text(face = "italic"),
+          text = element_text(size = 12)) +
+    guides(fill = "none")
+  ggsave("output/plot_tandem_surv.pdf", height = 5, width = 3)
+}
+stat_tandem_duration_surv <- function(){
+  load("data_fmt/df_tandem_fmt.rda")
+  df_tandem <- subset(df_tandem, treatment == "FM")
+  df_tandem_comp <- data.frame(df_tandem, experiment = "Florda_2021")
+  
+  load("data_fmt/df_tandem_fmt_Mizumoto-etal-2020.rda")
+  df_tandem_comp = rbind(df_tandem_comp,
+                         data.frame(df_tandem, experiment = "Florda_2020"))
+  
+  m <- coxme(Surv(tan_duration, tan_cens) ~  experiment + (1|name), 
+             data = subset(df_tandem_comp, species=="CF"))
+  print(summary(m))
+  cat("\n----- Anova() -----\n\n")
+  print(Anova(m))
+  cat("\n----- glht mcp Tukey --\n\n")
+  multicomparison<-glht(m, linfct = mcp(treatment = "Tukey"))
+  print(summary(multicomparison))
+  
+  
+  cat("---------- Comp tandem duration between species for each treat ----------\n")
+  for(i in c("FM", "FF", "MM")){
+    cat(paste0("\n----- treat:", i, ", summary() -----\n\n"))
+    m <- coxme(Surv(tan_duration, tan_cens) ~  species + (1|name), 
+               data = subset(df_tandem, treatment==i))
+    print(summary(m))
+    cat("\n----- Anova() -----\n\n")
+    print(Anova(m))
+  }
+  cat("-----------------------------------------------------\n\n")
+  
+  cat("---------- Comp tandem duration among treat for each species ----------\n")
+  for(i in c("CF", "CG")){
+    cat(paste0("\n----- species:", i, ", summary() -----\n\n"))
+    m <- coxme(Surv(tan_duration, tan_cens) ~  treatment + (1|name), 
+               data = subset(df_tandem, species==i))
+    print(summary(m))
+    cat("\n----- Anova() -----\n\n")
+    print(Anova(m))
+    cat("\n----- glht mcp Tukey --\n\n")
+    multicomparison<-glht(m, linfct = mcp(treatment = "Tukey"))
+    print(summary(multicomparison))
+  }
+  cat("-----------------------------------------------------\n\n")
+}
+#------------------------------------------------------------------------------#
+

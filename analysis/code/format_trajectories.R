@@ -7,7 +7,9 @@
 
 rm(list = ls())
 scale_trajectory(Plot=F)
+scale_trajectory(dataset = "Mizumoto-etal-2020", dish_mm = 138)
 tandem.detect()
+tandem.detect(dataset = "Mizumoto-etal-2020")
 
 #------------------------------------------------------------------------------#
 {
@@ -19,10 +21,7 @@ tandem.detect()
   library(viridis)
   
   ## parameters
-  error_speed_thersh = 20
-  fps_original <- 30
-  fps_analysis <- 5
-  dish_mm <- 150
+  
   
   min.sep.sec <- 2
   min.tandem.sec <- 5
@@ -33,14 +32,25 @@ tandem.detect()
 # reads all csv files and 1) output raw trajectories in .png file
 # 2) convert them in 5FPS and R data.frame saved in .rda files
 #------------------------------------------------------------------------------#
-scale_trajectory <- function(Plot = T, Dataframe = T){
+scale_trajectory <- function(Plot = T, Dataframe = T, dataset = NULL,
+                             error_speed_thersh = 20, fps_original = 30,
+                             fps_analysis = 5, dish_mm = 150){
   options(warn = 0)
   
   # data
-  df_meta <- data.frame(fread("data_raw/bodylength/scale_bodylength.csv", header=T))
+  data_loc_met = "data_raw/bodylength/scale_bodylength.csv"
+  data_loc_tra = "data_raw/trajectories"
+  plot_loc_tra = "output/trajectory/"
+  if(length(dataset) > 0){
+    data_loc_met = paste0("data_raw/bodylength_", dataset, "/scale_bodylength.csv")
+    data_loc_tra = paste0("data_raw/trajectories_", dataset)
+    plot_loc_tra = paste0("output/trajectory_", dataset, "/")
+    data_loc_fmt = paste0("data_fmt/data_trajectory_", dataset, ".rda")
+  }
+  df_meta <- data.frame(fread(data_loc_met, header=T))
   
-  rawdata <-  list.files("data_raw/trajectories", full.names = TRUE, pattern = ".csv")
-  dataname <- list.files("data_raw/trajectories", full.names = FALSE, pattern = ".csv")
+  rawdata <-  list.files(data_loc_tra, full.names = TRUE, pattern = ".csv")
+  dataname <- list.files(data_loc_tra, full.names = FALSE, pattern = ".csv")
   
   df_tra <- tibble()
   df_ind  <- tibble()
@@ -48,17 +58,24 @@ scale_trajectory <- function(Plot = T, Dataframe = T){
     
     # file info
     d <- data.frame(fread(rawdata[v], header=T))
-    d <- d[1:(30*60*30+1),]
     
     species = substr(dataname[v], 1, 2)
     treat = substr(dataname[v], 4, 5)
     id = substr(dataname[v], 6, 7)
     name = paste(species, treat, id, sep="_")
-    print(paste(v, "/", length(rawdata), "->", name))
-
-    # scale
+    print(paste(v, "/", length(rawdata), "->", name, "row length=", dim(d)[1]))
+    
+    if(dim(d)[1] < (fps_original*60*30+1)){
+      print(paste("row length is smaller than 54001, ", dim(d)[1]))
+      cut_length = (dim(d)[1])
+    }else {
+      cut_length = (fps_original*60*30+1)
+    }
+    d <- d[1:cut_length,]
+    
+     # scale
     d[,1] <- d[,1]/fps_original
-    d <- d[seq(1,54000,fps_original/fps_analysis),]
+    d <- d[seq(1,cut_length, fps_original/fps_analysis),]
     
     
     scale_factor = dish_mm/df_meta[df_meta$name == name,"scale"]
@@ -81,7 +98,7 @@ scale_trajectory <- function(Plot = T, Dataframe = T){
         theme_bw() +
         theme(aspect.ratio = 1) +
         ggtitle(paste(v, name))
-      ggsave(paste0("output/trajectory/", name, ".png"), width = 4, height = 4)
+      ggsave(paste0(plot_loc_tra, name, ".png"), width = 4, height = 4)
     }
     
     # speed error check
@@ -91,7 +108,7 @@ scale_trajectory <- function(Plot = T, Dataframe = T){
       print(d[error_check,])
     }
   }  
-  save(df_tra, df_ind, file = "data_fmt/data_trajectory.rda", compress="xz")
+  save(df_tra, df_ind, file = data_loc_fmt, compress="xz")
 }
 #------------------------------------------------------------------------------#
 
@@ -118,9 +135,13 @@ tandem.smoothing <- function(vec, min.sec){
 # 2) save data.frame for each tandem event (),
 #    and for summary for each pair (df_sum_tandem.rda)
 #------------------------------------------------------------------------------#
-tandem.detect <- function(){
+tandem.detect <- function(dataset = NULL){
   
-  load("data_fmt/data_trajectory.rda")
+  if(length(dataset)>0){
+    load(paste0("data_fmt/data_trajectory_", dataset, ".rda"))
+  } else{
+    load("data_fmt/data_trajectory.rda")
+  }
   
   name_list <- df_ind$name
   
@@ -204,7 +225,12 @@ tandem.detect <- function(){
     df_sep <- rbind(df_sep, df_sep_temp)
   }  
   
-  save(df_sum, df_tandem, df_sep, file = "data_fmt/df_tandem_fmt.rda")
   
+  if(length(dataset)>0){
+    save(df_sum, df_tandem, df_sep, 
+         file = paste0("data_fmt/df_tandem_fmt_", dataset, ".rda"))
+  } else{
+    save(df_sum, df_tandem, df_sep, file = "data_fmt/df_tandem_fmt.rda")
+  }
 }
 #------------------------------------------------------------------------------#
