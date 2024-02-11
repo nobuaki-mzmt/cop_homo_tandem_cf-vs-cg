@@ -105,13 +105,13 @@ females rather facilitate same-sex tandems because females can easily
 follow another female.
 
 In this study, we compared the same-sex tandem running behavior in two
-*Coptotermes* termites: *Coptotermes formosanus* and *Coptotermes
-gestroi*. These two species share the same chemical for sex pairing
-pheromones \[14\] and can form heterosexual tandem runs \[15,16\].
-However, the quantity of pheromones is different between these two
-species, where *C. formosanus* has 10 times more pheromones than *C.
-gestroi* \[14\]. Therefore, we predict that male-male tandem is more
-frequent in *C. gestroi* than *C. formosanus*, while female-female
+*Coptotermes* termites: *Coptotermes formosanus* Shiraki and
+*Coptotermes gestroi* Wasmann. These two species share the same chemical
+for sex pairing pheromones \[14\] and can form heterosexual tandem runs
+\[15,16\]. However, the quantity of pheromones is different between
+these two species, where *C. formosanus* has 10 times more pheromones
+than *C. gestroi* \[14\]. Therefore, we predict that male-male tandem is
+more frequent in *C. gestroi* than *C. formosanus*, while female-female
 tandem is more frequent in *C. formosanus* than *C. gestroi*.
 
 **Methods**
@@ -195,9 +195,43 @@ heterosexual pairing, with no difference between female-female pairs and
 male-male pairs in *C. gestroi*, while larger difference between
 female-female pairs and male-male pairs in *C. formosanus*.
 
-After separations, all combinations showed speed differences.
+<img src="media/image1.png" style="width:4.04375in;height:4.22639in" />
+
+> **Figure 1.** Comparison of the total time spent in tandem among
+> pairing combinations and species. The sex attracting pheromone is
+> visualized below, with female leader releasing it and *C. formosanus*
+> having larger quantity than *C. gestroi*.
+
+After separations, all combinations showed speed differences between
+partners. As shown in previous studies, male followers sped up while
+female leaders slowed down after separation to enhance the probability
+of reunions. Although, similar movement differences were observed in
+same-sex pairings, the levels of difference between partners were
+smaller ().
+
+<img src="media/image2.png" style="width:6in;height:4in" />
+
+> **Figure 2.** Movement speed of termites before and after separation.
+> Separation timing was determined when the distances between partners
+> were larger than the sum of their body length. Solid lines indicate a
+> partner moved faster, while dashed lines slower. Lines and shaded
+> regions indicate mean ± 95CI.
 
 **Discussion**
+
+We found an association between same-sex pairing behavior and sex
+pheromone quantity in two termite species with shared chemicals. First,
+female-female pairing was more stable in *C. formosanus*, the species
+with larger quantity of sex pheromones, where females could use sex
+pheromones to maintain stable movement coordination with the same-sex
+individuals. Because females usually are leaders in *Coptotermes*
+tandem, females need to play follower (male) roles before the initiation
+of same-sex pairing \[12\]. In this situation, female-female pairing is
+not a result of mistaken identity, rather could be adaptive response as
+observed in *Reticulitermes* termites \[5,11\] or non-adaptive
+consequence of genetic correlation (ref). On the other hand, male-male
+pairing was more prominent in *C. gestroi*, the species with smaller
+quantity of sex pheromones.
 
 All of the previous studies on same-sex tandem runs in termites have
 focused on *Reticulitermes* termites \[11,12,23\]. In *Reticulitermes*
@@ -348,12 +382,26 @@ foundation and the mechanism of facultative parthenogenesis in the
 termite Reticulitermes speratus (Isoptera, Rhinotermitidae). *Insectes
 Sociaux* **51**, 325–332. (doi:10.1007/s00040-004-0746-0)
 
-<img src="media/image1.png" style="width:3.06528in;height:2.09722in" />
+**  
+**
 
-> **Figure 1.** Experimental scheme.
+Supplementary material for
 
-<img src="media/image2.png" style="width:4.09722in;height:4.14306in"
-alt="A picture containing chart Description automatically generated" />
+**The strength of sexual signals predicts same-sex paring in termites**
 
-> **Figure 2.** Comparison of the tandem duration among pair
-> combinations and species.
+**Nobuaki Mizumoto, Sang-Bin Lee, Thomas Chouvenc**
+
+\*. Author correspondence: <nzm0095@auburn.edu>
+
+This file includes:
+
+Figure S1
+
+<img src="media/image3.png" style="width:5in;height:3in"
+alt="A graph of two people Description automatically generated" />
+
+> **Figure S1.** Comparison of the duration of tandem running until
+> separation across different pairing combinations and species.
+> Kaplan–Meier survival curves were generated for each pairing
+> combination. The marks for censored data are not shown. Shaded regions
+> show 95% confidence intervals.

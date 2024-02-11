@@ -16,6 +16,7 @@ rm(list = ls())
   library(ggplot2)
   library(survminer)
   library(viridis)
+  library(Hmisc)
   
   require(coxme)
   library(lme4)  
@@ -29,7 +30,7 @@ rm(list = ls())
 #------------------------------------------------------------------------------#
 plot_tandem_duration_surv <- function(){
   load("data_fmt/df_tandem_fmt.rda")
-  df_tandem$treatment = factor(df_tandem$treatment, levels=c("FM","FF","MM"))
+  df_tandem$treatment = factor(df_tandem$treatment, levels=c("FF","MM","FM"))
   ggsurv = ggsurvplot(
     fit      = survfit(Surv(tan_duration, tan_cens) ~ species, 
                        type = "kaplan-meier", data = df_tandem),
@@ -46,19 +47,25 @@ plot_tandem_duration_surv <- function(){
     scale_color_viridis(discrete = T, option = "E", labels=c("C. formosanus", "C. gestroi")) +
     scale_fill_viridis(discrete = T, option = "E") +
     facet_wrap(~treatment, 
-               nrow = 3,
-               ncol = 1,
-               strip.position = "left") +
-    theme_classic()+
+               nrow = 2,
+               ncol = 2,
+               as.table = F,
+               strip.position = "left",
+               labeller = labeller(
+                 treatment = c("FM" = "Female-Male", 
+                               "FF" = "Female-Female", 
+                               "MM" = "Male-Male"))) +
+    theme_bw()+
     theme(strip.placement = "outside",
           strip.background = element_blank(),
-          legend.position = c(0.8, 0.9),
-          panel.grid = element_blank(),
+          legend.position = c(0.7, 0.8),
+          #panel.grid = element_blank(),
           legend.title = element_blank(),
-          legend.text = element_text(face = "italic"),
+          legend.text = element_text(face = "italic", size=12),
           text = element_text(size = 12)) +
     guides(fill = "none")
-  ggsave("output/plot_tandem_surv.pdf", height = 5, width = 3)
+  ggsave("output/plot_tandem_surv.pdf", height = 3, width = 5)
+  #ggsave("output/plot_tandem_surv.png", height = 3, width = 5)
 }
 stat_tandem_duration_surv <- function(){
   load("data_fmt/df_tandem_fmt.rda")
@@ -154,8 +161,15 @@ plot_speed_comparison <- function (){
   df_sep$treatment = factor(df_sep$treatment, levels=c("FM","FF","MM"))
   # before/after separation
   ggplot(df_sep)+
-    stat_smooth(aes(x=time, y=speed0), col=viridis(2)[1], se = FALSE)+
-    stat_smooth(aes(x=time, y=speed1), col=viridis(2)[2], se = FALSE)+
+    #stat_smooth(aes(x=time, y=speed0), col=viridis(2)[1], se = FALSE)+
+    #stat_smooth(aes(x=time, y=speed1), col=viridis(2)[2], se = FALSE, linetype="dashed")+
+    stat_summary(aes(x=time, y=speed0), fun = 'mean', colour = viridis(2)[1], geom = 'line') +
+    stat_summary(aes(x=time, y=speed0), fun.data = 'mean_cl_normal', 
+                 geom = 'ribbon', alpha = 0.2, fill = viridis(2)[1],) +
+    stat_summary(aes(x=time, y=speed1), fun = 'mean', colour = viridis(2)[2], 
+                 geom = 'line', linetype = "dashed") +
+    stat_summary(aes(x=time, y=speed1), fun.data = 'mean_cl_normal', 
+                 geom = 'ribbon', alpha = 0.2, fill = viridis(2)[2],) +
     geom_vline(xintercept = 0, linetype = 2, colour="#222222") +
     facet_grid(rows = vars(species),
                cols = vars(treatment),
@@ -181,6 +195,7 @@ plot_speed_comparison <- function (){
         strip.text.y = element_text(face="italic"),
         text = element_text(size = 12))
   ggsave("output/plot_move_speed_sep.pdf", height = 4, width = 6)
+  #ggsave("output/plot_move_speed_sep.png", height = 4, width = 6)
 }
 stat_speed_comparison <- function() {
   load("data_fmt/df_tandem_fmt.rda")
