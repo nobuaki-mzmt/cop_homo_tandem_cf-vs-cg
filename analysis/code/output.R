@@ -243,9 +243,14 @@ plot_tandem_duration_surv_comp <- function(){
   df_tandem <- subset(df_tandem, treatment == "FM")
   df_tandem_comp <- data.frame(df_tandem, experiment = "Florda_2021")
 
-  load("data_fmt/df_tandem_fmt_Mizumoto-etal-2020.rda")
+  load("data_fmt/df_tandem_fmt_Mizumoto-etal-2020_JAE.rda")
+  df_tandem_comp = rbind(df_tandem_comp,
+                         data.frame(df_tandem, experiment = "Florda_2019"))
+  
+  load("data_fmt/df_tandem_fmt_Mizumoto-etal-2021_PRSB.rda")
   df_tandem_comp = rbind(df_tandem_comp,
                          data.frame(df_tandem, experiment = "Florda_2020"))
+  
   
   ggsurv = ggsurvplot(
     fit      = survfit(Surv(tan_duration, tan_cens) ~ experiment, 
@@ -282,17 +287,22 @@ stat_tandem_duration_surv <- function(){
   df_tandem <- subset(df_tandem, treatment == "FM")
   df_tandem_comp <- data.frame(df_tandem, experiment = "Florda_2021")
   
-  load("data_fmt/df_tandem_fmt_Mizumoto-etal-2020.rda")
+  load("data_fmt/df_tandem_fmt_Mizumoto-etal-2020_JAE.rda")
+  df_tandem_comp = rbind(df_tandem_comp,
+                         data.frame(df_tandem, experiment = "Florda_2019"))
+  
+  load("data_fmt/df_tandem_fmt_Mizumoto-etal-2021_PRSB.rda")
   df_tandem_comp = rbind(df_tandem_comp,
                          data.frame(df_tandem, experiment = "Florda_2020"))
+  df_tandem_comp$experiment <- factor(df_tandem_comp$experiment)
   
   m <- coxme(Surv(tan_duration, tan_cens) ~  experiment + (1|name), 
-             data = subset(df_tandem_comp, species=="CF"))
+             data = subset(df_tandem_comp, species=="CG"))
   print(summary(m))
   cat("\n----- Anova() -----\n\n")
   print(Anova(m))
   cat("\n----- glht mcp Tukey --\n\n")
-  multicomparison<-glht(m, linfct = mcp(treatment = "Tukey"))
+  multicomparison<-glht(m, linfct = mcp(experiment = "Tukey"))
   print(summary(multicomparison))
   
   
@@ -323,3 +333,39 @@ stat_tandem_duration_surv <- function(){
 }
 #------------------------------------------------------------------------------#
 
+
+load("data_fmt/df_tandem_fmt.rda")
+df_sum <- subset(df_sum, treatment == "FM")
+df_sum_comp <- data.frame(df_sum, experiment = "Florda_2021")
+
+load("data_fmt/df_tandem_fmt_Mizumoto-etal-2020_JAE.rda")
+df_sum_comp = rbind(df_sum_comp,
+                       data.frame(df_sum, experiment = "Florda_2019"))
+
+load("data_fmt/df_tandem_fmt_Mizumoto-etal-2021_PRSB.rda")
+df_sum_comp = rbind(df_sum_comp,
+                       data.frame(df_sum, experiment = "Florda_2020"))
+
+df_sum_comp
+ggplot(df_sum_comp, aes(x=experiment, y=tandem_total_duration, 
+                   fill=species, col=species))+
+  geom_boxplot(aes(x=experiment), outlier.shape= NA, 
+               alpha = .75, width = .2, colour = "black") + 
+  geom_point(aes(x = as.numeric(experiment)-0.2, fill=species), 
+             position = position_jitter(width = 0.05),
+             alpha = 0.75, shape = 19, size=0.5)+
+  scale_fill_viridis(discrete=T, option = "E", labels=c("C. formosanus", "C. gestroi")) +
+  scale_color_viridis(discrete=T, option = "E") +
+  scale_y_continuous(breaks = seq(0,1800,600)) +
+  ylab("Tandem duration (sec)") +
+  xlab("") +
+  theme_classic()+
+  theme(legend.position  = c(0.1 , 0.9),
+        legend.title = element_blank(),
+        legend.text = element_text(face = "italic"),
+        text = element_text(size = 12))+
+  guides(col = "none")
+
+table(df_sum_comp[,c("species","experiment")])
+
+      

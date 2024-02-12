@@ -7,10 +7,11 @@
 
 rm(list = ls())
 scale_trajectory(Plot=F)
-scale_trajectory(dataset = "Mizumoto-etal-2020", dish_mm = 138)
+scale_trajectory(dataset = "Mizumoto-etal-2021_PRSB", dish_mm = 138)
+scale_trajectory(dataset = "Mizumoto-etal-2020_JAE", dish_mm = 138)
 tandem.detect()
-tandem.detect(dataset = "Mizumoto-etal-2020")
-
+tandem.detect(dataset = "Mizumoto-etal-2021_PRSB")
+tandem.detect(dataset = "Mizumoto-etal-2020_JAE")
 #------------------------------------------------------------------------------#
 {
   library(data.table)
