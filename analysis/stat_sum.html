@@ -382,6 +382,13 @@ value.</p>
 ##        2.1215787        0.5835358 
 ## 
 ## 
+## ----- cohens_d() -----
+## 
+## # A tibble: 1 × 7
+##   .y.               group1 group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 logit_tandem_prop CF     CG        1.16    49    40 large    
+## 
 ## ----- treat:FF, t.test() -----
 ## 
 ## 
@@ -397,6 +404,13 @@ value.</p>
 ##        -1.117550        -1.448017 
 ## 
 ## 
+## ----- cohens_d() -----
+## 
+## # A tibble: 1 × 7
+##   .y.               group1 group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 logit_tandem_prop CF     CG       0.330    61    40 small    
+## 
 ## ----- treat:MM, t.test() -----
 ## 
 ## 
@@ -411,6 +425,13 @@ value.</p>
 ## mean in group CF mean in group CG 
 ##        -2.814612        -1.604198 
 ## 
+## 
+## ----- cohens_d() -----
+## 
+## # A tibble: 1 × 7
+##   .y.               group1 group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 logit_tandem_prop CF     CG       -1.35    44    45 large    
 ## -----------------------------------------------------
 ## 
 ## ---------- Comp tandem prop across treats for each species ----------
@@ -443,6 +464,15 @@ value.</p>
 ## MM-FF -1.697061 -2.221755 -1.172368     0
 ## 
 ## 
+## ----- cohens_d() -----
+## 
+## # A tibble: 3 × 7
+##   .y.               group1 group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 logit_tandem_prop FM     FF        2.79    49    61 large    
+## 2 logit_tandem_prop FM     MM        4.16    49    44 large    
+## 3 logit_tandem_prop FF     MM        1.65    61    44 large    
+## 
 ## ----- treat:CG, aov() -----
 ## 
 ## Call:
@@ -470,13 +500,22 @@ value.</p>
 ## MM-FM -2.1877341 -2.7212447 -1.6542236 0.0000000
 ## MM-FF -0.1561809 -0.6896914  0.3773297 0.7671048
 ## 
+## 
+## ----- cohens_d() -----
+## 
+## # A tibble: 3 × 7
+##   .y.               group1 group2 effsize    n1    n2 magnitude 
+## * &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;     
+## 1 logit_tandem_prop FM     FF       1.72     40    40 large     
+## 2 logit_tandem_prop FM     MM       2.05     40    45 large     
+## 3 logit_tandem_prop FF     MM       0.181    40    45 negligible
 ## -----------------------------------------------------</code></pre>
 </div>
 <div id="tandem-duration" class="section level3">
 <h3>Tandem duration</h3>
 <p>Compare the duration of each tandem running events using coxme()
 model.</p>
-<pre class="r"><code>stat_tandem_duration_durv()</code></pre>
+<pre class="r"><code>stat_tandem_duration_surv()</code></pre>
 <pre><code>## ---------- Comp tandem duration between species for each treat ----------
 ## 
 ## ----- treat:FM, summary() -----
@@ -775,8 +814,8 @@ model.</p>
 ## 
 ## Linear Hypotheses:
 ##              Estimate Std. Error z value Pr(&gt;|z|)    
-## FF - FM == 0  1.35300    0.13772   9.824   &lt;1e-04 ***
-## MM - FM == 0  1.43266    0.12619  11.353   &lt;1e-04 ***
+## FF - FM == 0  1.35300    0.13772   9.824   &lt;1e-05 ***
+## MM - FM == 0  1.43266    0.12619  11.353   &lt;1e-05 ***
 ## MM - FF == 0  0.07966    0.14813   0.538    0.852    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
@@ -843,8 +882,8 @@ model.</p>
 ## 
 ## Linear Hypotheses:
 ##              Estimate Std. Error z value Pr(&gt;|z|)    
-## FF - FM == 0  -5.4099     1.2934  -4.183 8.35e-05 ***
-## MM - FM == 0  -6.2778     1.2596  -4.984  &lt; 1e-05 ***
+## FF - FM == 0  -5.4099     1.2934  -4.183   &lt;1e-04 ***
+## MM - FM == 0  -6.2778     1.2596  -4.984   &lt;1e-04 ***
 ## MM - FF == 0  -0.8679     1.2223  -0.710    0.757    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1

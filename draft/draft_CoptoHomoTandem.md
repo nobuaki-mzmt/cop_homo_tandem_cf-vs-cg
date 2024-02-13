@@ -1,8 +1,8 @@
 **The strength of sexual signals predicts same-sex paring in termites**
 **(\<3500 words)**
 
-**Nobuaki Mizumoto**<sup>1,2,3\#\*</sup>**, Sang-Bin
-Lee**<sup>4\#</sup>**, Thomas Chouvenc**<sup>4</sup>
+**Nobuaki Mizumoto**<sup>1,2,3#\*</sup>**, Sang-Bin
+Lee**<sup>4#</sup>**, Thomas Chouvenc**<sup>4</sup>
 
 1: Department of Entomology & Plant Pathology, Auburn, AL, USA
 
@@ -144,7 +144,7 @@ movements from all obtained video, using the video-tracking system
 UMATracker \[19\]. We down sampled all coordinates to a rate of five FPS
 for subsequent analyses. We measured the diameter of dish and body
 length of two termites in pixel for each video, using a python program
-(https://github.com/nobuaki-mzmt/cop\_homo\_tandem\_cf-vs-cg).
+(https://github.com/nobuaki-mzmt/cop_homo_tandem_cf-vs-cg).
 
 *Tandem analysis*
 
@@ -168,38 +168,47 @@ performing tandem runs across different pair combinations (or species),
 after transforming proportional data using logit-transformation after
 adding 0.01 to the observed proportions to avoid infinite values \[22\].
 We used Welch t-test to compare them between species for each pair
-combination, while one-way anova with Tukey’s HSD to compare among
-combinations for each species. Finally, for each separation event, we
-obtained the movement speed of both termites after 5 seconds of
-separation and calculated the absolute difference of movement speed. We
-compared the difference of movement speed using linear mixed-effects
-models \[lmer() function in the lme4 package in R \[23\]\], as the same
-approach with mixed-effect Cox model as above. All data analyses were
-performed using R v4.3.0 \[24\], and source codes are available at
-github (https://github.com/nobuaki-mzmt/cop\_homo\_tandem\_cf-vs-cg).
+combination, while one-way Anova with Tukey’s HSD to compare among
+combinations for each species. In t-test and Tukey’ HSD, we obtained
+Cohen’s d value as effect sizes \[cohens_d() function in the rstatix
+package in R\]. Finally, for each separation event, we obtained the
+movement speed of both termites after 5 seconds of separation and
+calculated the absolute difference of movement speed. We compared the
+difference of movement speed using linear mixed-effects models \[lmer()
+function in the lme4 package in R \[23\]\], as the same approach with
+mixed-effect Cox model as above. All data analyses were performed using
+R v4.3.0 \[24\], and source codes are available at github
+(https://github.com/nobuaki-mzmt/cop_homo_tandem_cf-vs-cg).
 
 **Results**
 
 The species difference of tandem running behavior depended on the
 pairing combinations. In heterosexual pairing, *C. formosanus* showed
-more stable tandems (coxed-model, Figure S1) and spent longer time for
-tandem runs than *C. gestroi* (t-test, Figure 1). Note that this result
-is contradicting with a pervious study that detected no significant
-difference between these two species \[16\]. This contradiction is
-discussed in the supplementary material although this is not the main
-theme of this paper (Supplementary materials). Somewhat similar pattern
-was observed in female-female pairing, where *C. formosanus* showed more
-stable tandems than *C. gestroi* (coxed-model, Figure S1), without
-difference in the time spent in tandem runs (t-test, Figure 1). On the
-other hand, male-male pairing showed the opposite pattern, where *C.
-gestroi* showed more stable tandems (coxed-model, Figure S1) and spent
-longer time for tandem runs than *C. formosanus* (t-test, Figure 1). In
-either species, same-sex pairing was much more unstable than
-heterosexual pairing, with no difference between female-female pairs and
-male-male pairs in *C. gestroi*, while larger difference between
-female-female pairs and male-male pairs in *C. formosanus*.
+more stable tandems (mixed-effects Cox model, χ<sup>2</sup><sub>1</sub>
+= 40.5, *P* \< 0.001, Figure S1) and spent longer time for tandem runs
+than *C. gestroi* (t-test, *t*<sub>82.3</sub> = 5.45, *P* \< 0.001, *d*
+= 1.16, Figure 1). Note that this result is contradicting with a
+pervious study that detected no significant difference between these two
+species \[16\], where the contradiction is discussed in the
+supplementary material although this is not the main theme of this paper
+(Supplementary materials). Somewhat similar pattern was observed in
+female-female pairing, where *C. formosanus* showed more stable tandems
+than *C. gestroi* (coxed-model, Figure S1), without difference in the
+time spent in tandem runs (t-test, *t*<sub>83.6</sub> = 1.62, *P* =
+0.109, *d* = 0.33, Figure 1). On the other hand, male-male pairing
+showed the opposite pattern, where *C. gestroi* showed more stable
+tandems (coxed-model, Figure S1) and spent longer time for tandem runs
+than *C. formosanus* (t-test, *t*<sub>73.9</sub> = 6.36, *P* \< 0.001,
+*d* = 1.35, Figure 1). In either species, same-sex pairing was much more
+unstable than heterosexual pairing, with no difference between
+female-female pairs and male-male pairs in *C. gestroi* (TukeyHSD,
+FM-FF: *P* \< 0.001, *d* = 1.72; FM-MM: *P* \< 0.001, *d* = 2.05; FF-MM:
+*P* = 0.767, *d* = 0.181; Figure 1), while larger difference between
+female-female pairs and male-male pairs in *C. formosanus* (TukeyHSD,
+FM-FF: *P* \< 0.001, *d* = 2.79; FM-MM: *P* \< 0.001, *d* = 4.16; FF-MM:
+*P* \< 0.001, *d* = 1.65; Figure 1).
 
-![](media/image1.png)
+<img src="media/image1.png" style="width:4.04375in;height:4.22639in" />
 
 > **Figure 1.** Comparison of the total time spent in tandem among
 > pairing combinations and species. The sex attracting pheromone is
@@ -217,7 +226,7 @@ formosanus* () and *C. gestroi* (). This could be because movement speed
 of same-sex tandem run was slower than the heterosexual tandem runs (),
 and individuals did not tend to slow down as heterosexual pairs.
 
-![](media/image2.png)
+<img src="media/image2.png" style="width:6in;height:4in" />
 
 > **Figure 2.** Movement speed of termites before and after separation.
 > Separation timing was determined when the distances between partners
@@ -303,83 +312,114 @@ Scientists (21K15168) to NM, and an IPSF fellowship from OIST to N.M.
 
 1\. Bagemihl B. 1999 *Biological exuberance: Animal homosexuality and
 natural diversity*. New York: NY: St. Martins’ Press. See
-https://scholar.google.co.jp/scholar?q=Biological+Exuberance:+Animal+Homosexuality+and+Natural+Diversity+\&hl=ja\&as\_sdt=0,5\#0.2.
-Bailey NW, Zuk M. 2009 Same-sex sexual behavior and evolution. *Trends
-in Ecology & Evolution* **24**, 439–446.
-(doi:10.1016/j.tree.2009.03.014)3. Scharf I, Martin OY. 2013 Same-sex
-sexual behavior in insects and arachnids: prevalence, causes, and
-consequences. *Behavioral Ecology and Sociobiology* **67**, 1719–1730.
-(doi:10.1007/s00265-013-1610-x)4. Monk JD, Giglio E, Kamath A, Lambert
-MR, McDonough CE. 2019 An alternative hypothesis for the evolution of
-same-sex sexual behaviour in animals. *Nature Ecology and Evolution*
-**3**, 1622–1631. (doi:10.1038/s41559-019-1019-7)5. Mizumoto N, Yashiro
-T, Matsuura K. 2016 Male same-sex pairing as an adaptive strategy for
-future reproduction in termites. *Animal Behaviour* **119**, 179–187.
-(doi:10.1016/j.anbehav.2016.07.007)6. Young LC, VanderWerf EA. 2013
-Adaptive value of same-sex pairing in Laysan albatross. *Proceedings of
-the Royal Society B: Biological Sciences* **281**.
-(doi:10.1098/rspb.2013.2473)7. Lerch BA, Servedio MR. 2021 Same-sex
-sexual behaviour and selection for indiscriminate mating. *Nature
-Ecology and Evolution* **5**, 135–141.
-(doi:10.1038/s41559-020-01331-w)8. Pfau D, Jordan CL, Breedlove SM. 2021
-The de-scent of sexuality: Did loss of a pheromone signaling protein
-permit the evolution of same-sex sexual behavior in primates? *Archives
-of Sexual Behavior* **50**, 2267–2276. (doi:10.1007/s10508-018-1377-2)9.
-Burgevin L, Friberg U, Maklakov AA. 2013 Intersexual correlation for
+https://scholar.google.co.jp/scholar?q=Biological+Exuberance:+Animal+Homosexuality+and+Natural+Diversity+&hl=ja&as_sdt=0,5#0.
+
+2\. Bailey NW, Zuk M. 2009 Same-sex sexual behavior and evolution.
+*Trends in Ecology & Evolution* **24**, 439–446.
+(doi:10.1016/j.tree.2009.03.014)
+
+3\. Scharf I, Martin OY. 2013 Same-sex sexual behavior in insects and
+arachnids: prevalence, causes, and consequences. *Behavioral Ecology and
+Sociobiology* **67**, 1719–1730. (doi:10.1007/s00265-013-1610-x)
+
+4\. Monk JD, Giglio E, Kamath A, Lambert MR, McDonough CE. 2019 An
+alternative hypothesis for the evolution of same-sex sexual behaviour in
+animals. *Nature Ecology and Evolution* **3**, 1622–1631.
+(doi:10.1038/s41559-019-1019-7)
+
+5\. Mizumoto N, Yashiro T, Matsuura K. 2016 Male same-sex pairing as an
+adaptive strategy for future reproduction in termites. *Animal
+Behaviour* **119**, 179–187. (doi:10.1016/j.anbehav.2016.07.007)
+
+6\. Young LC, VanderWerf EA. 2013 Adaptive value of same-sex pairing in
+Laysan albatross. *Proceedings of the Royal Society B: Biological
+Sciences* **281**. (doi:10.1098/rspb.2013.2473)
+
+7\. Lerch BA, Servedio MR. 2021 Same-sex sexual behaviour and selection
+for indiscriminate mating. *Nature Ecology and Evolution* **5**,
+135–141. (doi:10.1038/s41559-020-01331-w)
+
+8\. Pfau D, Jordan CL, Breedlove SM. 2021 The de-scent of sexuality: Did
+loss of a pheromone signaling protein permit the evolution of same-sex
+sexual behavior in primates? *Archives of Sexual Behavior* **50**,
+2267–2276. (doi:10.1007/s10508-018-1377-2)
+
+9\. Burgevin L, Friberg U, Maklakov AA. 2013 Intersexual correlation for
 same-sex sexual behaviour in an insect. *Animal Behaviour* **85**,
-759–762. (doi:10.1016/j.anbehav.2013.01.017)10. Nutting WL. 1969 8
-Flight and colony foundation. In *Biology of termites* (eds K Krishna,
-FM Weesner), pp. 233–282. New York: Academic Press.
-(doi:10.1016/B978-0-12-395529-6.50012-X)11. Mizumoto N, Bourguignon T,
-Bailey NW. 2022 Ancestral sex-role plasticity facilitates the evolution
-of same-sex sexual behavior. *Proceedings of the National Academy of
-Sciences of the United States of America* **119**, e2212401119.
-(doi:10.1073/pnas.2212401119)12. Matsuura K, Kuno E, Nishida T. 2002
-Homosexual tandem running as selfish herd in *Reticulitermes speratus*:
-novel antipredatory behavior in termites. *Journal of theoretical
-biology* **214**, 63–70.
-(doi:https://doi.org/10.1101/2022.06.20.496918)13. Park YI, Bland JM,
-Raina AK. 2004 Factors affecting post-flight behavior in primary
-reproductives of the Formosan subterranean termite, Coptotermes
-formosanus (Isoptera: Rhinotermitidae). *Journal of Insect Physiology*
-**50**, 539–546. (doi:10.1016/j.jinsphys.2004.03.010)14. Chouvenc T,
-Sillam-Dussès D, Robert A. 2020 Courtship behavior confusion in two
-subterranean termite species that evolved in allopatry (Blattodea,
-Rhinotermitidae, *Coptotermes*). *Journal of Chemical Ecology* , 1–14.
-(doi:10.1007/s10886-020-01178-2)15. Chouvenc T, Helmick EE, Su N-Y. 2015
-Hybridization of two major termite invaders as a consequence of human
-activity. *PLoS ONE* **10**, e0120745.
-(doi:10.1371/journal.pone.0120745)16. Mizumoto N, Lee SB, Valentini G,
-Chouvenc T, Pratt SC. 2021 Coordination of movement via complementary
-interactions of leaders and followers in termite mating pairs.
-*Proceedings of the Royal Society B: Biological Sciences* **288**,
-20210998. (doi:10.1098/rspb.2021.0998)17. Mizumoto N, Dobata S. 2019
-Adaptive switch to sexually dimorphic movements by partner-seeking
-termites. *Science Advances* **5**, eaau6108.
-(doi:10.1126/sciadv.aau6108)18. Mizumoto N, Rizo A, Pratt SC, Chouvenc
-T. 2020 Termite males enhance mating encounters by changing speed
-according to density. *Journal of Animal Ecology* **89**, 2542–2552.
-(doi:10.1111/1365-2656.13320)19. Yamanaka O, Takeuchi R. 2018
-UMATracker: An intuitive image-based tracking platform. *Journal of
-Experimental Biology* **221**, 1–24. (doi:10.1242/jeb.182469)20.
-Valentini G, Mizumoto N, Pratt SC, Pavlic TP, Walker SI. 2020 Revealing
-the structure of information flows discriminates similar animal social
-behaviors. *eLife* **9**, e55395. (doi:10.7554/eLife.55395)21. Therneau
-TM. 2015 coxme: mixed effects Cox models. 22. Warton DI, Hui FKC. 2011
-The arcsine is asinine: The analysis of proportions in ecology.
-*Ecology* **92**, 3–10. (doi:10.1890/10-0340.1)23. Bates D, Mächler M,
-Bolker BM, Walker SC. 2015 Fitting linear mixed-effects models using
-lme4. *Journal of Statistical Software* **67**.
-(doi:10.18637/jss.v067.i01)24. R Core Team. 2023 R: A language and
-environment for statistical computing. 25. Li G, Zou X, Lei C, Huang Q.
-2013 Antipredator behavior produced by heterosexual and homosexual
-tandem running in the termite *Reticulitermes chinensis* (Isoptera:
-Rhinotermitidae). *Sociobiology* **60**, 198–203. (doi:DOI:
-10.13102/sociobiology.v60i2.198-203)26. Matsuura K, Fujimoto M, Goka K.
-2004 Sexual and asexual colony foundation and the mechanism of
-facultative parthenogenesis in the termite Reticulitermes speratus
-(Isoptera, Rhinotermitidae). *Insectes Sociaux* **51**, 325–332.
-(doi:10.1007/s00040-004-0746-0)
+759–762. (doi:10.1016/j.anbehav.2013.01.017)
+
+10\. Nutting WL. 1969 8 Flight and colony foundation. In *Biology of
+termites* (eds K Krishna, FM Weesner), pp. 233–282. New York: Academic
+Press. (doi:10.1016/B978-0-12-395529-6.50012-X)
+
+11\. Mizumoto N, Bourguignon T, Bailey NW. 2022 Ancestral sex-role
+plasticity facilitates the evolution of same-sex sexual behavior.
+*Proceedings of the National Academy of Sciences of the United States of
+America* **119**, e2212401119. (doi:10.1073/pnas.2212401119)
+
+12\. Matsuura K, Kuno E, Nishida T. 2002 Homosexual tandem running as
+selfish herd in *Reticulitermes speratus*: novel antipredatory behavior
+in termites. *Journal of theoretical biology* **214**, 63–70.
+(doi:https://doi.org/10.1101/2022.06.20.496918)
+
+13\. Park YI, Bland JM, Raina AK. 2004 Factors affecting post-flight
+behavior in primary reproductives of the Formosan subterranean termite,
+Coptotermes formosanus (Isoptera: Rhinotermitidae). *Journal of Insect
+Physiology* **50**, 539–546. (doi:10.1016/j.jinsphys.2004.03.010)
+
+14\. Chouvenc T, Sillam-Dussès D, Robert A. 2020 Courtship behavior
+confusion in two subterranean termite species that evolved in allopatry
+(Blattodea, Rhinotermitidae, *Coptotermes*). *Journal of Chemical
+Ecology* , 1–14. (doi:10.1007/s10886-020-01178-2)
+
+15\. Chouvenc T, Helmick EE, Su N-Y. 2015 Hybridization of two major
+termite invaders as a consequence of human activity. *PLoS ONE* **10**,
+e0120745. (doi:10.1371/journal.pone.0120745)
+
+16\. Mizumoto N, Lee SB, Valentini G, Chouvenc T, Pratt SC. 2021
+Coordination of movement via complementary interactions of leaders and
+followers in termite mating pairs. *Proceedings of the Royal Society B:
+Biological Sciences* **288**, 20210998. (doi:10.1098/rspb.2021.0998)
+
+17\. Mizumoto N, Dobata S. 2019 Adaptive switch to sexually dimorphic
+movements by partner-seeking termites. *Science Advances* **5**,
+eaau6108. (doi:10.1126/sciadv.aau6108)
+
+18\. Mizumoto N, Rizo A, Pratt SC, Chouvenc T. 2020 Termite males
+enhance mating encounters by changing speed according to density.
+*Journal of Animal Ecology* **89**, 2542–2552.
+(doi:10.1111/1365-2656.13320)
+
+19\. Yamanaka O, Takeuchi R. 2018 UMATracker: An intuitive image-based
+tracking platform. *Journal of Experimental Biology* **221**, 1–24.
+(doi:10.1242/jeb.182469)
+
+20\. Valentini G, Mizumoto N, Pratt SC, Pavlic TP, Walker SI. 2020
+Revealing the structure of information flows discriminates similar
+animal social behaviors. *eLife* **9**, e55395.
+(doi:10.7554/eLife.55395)
+
+21\. Therneau TM. 2015 coxme: mixed effects Cox models.
+
+22\. Warton DI, Hui FKC. 2011 The arcsine is asinine: The analysis of
+proportions in ecology. *Ecology* **92**, 3–10. (doi:10.1890/10-0340.1)
+
+23\. Bates D, Mächler M, Bolker BM, Walker SC. 2015 Fitting linear
+mixed-effects models using lme4. *Journal of Statistical Software*
+**67**. (doi:10.18637/jss.v067.i01)
+
+24\. R Core Team. 2023 R: A language and environment for statistical
+computing.
+
+25\. Li G, Zou X, Lei C, Huang Q. 2013 Antipredator behavior produced by
+heterosexual and homosexual tandem running in the termite
+*Reticulitermes chinensis* (Isoptera: Rhinotermitidae). *Sociobiology*
+**60**, 198–203. (doi:DOI: 10.13102/sociobiology.v60i2.198-203)
+
+26\. Matsuura K, Fujimoto M, Goka K. 2004 Sexual and asexual colony
+foundation and the mechanism of facultative parthenogenesis in the
+termite Reticulitermes speratus (Isoptera, Rhinotermitidae). *Insectes
+Sociaux* **51**, 325–332. (doi:10.1007/s00040-004-0746-0)
 
 **  
 **
@@ -396,8 +436,8 @@ This file includes:
 
 Figure S1
 
-![A graph of two people Description automatically
-generated](media/image3.png)
+<img src="media/image3.png" style="width:5in;height:3in"
+alt="A graph of two people Description automatically generated" />
 
 > **Figure S1.** Comparison of the duration of tandem running until
 > separation across different pairing combinations and species.

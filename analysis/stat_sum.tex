@@ -1,0 +1,701 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Coptotermes same-sex tandem},
+  pdfauthor={Nobu Mizumoto},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Coptotermes same-sex tandem}
+\author{Nobu Mizumoto}
+\date{2024-02-08}
+
+\begin{document}
+\maketitle
+
+This is an R Markdown document for save the outputs of statistical
+analysis.
+
+\hypertarget{proportion-of-tandem-run}{%
+\subsubsection{Proportion of tandem
+run}\label{proportion-of-tandem-run}}
+
+Compare the proportion of time spent in tandem runs.\\
+data was logit transformed after adding 0.01 to avoid infinitive value.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{stat\_tandem\_duration}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ---------- Comp tandem prop between species for each treat ----------
+## 
+## ----- treat:FM, t.test() -----
+## 
+## 
+##  Welch Two Sample t-test
+## 
+## data:  logit_tandem_prop by species
+## t = 5.4515, df = 82.342, p-value = 5.102e-07
+## alternative hypothesis: true difference in means between group CF and group CG is not equal to 0
+## 95 percent confidence interval:
+##  0.9768288 2.0992569
+## sample estimates:
+## mean in group CF mean in group CG 
+##        2.1215787        0.5835358 
+## 
+## 
+## ----- treat:FF, t.test() -----
+## 
+## 
+##  Welch Two Sample t-test
+## 
+## data:  logit_tandem_prop by species
+## t = 1.6222, df = 83.592, p-value = 0.1085
+## alternative hypothesis: true difference in means between group CF and group CG is not equal to 0
+## 95 percent confidence interval:
+##  -0.07467173  0.73560583
+## sample estimates:
+## mean in group CF mean in group CG 
+##        -1.117550        -1.448017 
+## 
+## 
+## ----- treat:MM, t.test() -----
+## 
+## 
+##  Welch Two Sample t-test
+## 
+## data:  logit_tandem_prop by species
+## t = -6.3583, df = 73.906, p-value = 1.512e-08
+## alternative hypothesis: true difference in means between group CF and group CG is not equal to 0
+## 95 percent confidence interval:
+##  -1.589738 -0.831089
+## sample estimates:
+## mean in group CF mean in group CG 
+##        -2.814612        -1.604198 
+## 
+## -----------------------------------------------------
+## 
+## ---------- Comp tandem prop across treats for each species ----------
+## 
+## ----- treat:CF, aov() -----
+## 
+## Call:
+##    aov(formula = logit_tandem_prop ~ treatment, data = df_sum[df_sum$species == 
+##     i, ])
+## 
+## Terms:
+##                 treatment Residuals
+## Sum of Squares   594.9576  189.6554
+## Deg. of Freedom         2       151
+## 
+## Residual standard error: 1.120712
+## Estimated effects may be unbalanced
+## 
+## ----- treat:CF, TukeyHSD() -----
+## 
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = logit_tandem_prop ~ treatment, data = df_sum[df_sum$species == i, ])
+## 
+## $treatment
+##            diff       lwr       upr p adj
+## FF-FM -3.239129 -3.748033 -2.730226     0
+## MM-FM -4.936190 -5.487149 -4.385232     0
+## MM-FF -1.697061 -2.221755 -1.172368     0
+## 
+## 
+## ----- treat:CG, aov() -----
+## 
+## Call:
+##    aov(formula = logit_tandem_prop ~ treatment, data = df_sum[df_sum$species == 
+##     i, ])
+## 
+## Terms:
+##                 treatment Residuals
+## Sum of Squares   122.1005  130.6256
+## Deg. of Freedom         2       122
+## 
+## Residual standard error: 1.034747
+## Estimated effects may be unbalanced
+## 
+## ----- treat:CG, TukeyHSD() -----
+## 
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = logit_tandem_prop ~ treatment, data = df_sum[df_sum$species == i, ])
+## 
+## $treatment
+##             diff        lwr        upr     p adj
+## FF-FM -2.0315533 -2.5805311 -1.4825754 0.0000000
+## MM-FM -2.1877341 -2.7212447 -1.6542236 0.0000000
+## MM-FF -0.1561809 -0.6896914  0.3773297 0.7671048
+## 
+## -----------------------------------------------------
+\end{verbatim}
+
+\hypertarget{tandem-duration}{%
+\subsubsection{Tandem duration}\label{tandem-duration}}
+
+Compare the duration of each tandem running events using coxme() model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{stat\_tandem\_duration\_surv}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ---------- Comp tandem duration between species for each treat ----------
+## 
+## ----- treat:FM, summary() -----
+## 
+## Cox mixed-effects model fit by maximum likelihood
+##   Data: subset(df_tandem, treatment == i)
+##   events, n = 1028, 1142
+##   Iterations= 12 56 
+##                     NULL Integrated    Fitted
+## Log-likelihood -6281.726  -6039.233 -5901.944
+## 
+##                    Chisq    df p    AIC    BIC
+## Integrated loglik 484.99  2.00 0 480.99 471.12
+##  Penalized loglik 759.56 77.23 0 605.10 223.92
+## 
+## Model:  Surv(tan_duration, tan_cens) ~ species + (1 | name) 
+## Fixed coefficients
+##               coef exp(coef)  se(coef)    z       p
+## speciesCG 1.386399  4.000419 0.2177534 6.37 1.9e-10
+## 
+## Random effects
+##  Group Variable  Std Dev   Variance 
+##  name  Intercept 0.9868409 0.9738551
+## Cox mixed-effects model fit by maximum likelihood
+##   Data: subset(df_tandem, treatment == i)
+##   events, n = 1028, 1142
+##   Iterations= 12 56 
+##                     NULL Integrated    Fitted
+## Log-likelihood -6281.726  -6039.233 -5901.944
+## 
+##                    Chisq    df p    AIC    BIC
+## Integrated loglik 484.99  2.00 0 480.99 471.12
+##  Penalized loglik 759.56 77.23 0 605.10 223.92
+## 
+## Model:  Surv(tan_duration, tan_cens) ~ species + (1 | name) 
+## Fixed coefficients
+##               coef exp(coef)  se(coef)    z       p
+## speciesCG 1.386399  4.000419 0.2177534 6.37 1.9e-10
+## 
+## Random effects
+##  Group Variable  Std Dev   Variance 
+##  name  Intercept 0.9868409 0.9738551
+## 
+## ----- Anova() -----
+## 
+## Analysis of Deviance Table (Type II tests)
+## 
+## Response: Surv(tan_duration, tan_cens)
+##         Df  Chisq Pr(>Chisq)    
+## species  1 40.536   1.93e-10 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## ----- treat:FF, summary() -----
+## 
+## Cox mixed-effects model fit by maximum likelihood
+##   Data: subset(df_tandem, treatment == i)
+##   events, n = 1788, 1826
+##   Iterations= 12 55 
+##                     NULL Integrated    Fitted
+## Log-likelihood -11672.68  -11525.43 -11389.14
+## 
+##                    Chisq    df p    AIC    BIC
+## Integrated loglik 294.50  2.00 0 290.50 279.52
+##  Penalized loglik 567.07 83.93 0 399.21 -61.48
+## 
+## Model:  Surv(tan_duration, tan_cens) ~ species + (1 | name) 
+## Fixed coefficients
+##               coef exp(coef) se(coef)    z      p
+## speciesCG 0.395523  1.485161 0.129701 3.05 0.0023
+## 
+## Random effects
+##  Group Variable  Std Dev   Variance 
+##  name  Intercept 0.5826712 0.3395057
+## Cox mixed-effects model fit by maximum likelihood
+##   Data: subset(df_tandem, treatment == i)
+##   events, n = 1788, 1826
+##   Iterations= 12 55 
+##                     NULL Integrated    Fitted
+## Log-likelihood -11672.68  -11525.43 -11389.14
+## 
+##                    Chisq    df p    AIC    BIC
+## Integrated loglik 294.50  2.00 0 290.50 279.52
+##  Penalized loglik 567.07 83.93 0 399.21 -61.48
+## 
+## Model:  Surv(tan_duration, tan_cens) ~ species + (1 | name) 
+## Fixed coefficients
+##               coef exp(coef) se(coef)    z      p
+## speciesCG 0.395523  1.485161 0.129701 3.05 0.0023
+## 
+## Random effects
+##  Group Variable  Std Dev   Variance 
+##  name  Intercept 0.5826712 0.3395057
+## 
+## ----- Anova() -----
+## 
+## Analysis of Deviance Table (Type II tests)
+## 
+## Response: Surv(tan_duration, tan_cens)
+##         Df  Chisq Pr(>Chisq)   
+## species  1 9.2994   0.002292 **
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## ----- treat:MM, summary() -----
+## 
+## Cox mixed-effects model fit by maximum likelihood
+##   Data: subset(df_tandem, treatment == i)
+##   events, n = 1267, 1285
+##   Iterations= 15 66 
+##                     NULL Integrated   Fitted
+## Log-likelihood -7823.476   -7708.67 -7609.29
+## 
+##                    Chisq   df p    AIC    BIC
+## Integrated loglik 229.61  2.0 0 225.61 215.32
+##  Penalized loglik 428.37 65.7 0 296.96 -41.04
+## 
+## Model:  Surv(tan_duration, tan_cens) ~ species + (1 | name) 
+## Fixed coefficients
+##                 coef exp(coef)  se(coef)     z       p
+## speciesCG -0.7649132 0.4653743 0.1322459 -5.78 7.3e-09
+## 
+## Random effects
+##  Group Variable  Std Dev   Variance 
+##  name  Intercept 0.5377575 0.2891832
+## Cox mixed-effects model fit by maximum likelihood
+##   Data: subset(df_tandem, treatment == i)
+##   events, n = 1267, 1285
+##   Iterations= 15 66 
+##                     NULL Integrated   Fitted
+## Log-likelihood -7823.476   -7708.67 -7609.29
+## 
+##                    Chisq   df p    AIC    BIC
+## Integrated loglik 229.61  2.0 0 225.61 215.32
+##  Penalized loglik 428.37 65.7 0 296.96 -41.04
+## 
+## Model:  Surv(tan_duration, tan_cens) ~ species + (1 | name) 
+## Fixed coefficients
+##                 coef exp(coef)  se(coef)     z       p
+## speciesCG -0.7649132 0.4653743 0.1322459 -5.78 7.3e-09
+## 
+## Random effects
+##  Group Variable  Std Dev   Variance 
+##  name  Intercept 0.5377575 0.2891832
+## 
+## ----- Anova() -----
+## 
+## Analysis of Deviance Table (Type II tests)
+## 
+## Response: Surv(tan_duration, tan_cens)
+##         Df  Chisq Pr(>Chisq)    
+## species  1 33.455  7.294e-09 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## -----------------------------------------------------
+## 
+## ---------- Comp tandem duration among treat for each species ----------
+## 
+## ----- species:CF, summary() -----
+## 
+## Cox mixed-effects model fit by maximum likelihood
+##   Data: subset(df_tandem, species == i)
+##   events, n = 1782, 1890
+##   Iterations= 12 71 
+##                     NULL Integrated    Fitted
+## Log-likelihood -11788.37  -11200.37 -11007.22
+## 
+##                     Chisq     df p     AIC     BIC
+## Integrated loglik 1176.01   3.00 0 1170.01 1153.55
+##  Penalized loglik 1562.30 122.04 0 1318.23  648.81
+## 
+## Model:  Surv(tan_duration, tan_cens) ~ treatment + (1 | name) 
+## Fixed coefficients
+##                 coef exp(coef)  se(coef)     z p
+## treatmentFF 2.122745  8.354039 0.1381839 15.36 0
+## treatmentMM 3.322410 27.727089 0.1563177 21.25 0
+## 
+## Random effects
+##  Group Variable  Std Dev   Variance 
+##  name  Intercept 0.6961732 0.4846571
+## Cox mixed-effects model fit by maximum likelihood
+##   Data: subset(df_tandem, species == i)
+##   events, n = 1782, 1890
+##   Iterations= 12 71 
+##                     NULL Integrated    Fitted
+## Log-likelihood -11788.37  -11200.37 -11007.22
+## 
+##                     Chisq     df p     AIC     BIC
+## Integrated loglik 1176.01   3.00 0 1170.01 1153.55
+##  Penalized loglik 1562.30 122.04 0 1318.23  648.81
+## 
+## Model:  Surv(tan_duration, tan_cens) ~ treatment + (1 | name) 
+## Fixed coefficients
+##                 coef exp(coef)  se(coef)     z p
+## treatmentFF 2.122745  8.354039 0.1381839 15.36 0
+## treatmentMM 3.322410 27.727089 0.1563177 21.25 0
+## 
+## Random effects
+##  Group Variable  Std Dev   Variance 
+##  name  Intercept 0.6961732 0.4846571
+## 
+## ----- Anova() -----
+## 
+## Analysis of Deviance Table (Type II tests)
+## 
+## Response: Surv(tan_duration, tan_cens)
+##           Df  Chisq Pr(>Chisq)    
+## treatment  2 475.06  < 2.2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## ----- glht mcp Tukey --
+## 
+## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Multiple Comparisons of Means: Tukey Contrasts
+## 
+## 
+## Fit: coxme(formula = Surv(tan_duration, tan_cens) ~ treatment + (1 | 
+##     name), data = subset(df_tandem, species == i))
+## 
+## Linear Hypotheses:
+##              Estimate Std. Error z value Pr(>|z|)    
+## FF - FM == 0   2.1227     0.1382  15.362   <2e-16 ***
+## MM - FM == 0   3.3224     0.1563  21.254   <2e-16 ***
+## MM - FF == 0   1.1997     0.1436   8.353   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## (Adjusted p values reported -- single-step method)
+## 
+## 
+## ----- species:CG, summary() -----
+## 
+## Cox mixed-effects model fit by maximum likelihood
+##   Data: subset(df_tandem, species == i)
+##   events, n = 2301, 2363
+##   Iterations= 9 55 
+##                     NULL Integrated    Fitted
+## Log-likelihood -15626.68  -15234.02 -15059.21
+## 
+##                     Chisq     df p    AIC    BIC
+## Integrated loglik  785.34   3.00 0 779.34 762.11
+##  Penalized loglik 1134.95 105.88 0 923.18 315.28
+## 
+## Model:  Surv(tan_duration, tan_cens) ~ treatment + (1 | name) 
+## Fixed coefficients
+##                 coef exp(coef)  se(coef)     z p
+## treatmentFF 1.353004  3.869029 0.1377187  9.82 0
+## treatmentMM 1.432664  4.189847 0.1261943 11.35 0
+## 
+## Random effects
+##  Group Variable  Std Dev   Variance 
+##  name  Intercept 0.6051933 0.3662589
+## Cox mixed-effects model fit by maximum likelihood
+##   Data: subset(df_tandem, species == i)
+##   events, n = 2301, 2363
+##   Iterations= 9 55 
+##                     NULL Integrated    Fitted
+## Log-likelihood -15626.68  -15234.02 -15059.21
+## 
+##                     Chisq     df p    AIC    BIC
+## Integrated loglik  785.34   3.00 0 779.34 762.11
+##  Penalized loglik 1134.95 105.88 0 923.18 315.28
+## 
+## Model:  Surv(tan_duration, tan_cens) ~ treatment + (1 | name) 
+## Fixed coefficients
+##                 coef exp(coef)  se(coef)     z p
+## treatmentFF 1.353004  3.869029 0.1377187  9.82 0
+## treatmentMM 1.432664  4.189847 0.1261943 11.35 0
+## 
+## Random effects
+##  Group Variable  Std Dev   Variance 
+##  name  Intercept 0.6051933 0.3662589
+## 
+## ----- Anova() -----
+## 
+## Analysis of Deviance Table (Type II tests)
+## 
+## Response: Surv(tan_duration, tan_cens)
+##           Df  Chisq Pr(>Chisq)    
+## treatment  2 165.24  < 2.2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## ----- glht mcp Tukey --
+## 
+## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Multiple Comparisons of Means: Tukey Contrasts
+## 
+## 
+## Fit: coxme(formula = Surv(tan_duration, tan_cens) ~ treatment + (1 | 
+##     name), data = subset(df_tandem, species == i))
+## 
+## Linear Hypotheses:
+##              Estimate Std. Error z value Pr(>|z|)    
+## FF - FM == 0  1.35300    0.13772   9.824   <1e-05 ***
+## MM - FM == 0  1.43266    0.12619  11.353   <1e-05 ***
+## MM - FF == 0  0.07966    0.14813   0.538    0.852    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## (Adjusted p values reported -- single-step method)
+## 
+## -----------------------------------------------------
+\end{verbatim}
+
+\hypertarget{speed-comparison}{%
+\subsubsection{Speed comparison}\label{speed-comparison}}
+
+Compare the speed difference between followers (faster) and leaders
+(slower) after 5 second after separation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{stat\_speed\_comparison}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ---------- Speed diff comparison at 5 sec in Cop ges ----------
+## 
+## ----- summary() -----
+## 
+## Linear mixed model fit by REML ['lmerMod']
+## Formula: speed_diff ~ treatment + (1 | name)
+##    Data: subset(df_sep_ana, species == "CG")
+## 
+## REML criterion at convergence: 15390.1
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -3.9491 -0.6270 -0.0845  0.5762  3.6741 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  name     (Intercept)  23.17    4.814  
+##  Residual             126.11   11.230  
+## Number of obs: 1985, groups:  name, 125
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)  13.6433     0.9395  14.522
+## treatmentFF  -5.4099     1.2934  -4.183
+## treatmentMM  -6.2778     1.2596  -4.984
+## 
+## Correlation of Fixed Effects:
+##             (Intr) trtmFF
+## treatmentFF -0.726       
+## treatmentMM -0.746  0.542
+## 
+## ----- Anova() -----
+## 
+## Analysis of Deviance Table (Type II Wald chisquare tests)
+## 
+## Response: speed_diff
+##            Chisq Df Pr(>Chisq)    
+## treatment 27.951  2  8.524e-07 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## ----- glht mcp Tukey -----
+## 
+## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Multiple Comparisons of Means: Tukey Contrasts
+## 
+## 
+## Fit: lmer(formula = speed_diff ~ treatment + (1 | name), data = subset(df_sep_ana, 
+##     species == "CG"))
+## 
+## Linear Hypotheses:
+##              Estimate Std. Error z value Pr(>|z|)    
+## FF - FM == 0  -5.4099     1.2934  -4.183   <1e-04 ***
+## MM - FM == 0  -6.2778     1.2596  -4.984   <1e-04 ***
+## MM - FF == 0  -0.8679     1.2223  -0.710    0.757    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## (Adjusted p values reported -- single-step method)
+## 
+## -----------------------------------------------------
+## 
+## ---------- Speed diff comparison at 5 sec in Cop for ----------
+## 
+## ----- summary() -----
+## 
+## Linear mixed model fit by REML ['lmerMod']
+## Formula: speed_diff ~ treatment + (1 | name)
+##    Data: subset(df_sep_ana, species == "CF")
+## 
+## REML criterion at convergence: 12580.8
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -3.8782 -0.6562  0.0629  0.6626  3.0312 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  name     (Intercept)  33.85    5.818  
+##  Residual             155.46   12.468  
+## Number of obs: 1576, groups:  name, 148
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)   21.546      1.183  18.212
+## treatmentFF   -9.931      1.466  -6.773
+## treatmentMM  -10.761      1.658  -6.491
+## 
+## Correlation of Fixed Effects:
+##             (Intr) trtmFF
+## treatmentFF -0.807       
+## treatmentMM -0.714  0.576
+## 
+## ----- Anova() -----
+## 
+## Analysis of Deviance Table (Type II Wald chisquare tests)
+## 
+## Response: speed_diff
+##            Chisq Df Pr(>Chisq)    
+## treatment 55.917  2  7.208e-13 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## ----- glht mcp Tukey -----
+## 
+## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Multiple Comparisons of Means: Tukey Contrasts
+## 
+## 
+## Fit: lmer(formula = speed_diff ~ treatment + (1 | name), data = subset(df_sep_ana, 
+##     species == "CF"))
+## 
+## Linear Hypotheses:
+##              Estimate Std. Error z value Pr(>|z|)    
+## FF - FM == 0  -9.9314     1.4664  -6.773   <1e-05 ***
+## MM - FM == 0 -10.7610     1.6579  -6.491   <1e-05 ***
+## MM - FF == 0  -0.8296     1.4491  -0.573    0.834    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## (Adjusted p values reported -- single-step method)
+## 
+## -----------------------------------------------------
+\end{verbatim}
+
+\end{document}

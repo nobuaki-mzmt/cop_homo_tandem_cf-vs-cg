@@ -2,7 +2,9 @@
 title: "Coptotermes same-sex tandem"
 author: "Nobu Mizumoto"
 date: "2024-02-08"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -25,7 +27,7 @@ stat_tandem_duration()
 ### Tandem duration
 Compare the duration of each tandem running events using coxme() model.  
 ```{r message = FALSE}
-stat_tandem_duration_durv()
+stat_tandem_duration_surv()
 ```
 
 ### Speed comparison
