@@ -1,5 +1,4 @@
 ## Data analysis for Coptotermes homosexual tandem analysis
-## N. Mizumoto
 
 #------------------------------------------------------------------------------#
 # This file plots trajectories to check tracking errors

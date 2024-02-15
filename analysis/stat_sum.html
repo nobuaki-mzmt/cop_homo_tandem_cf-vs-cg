@@ -518,46 +518,10 @@ model.</p>
 <pre class="r"><code>stat_tandem_duration_surv()</code></pre>
 <pre><code>## ---------- Comp tandem duration between species for each treat ----------
 ## 
-## ----- treat:FM, summary() -----
+## ----- treat:FM -----
 ## 
-## Cox mixed-effects model fit by maximum likelihood
-##   Data: subset(df_tandem, treatment == i)
-##   events, n = 1028, 1142
-##   Iterations= 12 56 
-##                     NULL Integrated    Fitted
-## Log-likelihood -6281.726  -6039.233 -5901.944
-## 
-##                    Chisq    df p    AIC    BIC
-## Integrated loglik 484.99  2.00 0 480.99 471.12
-##  Penalized loglik 759.56 77.23 0 605.10 223.92
-## 
-## Model:  Surv(tan_duration, tan_cens) ~ species + (1 | name) 
-## Fixed coefficients
-##               coef exp(coef)  se(coef)    z       p
-## speciesCG 1.386399  4.000419 0.2177534 6.37 1.9e-10
-## 
-## Random effects
-##  Group Variable  Std Dev   Variance 
-##  name  Intercept 0.9868409 0.9738551
-## Cox mixed-effects model fit by maximum likelihood
-##   Data: subset(df_tandem, treatment == i)
-##   events, n = 1028, 1142
-##   Iterations= 12 56 
-##                     NULL Integrated    Fitted
-## Log-likelihood -6281.726  -6039.233 -5901.944
-## 
-##                    Chisq    df p    AIC    BIC
-## Integrated loglik 484.99  2.00 0 480.99 471.12
-##  Penalized loglik 759.56 77.23 0 605.10 223.92
-## 
-## Model:  Surv(tan_duration, tan_cens) ~ species + (1 | name) 
-## Fixed coefficients
-##               coef exp(coef)  se(coef)    z       p
-## speciesCG 1.386399  4.000419 0.2177534 6.37 1.9e-10
-## 
-## Random effects
-##  Group Variable  Std Dev   Variance 
-##  name  Intercept 0.9868409 0.9738551
+## coxme(formula = Surv(tan_duration, tan_cens) ~ species + (1 | 
+##     name), data = subset(df_tandem, treatment == i))
 ## 
 ## ----- Anova() -----
 ## 
@@ -569,46 +533,10 @@ model.</p>
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## ----- treat:FF, summary() -----
+## ----- treat:FF -----
 ## 
-## Cox mixed-effects model fit by maximum likelihood
-##   Data: subset(df_tandem, treatment == i)
-##   events, n = 1788, 1826
-##   Iterations= 12 55 
-##                     NULL Integrated    Fitted
-## Log-likelihood -11672.68  -11525.43 -11389.14
-## 
-##                    Chisq    df p    AIC    BIC
-## Integrated loglik 294.50  2.00 0 290.50 279.52
-##  Penalized loglik 567.07 83.93 0 399.21 -61.48
-## 
-## Model:  Surv(tan_duration, tan_cens) ~ species + (1 | name) 
-## Fixed coefficients
-##               coef exp(coef) se(coef)    z      p
-## speciesCG 0.395523  1.485161 0.129701 3.05 0.0023
-## 
-## Random effects
-##  Group Variable  Std Dev   Variance 
-##  name  Intercept 0.5826712 0.3395057
-## Cox mixed-effects model fit by maximum likelihood
-##   Data: subset(df_tandem, treatment == i)
-##   events, n = 1788, 1826
-##   Iterations= 12 55 
-##                     NULL Integrated    Fitted
-## Log-likelihood -11672.68  -11525.43 -11389.14
-## 
-##                    Chisq    df p    AIC    BIC
-## Integrated loglik 294.50  2.00 0 290.50 279.52
-##  Penalized loglik 567.07 83.93 0 399.21 -61.48
-## 
-## Model:  Surv(tan_duration, tan_cens) ~ species + (1 | name) 
-## Fixed coefficients
-##               coef exp(coef) se(coef)    z      p
-## speciesCG 0.395523  1.485161 0.129701 3.05 0.0023
-## 
-## Random effects
-##  Group Variable  Std Dev   Variance 
-##  name  Intercept 0.5826712 0.3395057
+## coxme(formula = Surv(tan_duration, tan_cens) ~ species + (1 | 
+##     name), data = subset(df_tandem, treatment == i))
 ## 
 ## ----- Anova() -----
 ## 
@@ -620,46 +548,10 @@ model.</p>
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## ----- treat:MM, summary() -----
+## ----- treat:MM -----
 ## 
-## Cox mixed-effects model fit by maximum likelihood
-##   Data: subset(df_tandem, treatment == i)
-##   events, n = 1267, 1285
-##   Iterations= 15 66 
-##                     NULL Integrated   Fitted
-## Log-likelihood -7823.476   -7708.67 -7609.29
-## 
-##                    Chisq   df p    AIC    BIC
-## Integrated loglik 229.61  2.0 0 225.61 215.32
-##  Penalized loglik 428.37 65.7 0 296.96 -41.04
-## 
-## Model:  Surv(tan_duration, tan_cens) ~ species + (1 | name) 
-## Fixed coefficients
-##                 coef exp(coef)  se(coef)     z       p
-## speciesCG -0.7649132 0.4653743 0.1322459 -5.78 7.3e-09
-## 
-## Random effects
-##  Group Variable  Std Dev   Variance 
-##  name  Intercept 0.5377575 0.2891832
-## Cox mixed-effects model fit by maximum likelihood
-##   Data: subset(df_tandem, treatment == i)
-##   events, n = 1267, 1285
-##   Iterations= 15 66 
-##                     NULL Integrated   Fitted
-## Log-likelihood -7823.476   -7708.67 -7609.29
-## 
-##                    Chisq   df p    AIC    BIC
-## Integrated loglik 229.61  2.0 0 225.61 215.32
-##  Penalized loglik 428.37 65.7 0 296.96 -41.04
-## 
-## Model:  Surv(tan_duration, tan_cens) ~ species + (1 | name) 
-## Fixed coefficients
-##                 coef exp(coef)  se(coef)     z       p
-## speciesCG -0.7649132 0.4653743 0.1322459 -5.78 7.3e-09
-## 
-## Random effects
-##  Group Variable  Std Dev   Variance 
-##  name  Intercept 0.5377575 0.2891832
+## coxme(formula = Surv(tan_duration, tan_cens) ~ species + (1 | 
+##     name), data = subset(df_tandem, treatment == i))
 ## 
 ## ----- Anova() -----
 ## 
@@ -674,48 +566,10 @@ model.</p>
 ## 
 ## ---------- Comp tandem duration among treat for each species ----------
 ## 
-## ----- species:CF, summary() -----
+## ----- species:CF -----
 ## 
-## Cox mixed-effects model fit by maximum likelihood
-##   Data: subset(df_tandem, species == i)
-##   events, n = 1782, 1890
-##   Iterations= 12 71 
-##                     NULL Integrated    Fitted
-## Log-likelihood -11788.37  -11200.37 -11007.22
-## 
-##                     Chisq     df p     AIC     BIC
-## Integrated loglik 1176.01   3.00 0 1170.01 1153.55
-##  Penalized loglik 1562.30 122.04 0 1318.23  648.81
-## 
-## Model:  Surv(tan_duration, tan_cens) ~ treatment + (1 | name) 
-## Fixed coefficients
-##                 coef exp(coef)  se(coef)     z p
-## treatmentFF 2.122745  8.354039 0.1381839 15.36 0
-## treatmentMM 3.322410 27.727089 0.1563177 21.25 0
-## 
-## Random effects
-##  Group Variable  Std Dev   Variance 
-##  name  Intercept 0.6961732 0.4846571
-## Cox mixed-effects model fit by maximum likelihood
-##   Data: subset(df_tandem, species == i)
-##   events, n = 1782, 1890
-##   Iterations= 12 71 
-##                     NULL Integrated    Fitted
-## Log-likelihood -11788.37  -11200.37 -11007.22
-## 
-##                     Chisq     df p     AIC     BIC
-## Integrated loglik 1176.01   3.00 0 1170.01 1153.55
-##  Penalized loglik 1562.30 122.04 0 1318.23  648.81
-## 
-## Model:  Surv(tan_duration, tan_cens) ~ treatment + (1 | name) 
-## Fixed coefficients
-##                 coef exp(coef)  se(coef)     z p
-## treatmentFF 2.122745  8.354039 0.1381839 15.36 0
-## treatmentMM 3.322410 27.727089 0.1563177 21.25 0
-## 
-## Random effects
-##  Group Variable  Std Dev   Variance 
-##  name  Intercept 0.6961732 0.4846571
+## coxme(formula = Surv(tan_duration, tan_cens) ~ treatment + (1 | 
+##     name), data = subset(df_tandem, species == i))
 ## 
 ## ----- Anova() -----
 ## 
@@ -748,48 +602,10 @@ model.</p>
 ## (Adjusted p values reported -- single-step method)
 ## 
 ## 
-## ----- species:CG, summary() -----
+## ----- species:CG -----
 ## 
-## Cox mixed-effects model fit by maximum likelihood
-##   Data: subset(df_tandem, species == i)
-##   events, n = 2301, 2363
-##   Iterations= 9 55 
-##                     NULL Integrated    Fitted
-## Log-likelihood -15626.68  -15234.02 -15059.21
-## 
-##                     Chisq     df p    AIC    BIC
-## Integrated loglik  785.34   3.00 0 779.34 762.11
-##  Penalized loglik 1134.95 105.88 0 923.18 315.28
-## 
-## Model:  Surv(tan_duration, tan_cens) ~ treatment + (1 | name) 
-## Fixed coefficients
-##                 coef exp(coef)  se(coef)     z p
-## treatmentFF 1.353004  3.869029 0.1377187  9.82 0
-## treatmentMM 1.432664  4.189847 0.1261943 11.35 0
-## 
-## Random effects
-##  Group Variable  Std Dev   Variance 
-##  name  Intercept 0.6051933 0.3662589
-## Cox mixed-effects model fit by maximum likelihood
-##   Data: subset(df_tandem, species == i)
-##   events, n = 2301, 2363
-##   Iterations= 9 55 
-##                     NULL Integrated    Fitted
-## Log-likelihood -15626.68  -15234.02 -15059.21
-## 
-##                     Chisq     df p    AIC    BIC
-## Integrated loglik  785.34   3.00 0 779.34 762.11
-##  Penalized loglik 1134.95 105.88 0 923.18 315.28
-## 
-## Model:  Surv(tan_duration, tan_cens) ~ treatment + (1 | name) 
-## Fixed coefficients
-##                 coef exp(coef)  se(coef)     z p
-## treatmentFF 1.353004  3.869029 0.1377187  9.82 0
-## treatmentMM 1.432664  4.189847 0.1261943 11.35 0
-## 
-## Random effects
-##  Group Variable  Std Dev   Variance 
-##  name  Intercept 0.6051933 0.3662589
+## coxme(formula = Surv(tan_duration, tan_cens) ~ treatment + (1 | 
+##     name), data = subset(df_tandem, species == i))
 ## 
 ## ----- Anova() -----
 ## 
@@ -814,8 +630,8 @@ model.</p>
 ## 
 ## Linear Hypotheses:
 ##              Estimate Std. Error z value Pr(&gt;|z|)    
-## FF - FM == 0  1.35300    0.13772   9.824   &lt;1e-04 ***
-## MM - FM == 0  1.43266    0.12619  11.353   &lt;1e-04 ***
+## FF - FM == 0  1.35300    0.13772   9.824   &lt;1e-05 ***
+## MM - FM == 0  1.43266    0.12619  11.353   &lt;1e-05 ***
 ## MM - FF == 0  0.07966    0.14813   0.538    0.852    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
@@ -829,35 +645,8 @@ model.</p>
 (slower) after 5 second after separation.</p>
 <pre class="r"><code>stat_speed_comparison()</code></pre>
 <pre><code>## ---------- Speed diff comparison at 5 sec in Cop ges ----------
-## 
-## ----- summary() -----
-## 
-## Linear mixed model fit by REML [&#39;lmerMod&#39;]
-## Formula: speed_diff ~ treatment + (1 | name)
-##    Data: subset(df_sep_ana, species == &quot;CG&quot;)
-## 
-## REML criterion at convergence: 15390.1
-## 
-## Scaled residuals: 
-##     Min      1Q  Median      3Q     Max 
-## -3.9491 -0.6270 -0.0845  0.5762  3.6741 
-## 
-## Random effects:
-##  Groups   Name        Variance Std.Dev.
-##  name     (Intercept)  23.17    4.814  
-##  Residual             126.11   11.230  
-## Number of obs: 1985, groups:  name, 125
-## 
-## Fixed effects:
-##             Estimate Std. Error t value
-## (Intercept)  13.6433     0.9395  14.522
-## treatmentFF  -5.4099     1.2934  -4.183
-## treatmentMM  -6.2778     1.2596  -4.984
-## 
-## Correlation of Fixed Effects:
-##             (Intr) trtmFF
-## treatmentFF -0.726       
-## treatmentMM -0.746  0.542
+## lmer(formula = speed_diff ~ treatment + (1 | name), data = subset(df_sep_ana, 
+##     species == &quot;CG&quot;))
 ## 
 ## ----- Anova() -----
 ## 
@@ -882,7 +671,7 @@ model.</p>
 ## 
 ## Linear Hypotheses:
 ##              Estimate Std. Error z value Pr(&gt;|z|)    
-## FF - FM == 0  -5.4099     1.2934  -4.183 7.71e-05 ***
+## FF - FM == 0  -5.4099     1.2934  -4.183 7.88e-05 ***
 ## MM - FM == 0  -6.2778     1.2596  -4.984  &lt; 1e-05 ***
 ## MM - FF == 0  -0.8679     1.2223  -0.710    0.757    
 ## ---
@@ -892,35 +681,8 @@ model.</p>
 ## -----------------------------------------------------
 ## 
 ## ---------- Speed diff comparison at 5 sec in Cop for ----------
-## 
-## ----- summary() -----
-## 
-## Linear mixed model fit by REML [&#39;lmerMod&#39;]
-## Formula: speed_diff ~ treatment + (1 | name)
-##    Data: subset(df_sep_ana, species == &quot;CF&quot;)
-## 
-## REML criterion at convergence: 12580.8
-## 
-## Scaled residuals: 
-##     Min      1Q  Median      3Q     Max 
-## -3.8782 -0.6562  0.0629  0.6626  3.0312 
-## 
-## Random effects:
-##  Groups   Name        Variance Std.Dev.
-##  name     (Intercept)  33.85    5.818  
-##  Residual             155.46   12.468  
-## Number of obs: 1576, groups:  name, 148
-## 
-## Fixed effects:
-##             Estimate Std. Error t value
-## (Intercept)   21.546      1.183  18.212
-## treatmentFF   -9.931      1.466  -6.773
-## treatmentMM  -10.761      1.658  -6.491
-## 
-## Correlation of Fixed Effects:
-##             (Intr) trtmFF
-## treatmentFF -0.807       
-## treatmentMM -0.714  0.576
+## lmer(formula = speed_diff ~ treatment + (1 | name), data = subset(df_sep_ana, 
+##     species == &quot;CF&quot;))
 ## 
 ## ----- Anova() -----
 ## 
@@ -953,6 +715,117 @@ model.</p>
 ## (Adjusted p values reported -- single-step method)
 ## 
 ## -----------------------------------------------------</code></pre>
+</div>
+<div id="tandem-duration-and-time-spent-across-experimental-years" class="section level3">
+<h3>Tandem duration and time spent across experimental years</h3>
+<pre class="r"><code>stat_tandem_duration_surv_comp()</code></pre>
+<pre><code>## ---------- Comp tandem duration across experiments in CF ----------
+## coxme(formula = Surv(tan_duration, tan_cens) ~ experiment + (1 | 
+##     name), data = droplevels(subset(df_tandem_comp, species == 
+##     &quot;CF&quot;)))
+## 
+## ----- Anova() -----
+## 
+## Analysis of Deviance Table (Type II tests)
+## 
+## Response: Surv(tan_duration, tan_cens)
+##            Df  Chisq Pr(&gt;Chisq)
+## experiment  1 0.5565     0.4557
+## ---------- Comp tandem duration across experiments in CG ----------
+## coxme(formula = Surv(tan_duration, tan_cens) ~ experiment + (1 | 
+##     name), data = subset(df_tandem_comp, species == &quot;CG&quot;))
+## 
+## ----- Anova() -----
+## 
+## Analysis of Deviance Table (Type II tests)
+## 
+## Response: Surv(tan_duration, tan_cens)
+##            Df  Chisq Pr(&gt;Chisq)  
+## experiment  2 6.2067     0.0449 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## ----- glht mcp Tukey --
+## 
+## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Multiple Comparisons of Means: Tukey Contrasts
+## 
+## 
+## Fit: coxme(formula = Surv(tan_duration, tan_cens) ~ experiment + (1 | 
+##     name), data = subset(df_tandem_comp, species == &quot;CG&quot;))
+## 
+## Linear Hypotheses:
+##                                Estimate Std. Error z value Pr(&gt;|z|)  
+## Florda_2020 - Florda_2019 == 0  -0.8045     0.3728  -2.158   0.0753 .
+## Florda_2021 - Florda_2019 == 0   0.1112     0.2302   0.483   0.8763  
+## Florda_2021 - Florda_2020 == 0   0.9158     0.3697   2.477   0.0337 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## (Adjusted p values reported -- single-step method)
+## 
+## ---------- Comp tandem prop across experiments in CF ----------
+## 
+##  Welch Two Sample t-test
+## 
+## data:  logit_tandem_prop by experiment
+## t = -0.96883, df = 21.338, p-value = 0.3435
+## alternative hypothesis: true difference in means between group Florda_2020 and group Florda_2021 is not equal to 0
+## 95 percent confidence interval:
+##  -0.9293722  0.3382547
+## sample estimates:
+## mean in group Florda_2020 mean in group Florda_2021 
+##                  1.826020                  2.121579 
+## 
+## 
+## ----- cohens_d() -----
+## 
+## # A tibble: 1 × 7
+##   .y.               group1      group2      effsize    n1    n2 magnitude
+## * &lt;chr&gt;             &lt;chr&gt;       &lt;chr&gt;         &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 logit_tandem_prop Florda_2020 Florda_2021  -0.277    10    49 small    
+## -----------------------------------------------------
+## 
+## ---------- Comp tandem prop across experiments in CG ----------
+## Anova Table (Type II tests)
+## 
+## Response: logit_tandem_prop
+##             Sum Sq Df F value Pr(&gt;F)
+## experiment   5.046  2  1.1481 0.3222
+## Residuals  184.584 84               
+## 
+## ----- cohens_d() -----
+## 
+## # A tibble: 3 × 7
+##   .y.               group1      group2      effsize    n1    n2 magnitude 
+## * &lt;chr&gt;             &lt;chr&gt;       &lt;chr&gt;         &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;     
+## 1 logit_tandem_prop Florda_2019 Florda_2020 -0.521     37    10 moderate  
+## 2 logit_tandem_prop Florda_2019 Florda_2021 -0.0597    37    40 negligible
+## 3 logit_tandem_prop Florda_2020 Florda_2021  0.515     10    40 moderate  
+## -----------------------------------------------------
+## 
+## ---------- Comparison of species Cox ----------
+## coxme(formula = Surv(tan_duration, tan_cens) ~ species + (1 | 
+##     experiment/name), data = df_tandem_comp)
+## 
+## ----- Anova() -----
+## 
+## Analysis of Deviance Table (Type II tests)
+## 
+## Response: Surv(tan_duration, tan_cens)
+##         Df  Chisq Pr(&gt;Chisq)    
+## species  1 51.313  7.875e-13 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## ---------- Comparison of species LMM ----------
+## Analysis of Deviance Table (Type II Wald chisquare tests)
+## 
+## Response: logit_tandem_prop
+##          Chisq Df Pr(&gt;Chisq)    
+## species 38.222  1  6.315e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
 
 

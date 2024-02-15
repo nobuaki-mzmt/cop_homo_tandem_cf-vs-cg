@@ -1,6 +1,5 @@
 # Coptotermes homosexual tandem analysis
 # output.R
-# N. Mizumoto
 
 #------------------------------------------------------------------------------#
 # This file is for producing all results
@@ -76,10 +75,10 @@ stat_tandem_duration_surv <- function(){
   
   cat("---------- Comp tandem duration between species for each treat ----------\n")
   for(i in c("FM", "FF", "MM")){
-    cat(paste0("\n----- treat:", i, ", summary() -----\n\n"))
+    cat(paste0("\n----- treat:", i, " -----\n\n"))
     m <- coxme(Surv(tan_duration, tan_cens) ~  species + (1|name), 
                data = subset(df_tandem, treatment==i))
-    print(summary(m))
+    print(m$call)
     cat("\n----- Anova() -----\n\n")
     print(Anova(m))
   }
@@ -87,10 +86,10 @@ stat_tandem_duration_surv <- function(){
   
   cat("---------- Comp tandem duration among treat for each species ----------\n")
   for(i in c("CF", "CG")){
-    cat(paste0("\n----- species:", i, ", summary() -----\n\n"))
+    cat(paste0("\n----- species:", i, " -----\n\n"))
     m <- coxme(Surv(tan_duration, tan_cens) ~  treatment + (1|name), 
                data = subset(df_tandem, species==i))
-    print(summary(m))
+    print(m$call)
     cat("\n----- Anova() -----\n\n")
     print(Anova(m))
     cat("\n----- glht mcp Tukey --\n\n")
@@ -220,8 +219,7 @@ stat_speed_comparison <- function() {
   cat("---------- Speed diff comparison at 5 sec in Cop ges ----------\n")
   r <- lmer(speed_diff ~ treatment + (1|name), 
             data=subset(df_sep_ana, species == "CG"))
-  cat("\n----- summary() -----\n\n")
-  print(summary(r))
+  print(summary(r)$call)
   cat("\n----- Anova() -----\n\n")
   print(Anova(r))
   multicomparison<-glht(r, linfct = mcp(treatment = "Tukey"))
@@ -232,8 +230,7 @@ stat_speed_comparison <- function() {
   cat("---------- Speed diff comparison at 5 sec in Cop for ----------\n")
   r <- lmer(speed_diff ~ treatment + (1|name), 
             data=subset(df_sep_ana, species == "CF"))
-  cat("\n----- summary() -----\n\n")
-  print(summary(r))
+  print(summary(r)$call)
   cat("\n----- Anova() -----\n\n")
   print(Anova(r))
   multicomparison<-glht(r, linfct = mcp(treatment = "Tukey"))
@@ -353,59 +350,69 @@ stat_tandem_duration_surv_comp <- function(){
                         data.frame(df_sum, experiment = "Florda_2020"))
   }
   df_tandem_comp$experiment <- factor(df_tandem_comp$experiment)
-  
+  df_tandem_comp$name <- paste(df_tandem_comp$name, df_tandem_comp$experiment, sep="_")
+  df_sum_comp$experiment <- factor(df_sum_comp$experiment)
   
   ## C. formosanus
+  cat("---------- Comp tandem duration across experiments in CF ----------\n")
   m <- coxme(Surv(tan_duration, tan_cens) ~  experiment + (1|name), 
-             data = subset(df_tandem_comp, species=="CF"))
-  print(summary(m))
+             data = droplevels(subset(df_tandem_comp, species=="CF")))
+  print(m$call)
   cat("\n----- Anova() -----\n\n")
   print(Anova(m))
-  cat("\n----- glht mcp Tukey --\n\n")
-  multicomparison<-glht(m, linfct = mcp(experiment = "Tukey"))
-  print(summary(multicomparison))
-  
   
   ## C. gestroi
+  cat("---------- Comp tandem duration across experiments in CG ----------\n")
   m <- coxme(Surv(tan_duration, tan_cens) ~  experiment + (1|name), 
              data = subset(df_tandem_comp, species=="CG"))
-  print(summary(m))
+  print(m$call)
   cat("\n----- Anova() -----\n\n")
   print(Anova(m))
   cat("\n----- glht mcp Tukey --\n\n")
   multicomparison<-glht(m, linfct = mcp(experiment = "Tukey"))
   print(summary(multicomparison))
   
+  ## 
+  y = df_sum_comp$tandem_total_duration / 1800
+  df_sum_comp$logit_tandem_prop = log((y+0.01)/(1-y+0.01))
   
-  cat("---------- Comp tandem duration between species for each treat ----------\n")
-  for(i in c("FM", "FF", "MM")){
-    cat(paste0("\n----- treat:", i, ", summary() -----\n\n"))
-    m <- coxme(Surv(tan_duration, tan_cens) ~  species + (1|name), 
-               data = subset(df_tandem, treatment==i))
-    print(summary(m))
-    cat("\n----- Anova() -----\n\n")
-    print(Anova(m))
-  }
+  cat("---------- Comp tandem prop across experiments in CF ----------\n")
+  res = t.test(logit_tandem_prop ~ experiment, 
+            data=df_sum_comp[df_sum_comp$species=="CF",])
+  print(res)
+  cat(paste0("\n----- cohens_d() -----\n\n"))
+  res_effect = cohens_d(logit_tandem_prop ~ experiment, var.equal = FALSE, 
+                        data=droplevels(df_sum_comp[df_sum_comp$species=="CF",]))
+  print(res_effect)
   cat("-----------------------------------------------------\n\n")
   
-  cat("---------- Comp tandem duration among treat for each species ----------\n")
-  for(i in c("CF", "CG")){
-    cat(paste0("\n----- species:", i, ", summary() -----\n\n"))
-    m <- coxme(Surv(tan_duration, tan_cens) ~  treatment + (1|name), 
-               data = subset(df_tandem, species==i))
-    print(summary(m))
-    cat("\n----- Anova() -----\n\n")
-    print(Anova(m))
-    cat("\n----- glht mcp Tukey --\n\n")
-    multicomparison<-glht(m, linfct = mcp(treatment = "Tukey"))
-    print(summary(multicomparison))
-  }
+  cat("---------- Comp tandem prop across experiments in CG ----------\n")
+  res = aov(logit_tandem_prop ~ experiment, 
+               data=df_sum_comp[df_sum_comp$species=="CG",])
+  print(Anova(res))
+  
+  cat(paste0("\n----- cohens_d() -----\n\n"))
+  res_effect = cohens_d(logit_tandem_prop ~ experiment, var.equal = FALSE, 
+                        data=droplevels(df_sum_comp[df_sum_comp$species=="CG",]))
+  print(res_effect)
   cat("-----------------------------------------------------\n\n")
+  
+  ## Comparison of species
+  
+  cat("---------- Comparison of species Cox ----------\n")
+  m <- coxme(Surv(tan_duration, tan_cens) ~  species + (1|experiment/name), 
+             data = df_tandem_comp)
+  print(m$call)
+  cat("\n----- Anova() -----\n\n")
+  print(Anova(m))
+  
+  cat("---------- Comparison of species LMM ----------\n")
+  res = lmer(logit_tandem_prop ~ species + (1|experiment), 
+            data=df_sum_comp)
+  print(Anova(res))
+  
+  
 }
 #------------------------------------------------------------------------------#
 
-if(F){
-  
-  table(df_sum_comp[,c("species","experiment")])
-}
       

@@ -36,3 +36,8 @@ Compare the speed difference between followers (faster) and leaders (slower) aft
 stat_speed_comparison()
 ```
 
+### Tandem duration and time spent across experimental years
+```{r message = FALSE}
+stat_tandem_duration_surv_comp()
+```
+
