@@ -1,8 +1,7 @@
 # README
 ## Article Information
 This repository provides access to the data and source code used for the manuscript    
-### **The strength of sexual signals predicts same-sex paring in
-termites**  
+### **The strength of sexual signals predicts same-sex paring in termites**  
 Author names are commented out for DBR.
 Nobuaki Mizumoto, Sang-Bin Lee, Thomas Chouvenc  
 
