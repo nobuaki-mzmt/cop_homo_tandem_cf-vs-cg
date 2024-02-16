@@ -3,8 +3,8 @@
 This repository provides access to the data and source code used for the manuscript    
 ### **The strength of sexual signals predicts same-sex paring in termites**  
 <!--Author names are commented out for DBR.-->
-Nobuaki Mizumoto, Sang-Bin Lee, Thomas Chouvenc  
-
+**Nobuaki Mizumoto, Sang-Bin Lee, Thomas Chouvenc**  
+  
 Preprint will be available at bioRxiv. [![DOI:XXX](http://img.shields.io/badge/DOI-10.1101/XXX.svg)]  
 The all data will be uploaded in Zenodo upon acceptance: [![DOI](https://zenodo.org/badge/DOI/XXXDOIXXX.svg)](https://doi.org/XXXDOIXXX)
   
