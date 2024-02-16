@@ -1,7 +1,6 @@
 """
 Program to measure scale / body length from video files manually
 videoScaleBL.py
-N. Mizumoto
 """
 
 # ---------------------------------------------------------------------------------------------
