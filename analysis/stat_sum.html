@@ -365,73 +365,75 @@ analysis.</p>
 data was logit transformed after adding 0.01 to avoid infinitive
 value.</p>
 <pre class="r"><code>stat_tandem_duration()</code></pre>
-<pre><code>## ---------- Comp tandem prop between species for each treat ----------
+<pre><code>## -##########################################################-
+## ---------- interaction_total_duration ----------
+## ---------- Comp tandem prop between species for each treat ----------
 ## 
 ## ----- treat:FM, t.test() -----
 ## 
 ## 
 ##  Welch Two Sample t-test
 ## 
-## data:  logit_tandem_prop by species
-## t = 5.4515, df = 82.342, p-value = 5.102e-07
+## data:  logit_prop by species
+## t = 5.3819, df = 84.275, p-value = 6.517e-07
 ## alternative hypothesis: true difference in means between group CF and group CG is not equal to 0
 ## 95 percent confidence interval:
-##  0.9768288 2.0992569
+##  0.950883 2.065322
 ## sample estimates:
 ## mean in group CF mean in group CG 
-##        2.1215787        0.5835358 
+##        2.1235420        0.6154397 
 ## 
 ## 
 ## ----- cohens_d() -----
 ## 
 ## # A tibble: 1 × 7
-##   .y.               group1 group2 effsize    n1    n2 magnitude
-## * &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
-## 1 logit_tandem_prop CF     CG        1.16    49    40 large    
+##   .y.        group1 group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 logit_prop CF     CG        1.14    49    41 large    
 ## 
 ## ----- treat:FF, t.test() -----
 ## 
 ## 
 ##  Welch Two Sample t-test
 ## 
-## data:  logit_tandem_prop by species
+## data:  logit_prop by species
 ## t = 1.6222, df = 83.592, p-value = 0.1085
 ## alternative hypothesis: true difference in means between group CF and group CG is not equal to 0
 ## 95 percent confidence interval:
-##  -0.07467173  0.73560583
+##  -0.07468486  0.73566123
 ## sample estimates:
 ## mean in group CF mean in group CG 
-##        -1.117550        -1.448017 
+##        -1.117355        -1.447843 
 ## 
 ## 
 ## ----- cohens_d() -----
 ## 
 ## # A tibble: 1 × 7
-##   .y.               group1 group2 effsize    n1    n2 magnitude
-## * &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
-## 1 logit_tandem_prop CF     CG       0.330    61    40 small    
+##   .y.        group1 group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 logit_prop CF     CG       0.330    61    40 small    
 ## 
 ## ----- treat:MM, t.test() -----
 ## 
 ## 
 ##  Welch Two Sample t-test
 ## 
-## data:  logit_tandem_prop by species
-## t = -6.3583, df = 73.906, p-value = 1.512e-08
+## data:  logit_prop by species
+## t = -6.3583, df = 73.9, p-value = 1.512e-08
 ## alternative hypothesis: true difference in means between group CF and group CG is not equal to 0
 ## 95 percent confidence interval:
-##  -1.589738 -0.831089
+##  -1.5898467 -0.8311452
 ## sample estimates:
 ## mean in group CF mean in group CG 
-##        -2.814612        -1.604198 
+##        -2.814515        -1.604019 
 ## 
 ## 
 ## ----- cohens_d() -----
 ## 
 ## # A tibble: 1 × 7
-##   .y.               group1 group2 effsize    n1    n2 magnitude
-## * &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
-## 1 logit_tandem_prop CF     CG       -1.35    44    45 large    
+##   .y.        group1 group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 logit_prop CF     CG       -1.35    44    45 large    
 ## -----------------------------------------------------
 ## 
 ## ---------- Comp tandem prop across treats for each species ----------
@@ -439,15 +441,15 @@ value.</p>
 ## ----- treat:CF, aov() -----
 ## 
 ## Call:
-##    aov(formula = logit_tandem_prop ~ treatment, data = df_sum[df_sum$species == 
+##    aov(formula = logit_prop ~ treatment, data = df_sum[df_sum$species == 
 ##     i, ])
 ## 
 ## Terms:
 ##                 treatment Residuals
-## Sum of Squares   594.9576  189.6554
+## Sum of Squares   595.4438  189.9337
 ## Deg. of Freedom         2       151
 ## 
-## Residual standard error: 1.120712
+## Residual standard error: 1.121534
 ## Estimated effects may be unbalanced
 ## 
 ## ----- treat:CF, TukeyHSD() -----
@@ -455,36 +457,36 @@ value.</p>
 ##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
-## Fit: aov(formula = logit_tandem_prop ~ treatment, data = df_sum[df_sum$species == i, ])
+## Fit: aov(formula = logit_prop ~ treatment, data = df_sum[df_sum$species == i, ])
 ## 
 ## $treatment
 ##            diff       lwr       upr p adj
-## FF-FM -3.239129 -3.748033 -2.730226     0
-## MM-FM -4.936190 -5.487149 -4.385232     0
-## MM-FF -1.697061 -2.221755 -1.172368     0
+## FF-FM -3.240897 -3.750173 -2.731620     0
+## MM-FM -4.938057 -5.489420 -4.386694     0
+## MM-FF -1.697160 -2.222238 -1.172082     0
 ## 
 ## 
 ## ----- cohens_d() -----
 ## 
 ## # A tibble: 3 × 7
-##   .y.               group1 group2 effsize    n1    n2 magnitude
-## * &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
-## 1 logit_tandem_prop FM     FF        2.79    49    61 large    
-## 2 logit_tandem_prop FM     MM        4.16    49    44 large    
-## 3 logit_tandem_prop FF     MM        1.65    61    44 large    
+##   .y.        group1 group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 logit_prop FM     FF        2.79    49    61 large    
+## 2 logit_prop FM     MM        4.16    49    44 large    
+## 3 logit_prop FF     MM        1.65    61    44 large    
 ## 
 ## ----- treat:CG, aov() -----
 ## 
 ## Call:
-##    aov(formula = logit_tandem_prop ~ treatment, data = df_sum[df_sum$species == 
+##    aov(formula = logit_prop ~ treatment, data = df_sum[df_sum$species == 
 ##     i, ])
 ## 
 ## Terms:
 ##                 treatment Residuals
-## Sum of Squares   122.1005  130.6256
-## Deg. of Freedom         2       122
+## Sum of Squares   127.8894  132.2955
+## Deg. of Freedom         2       123
 ## 
-## Residual standard error: 1.034747
+## Residual standard error: 1.037098
 ## Estimated effects may be unbalanced
 ## 
 ## ----- treat:CG, TukeyHSD() -----
@@ -492,23 +494,319 @@ value.</p>
 ##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
-## Fit: aov(formula = logit_tandem_prop ~ treatment, data = df_sum[df_sum$species == i, ])
+## Fit: aov(formula = logit_prop ~ treatment, data = df_sum[df_sum$species == i, ])
 ## 
 ## $treatment
-##             diff        lwr        upr     p adj
-## FF-FM -2.0315533 -2.5805311 -1.4825754 0.0000000
-## MM-FM -2.1877341 -2.7212447 -1.6542236 0.0000000
-## MM-FF -0.1561809 -0.6896914  0.3773297 0.7671048
+##            diff        lwr        upr     p adj
+## FF-FM -2.063283 -2.6100877 -1.5164774 0.0000000
+## MM-FM -2.219458 -2.7506646 -1.6882524 0.0000000
+## MM-FF -0.156176 -0.6908452  0.3784933 0.7680327
 ## 
 ## 
 ## ----- cohens_d() -----
 ## 
 ## # A tibble: 3 × 7
-##   .y.               group1 group2 effsize    n1    n2 magnitude 
-## * &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;     
-## 1 logit_tandem_prop FM     FF       1.72     40    40 large     
-## 2 logit_tandem_prop FM     MM       2.05     40    45 large     
-## 3 logit_tandem_prop FF     MM       0.181    40    45 negligible
+##   .y.        group1 group2 effsize    n1    n2 magnitude 
+## * &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;     
+## 1 logit_prop FM     FF       1.74     41    40 large     
+## 2 logit_prop FM     MM       2.08     41    45 large     
+## 3 logit_prop FF     MM       0.181    40    45 negligible
+## -----------------------------------------------------
+## 
+## -##########################################################-
+## ---------- tandem_total_duration ----------
+## ---------- Comp tandem prop between species for each treat ----------
+## 
+## ----- treat:FM, t.test() -----
+## 
+## 
+##  Welch Two Sample t-test
+## 
+## data:  logit_prop by species
+## t = 4.3032, df = 87.987, p-value = 4.351e-05
+## alternative hypothesis: true difference in means between group CF and group CG is not equal to 0
+## 95 percent confidence interval:
+##  0.8303373 2.2553762
+## sample estimates:
+## mean in group CF mean in group CG 
+##        0.7129883       -0.8298685 
+## 
+## 
+## ----- cohens_d() -----
+## 
+## # A tibble: 1 × 7
+##   .y.        group1 group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 logit_prop CF     CG       0.904    49    41 large    
+## 
+## ----- treat:FF, t.test() -----
+## 
+## 
+##  Welch Two Sample t-test
+## 
+## data:  logit_prop by species
+## t = 8.623, df = 96.434, p-value = 1.303e-13
+## alternative hypothesis: true difference in means between group CF and group CG is not equal to 0
+## 95 percent confidence interval:
+##  1.264669 2.020972
+## sample estimates:
+## mean in group CF mean in group CG 
+##        -1.618031        -3.260851 
+## 
+## 
+## ----- cohens_d() -----
+## 
+## # A tibble: 1 × 7
+##   .y.        group1 group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 logit_prop CF     CG        1.65    61    40 large    
+## 
+## ----- treat:MM, t.test() -----
+## 
+## 
+##  Welch Two Sample t-test
+## 
+## data:  logit_prop by species
+## t = -0.93414, df = 78.471, p-value = 0.3531
+## alternative hypothesis: true difference in means between group CF and group CG is not equal to 0
+## 95 percent confidence interval:
+##  -0.4681086  0.1690948
+## sample estimates:
+## mean in group CF mean in group CG 
+##        -3.630973        -3.481466 
+## 
+## 
+## ----- cohens_d() -----
+## 
+## # A tibble: 1 × 7
+##   .y.        group1 group2 effsize    n1    n2 magnitude 
+## * &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;     
+## 1 logit_prop CF     CG      -0.198    44    45 negligible
+## -----------------------------------------------------
+## 
+## ---------- Comp tandem prop across treats for each species ----------
+## 
+## ----- treat:CF, aov() -----
+## 
+## Call:
+##    aov(formula = logit_prop ~ treatment, data = df_sum[df_sum$species == 
+##     i, ])
+## 
+## Terms:
+##                 treatment Residuals
+## Sum of Squares   440.2617  286.1368
+## Deg. of Freedom         2       151
+## 
+## Residual standard error: 1.37657
+## Estimated effects may be unbalanced
+## 
+## ----- treat:CF, TukeyHSD() -----
+## 
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = logit_prop ~ treatment, data = df_sum[df_sum$species == i, ])
+## 
+## $treatment
+##            diff       lwr       upr p adj
+## FF-FM -2.331019 -2.956105 -1.705933     0
+## MM-FM -4.343961 -5.020704 -3.667219     0
+## MM-FF -2.012942 -2.657423 -1.368462     0
+## 
+## 
+## ----- cohens_d() -----
+## 
+## # A tibble: 3 × 7
+##   .y.        group1 group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 logit_prop FM     FF        1.49    49    61 large    
+## 2 logit_prop FM     MM        3.02    49    44 large    
+## 3 logit_prop FF     MM        1.89    61    44 large    
+## 
+## ----- treat:CG, aov() -----
+## 
+## Call:
+##    aov(formula = logit_prop ~ treatment, data = df_sum[df_sum$species == 
+##     i, ])
+## 
+## Terms:
+##                 treatment Residuals
+## Sum of Squares   180.5684  132.1826
+## Deg. of Freedom         2       123
+## 
+## Residual standard error: 1.036656
+## Estimated effects may be unbalanced
+## 
+## ----- treat:CG, TukeyHSD() -----
+## 
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = logit_prop ~ treatment, data = df_sum[df_sum$species == i, ])
+## 
+## $treatment
+##             diff        lwr       upr     p adj
+## FF-FM -2.4309826 -2.9775544 -1.884411 0.0000000
+## MM-FM -2.6515977 -3.1825771 -2.120618 0.0000000
+## MM-FF -0.2206151 -0.7550562  0.313826 0.5912888
+## 
+## 
+## ----- cohens_d() -----
+## 
+## # A tibble: 3 × 7
+##   .y.        group1 group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 logit_prop FM     FF       2.02     41    40 large    
+## 2 logit_prop FM     MM       2.23     41    45 large    
+## 3 logit_prop FF     MM       0.339    40    45 small    
+## -----------------------------------------------------
+## 
+## -##########################################################-
+## ---------- non_tandem_interaction_total_duration ----------
+## ---------- Comp tandem prop between species for each treat ----------
+## 
+## ----- treat:FM, t.test() -----
+## 
+## 
+##  Welch Two Sample t-test
+## 
+## data:  logit_prop by species
+## t = -1.0438, df = 87.998, p-value = 0.2994
+## alternative hypothesis: true difference in means between group CF and group CG is not equal to 0
+## 95 percent confidence interval:
+##  -1.2560151  0.3909751
+## sample estimates:
+## mean in group CF mean in group CG 
+##        -1.971485        -1.538965 
+## 
+## 
+## ----- cohens_d() -----
+## 
+## # A tibble: 1 × 7
+##   .y.        group1 group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 logit_prop CF     CG      -0.219    49    41 small    
+## 
+## ----- treat:FF, t.test() -----
+## 
+## 
+##  Welch Two Sample t-test
+## 
+## data:  logit_prop by species
+## t = -5.6742, df = 75.206, p-value = 2.467e-07
+## alternative hypothesis: true difference in means between group CF and group CG is not equal to 0
+## 95 percent confidence interval:
+##  -1.6237422 -0.7799063
+## sample estimates:
+## mean in group CF mean in group CG 
+##        -2.957299        -1.755474 
+## 
+## 
+## ----- cohens_d() -----
+## 
+## # A tibble: 1 × 7
+##   .y.        group1 group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 logit_prop CF     CG       -1.17    61    40 large    
+## 
+## ----- treat:MM, t.test() -----
+## 
+## 
+##  Welch Two Sample t-test
+## 
+## data:  logit_prop by species
+## t = -7.4268, df = 84.946, p-value = 7.971e-11
+## alternative hypothesis: true difference in means between group CF and group CG is not equal to 0
+## 95 percent confidence interval:
+##  -1.753652 -1.012977
+## sample estimates:
+## mean in group CF mean in group CG 
+##        -3.237713        -1.854399 
+## 
+## 
+## ----- cohens_d() -----
+## 
+## # A tibble: 1 × 7
+##   .y.        group1 group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 logit_prop CF     CG       -1.58    44    45 large    
+## -----------------------------------------------------
+## 
+## ---------- Comp tandem prop across treats for each species ----------
+## 
+## ----- treat:CF, aov() -----
+## 
+## Call:
+##    aov(formula = logit_prop ~ treatment, data = df_sum[df_sum$species == 
+##     i, ])
+## 
+## Terms:
+##                 treatment Residuals
+## Sum of Squares   42.67943 313.14652
+## Deg. of Freedom         2       151
+## 
+## Residual standard error: 1.440076
+## Estimated effects may be unbalanced
+## 
+## ----- treat:CF, TukeyHSD() -----
+## 
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = logit_prop ~ treatment, data = df_sum[df_sum$species == i, ])
+## 
+## $treatment
+##            diff        lwr        upr     p adj
+## FF-FM -0.985814 -1.6397370 -0.3318911 0.0013920
+## MM-FM -1.266228 -1.9741906 -0.5582654 0.0001174
+## MM-FF -0.280414 -0.9546261  0.3937982 0.5877838
+## 
+## 
+## ----- cohens_d() -----
+## 
+## # A tibble: 3 × 7
+##   .y.        group1 group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 logit_prop FM     FF       0.594    49    61 moderate 
+## 2 logit_prop FM     MM       0.765    49    44 moderate 
+## 3 logit_prop FF     MM       0.297    61    44 small    
+## 
+## ----- treat:CG, aov() -----
+## 
+## Call:
+##    aov(formula = logit_prop ~ treatment, data = df_sum[df_sum$species == 
+##     i, ])
+## 
+## Terms:
+##                 treatment Residuals
+## Sum of Squares    2.20688 203.56017
+## Deg. of Freedom         2       123
+## 
+## Residual standard error: 1.286453
+## Estimated effects may be unbalanced
+## 
+## ----- treat:CG, TukeyHSD() -----
+## 
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = logit_prop ~ treatment, data = df_sum[df_sum$species == i, ])
+## 
+## $treatment
+##              diff        lwr       upr     p adj
+## FF-FM -0.21650978 -0.8947858 0.4617663 0.7297967
+## MM-FM -0.31543395 -0.9743604 0.3434925 0.4940402
+## MM-FF -0.09892417 -0.7621465 0.5642981 0.9333456
+## 
+## 
+## ----- cohens_d() -----
+## 
+## # A tibble: 3 × 7
+##   .y.        group1 group2 effsize    n1    n2 magnitude 
+## * &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;     
+## 1 logit_prop FM     FF       0.146    41    40 negligible
+## 2 logit_prop FM     MM       0.227    41    45 small     
+## 3 logit_prop FF     MM       0.102    40    45 negligible
 ## -----------------------------------------------------</code></pre>
 </div>
 <div id="tandem-duration" class="section level3">
@@ -529,7 +827,7 @@ model.</p>
 ## 
 ## Response: Surv(tan_duration, tan_cens)
 ##         Df  Chisq Pr(&gt;Chisq)    
-## species  1 40.536   1.93e-10 ***
+## species  1 40.265  2.217e-10 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -544,7 +842,7 @@ model.</p>
 ## 
 ## Response: Surv(tan_duration, tan_cens)
 ##         Df  Chisq Pr(&gt;Chisq)   
-## species  1 9.2994   0.002292 **
+## species  1 9.4162   0.002151 **
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -559,7 +857,7 @@ model.</p>
 ## 
 ## Response: Surv(tan_duration, tan_cens)
 ##         Df  Chisq Pr(&gt;Chisq)    
-## species  1 33.455  7.294e-09 ***
+## species  1 33.403  7.491e-09 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## -----------------------------------------------------
@@ -576,8 +874,8 @@ model.</p>
 ## Analysis of Deviance Table (Type II tests)
 ## 
 ## Response: Surv(tan_duration, tan_cens)
-##           Df  Chisq Pr(&gt;Chisq)    
-## treatment  2 475.06  &lt; 2.2e-16 ***
+##           Df Chisq Pr(&gt;Chisq)    
+## treatment  2 481.9  &lt; 2.2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -594,9 +892,9 @@ model.</p>
 ## 
 ## Linear Hypotheses:
 ##              Estimate Std. Error z value Pr(&gt;|z|)    
-## FF - FM == 0   2.1227     0.1382  15.362   &lt;1e-10 ***
-## MM - FM == 0   3.3224     0.1563  21.254   &lt;1e-10 ***
-## MM - FF == 0   1.1997     0.1436   8.353   &lt;1e-10 ***
+## FF - FM == 0   2.0282     0.1319  15.371   &lt;2e-16 ***
+## MM - FM == 0   3.2235     0.1510  21.352   &lt;2e-16 ***
+## MM - FF == 0   1.1953     0.1403   8.521   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## (Adjusted p values reported -- single-step method)
@@ -613,7 +911,7 @@ model.</p>
 ## 
 ## Response: Surv(tan_duration, tan_cens)
 ##           Df  Chisq Pr(&gt;Chisq)    
-## treatment  2 165.24  &lt; 2.2e-16 ***
+## treatment  2 174.69  &lt; 2.2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -630,9 +928,9 @@ model.</p>
 ## 
 ## Linear Hypotheses:
 ##              Estimate Std. Error z value Pr(&gt;|z|)    
-## FF - FM == 0  1.35300    0.13772   9.824   &lt;1e-05 ***
-## MM - FM == 0  1.43266    0.12619  11.353   &lt;1e-05 ***
-## MM - FF == 0  0.07966    0.14813   0.538    0.852    
+## FF - FM == 0  1.34591    0.13326  10.100   &lt;1e-05 ***
+## MM - FM == 0  1.42679    0.12233  11.663   &lt;1e-05 ***
+## MM - FF == 0  0.08088    0.14362   0.563    0.839    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## (Adjusted p values reported -- single-step method)
@@ -654,7 +952,7 @@ model.</p>
 ## 
 ## Response: speed_diff
 ##            Chisq Df Pr(&gt;Chisq)    
-## treatment 27.951  2  8.524e-07 ***
+## treatment 52.611  2  3.764e-12 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -671,9 +969,9 @@ model.</p>
 ## 
 ## Linear Hypotheses:
 ##              Estimate Std. Error z value Pr(&gt;|z|)    
-## FF - FM == 0  -5.4099     1.2934  -4.183 7.88e-05 ***
-## MM - FM == 0  -6.2778     1.2596  -4.984  &lt; 1e-05 ***
-## MM - FF == 0  -0.8679     1.2223  -0.710    0.757    
+## FF - FM == 0  -11.157      1.976  -5.645   &lt;1e-04 ***
+## MM - FM == 0  -12.910      1.961  -6.585   &lt;1e-04 ***
+## MM - FF == 0   -1.753      2.077  -0.844    0.675    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## (Adjusted p values reported -- single-step method)
@@ -689,8 +987,8 @@ model.</p>
 ## Analysis of Deviance Table (Type II Wald chisquare tests)
 ## 
 ## Response: speed_diff
-##            Chisq Df Pr(&gt;Chisq)    
-## treatment 55.917  2  7.208e-13 ***
+##           Chisq Df Pr(&gt;Chisq)    
+## treatment  73.6  2  &lt; 2.2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -707,9 +1005,9 @@ model.</p>
 ## 
 ## Linear Hypotheses:
 ##              Estimate Std. Error z value Pr(&gt;|z|)    
-## FF - FM == 0  -9.9314     1.4664  -6.773   &lt;1e-05 ***
-## MM - FM == 0 -10.7610     1.6579  -6.491   &lt;1e-05 ***
-## MM - FF == 0  -0.8296     1.4491  -0.573    0.834    
+## FF - FM == 0   -8.275      1.941  -4.264   &lt;1e-04 ***
+## MM - FM == 0  -20.357      2.375  -8.572   &lt;1e-04 ***
+## MM - FF == 0  -12.083      2.125  -5.686   &lt;1e-04 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## (Adjusted p values reported -- single-step method)
@@ -730,10 +1028,11 @@ model.</p>
 ## 
 ## Response: Surv(tan_duration, tan_cens)
 ##            Df  Chisq Pr(&gt;Chisq)
-## experiment  1 0.5565     0.4557
+## experiment  1 0.1324     0.7159
 ## ---------- Comp tandem duration across experiments in CG ----------
 ## coxme(formula = Surv(tan_duration, tan_cens) ~ experiment + (1 | 
-##     name), data = subset(df_tandem_comp, species == &quot;CG&quot;))
+##     name), data = subset(df_tandem_comp, species == &quot;CG&quot; &amp; leader_clarity &gt; 
+##     0.5))
 ## 
 ## ----- Anova() -----
 ## 
@@ -741,7 +1040,7 @@ model.</p>
 ## 
 ## Response: Surv(tan_duration, tan_cens)
 ##            Df  Chisq Pr(&gt;Chisq)  
-## experiment  2 6.2067     0.0449 *
+## experiment  2 6.3618    0.04155 *
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -754,13 +1053,14 @@ model.</p>
 ## 
 ## 
 ## Fit: coxme(formula = Surv(tan_duration, tan_cens) ~ experiment + (1 | 
-##     name), data = subset(df_tandem_comp, species == &quot;CG&quot;))
+##     name), data = subset(df_tandem_comp, species == &quot;CG&quot; &amp; leader_clarity &gt; 
+##     0.5))
 ## 
 ## Linear Hypotheses:
 ##                                Estimate Std. Error z value Pr(&gt;|z|)  
-## Florda_2020 - Florda_2019 == 0  -0.8045     0.3728  -2.158   0.0753 .
-## Florda_2021 - Florda_2019 == 0   0.1112     0.2302   0.483   0.8763  
-## Florda_2021 - Florda_2020 == 0   0.9158     0.3697   2.477   0.0337 *
+## Florda_2020 - Florda_2019 == 0  -0.8556     0.4506  -1.899   0.1344  
+## Florda_2021 - Florda_2019 == 0   0.2307     0.2829   0.815   0.6877  
+## Florda_2021 - Florda_2020 == 0   1.0862     0.4316   2.517   0.0304 *
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## (Adjusted p values reported -- single-step method)
@@ -770,39 +1070,39 @@ model.</p>
 ##  Welch Two Sample t-test
 ## 
 ## data:  logit_tandem_prop by experiment
-## t = -0.96883, df = 21.338, p-value = 0.3435
+## t = -0.16222, df = 15.723, p-value = 0.8732
 ## alternative hypothesis: true difference in means between group Florda_2020 and group Florda_2021 is not equal to 0
 ## 95 percent confidence interval:
-##  -0.9293722  0.3382547
+##  -1.200450  1.030012
 ## sample estimates:
 ## mean in group Florda_2020 mean in group Florda_2021 
-##                  1.826020                  2.121579 
+##                 0.6277696                 0.7129883 
 ## 
 ## 
 ## ----- cohens_d() -----
 ## 
 ## # A tibble: 1 × 7
-##   .y.               group1      group2      effsize    n1    n2 magnitude
-## * &lt;chr&gt;             &lt;chr&gt;       &lt;chr&gt;         &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
-## 1 logit_tandem_prop Florda_2020 Florda_2021  -0.277    10    49 small    
+##   .y.               group1      group2      effsize    n1    n2 magnitude 
+## * &lt;chr&gt;             &lt;chr&gt;       &lt;chr&gt;         &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;     
+## 1 logit_tandem_prop Florda_2020 Florda_2021 -0.0516    10    49 negligible
 ## -----------------------------------------------------
 ## 
 ## ---------- Comp tandem prop across experiments in CG ----------
 ## Anova Table (Type II tests)
 ## 
 ## Response: logit_tandem_prop
-##             Sum Sq Df F value Pr(&gt;F)
-## experiment   5.046  2  1.1481 0.3222
-## Residuals  184.584 84               
+##            Sum Sq Df F value Pr(&gt;F)
+## experiment   3.90  2  0.5092 0.6028
+## Residuals  325.88 85               
 ## 
 ## ----- cohens_d() -----
 ## 
 ## # A tibble: 3 × 7
 ##   .y.               group1      group2      effsize    n1    n2 magnitude 
 ## * &lt;chr&gt;             &lt;chr&gt;       &lt;chr&gt;         &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;     
-## 1 logit_tandem_prop Florda_2019 Florda_2020 -0.521     37    10 moderate  
-## 2 logit_tandem_prop Florda_2019 Florda_2021 -0.0597    37    40 negligible
-## 3 logit_tandem_prop Florda_2020 Florda_2021  0.515     10    40 moderate  
+## 1 logit_tandem_prop Florda_2019 Florda_2020 -0.316     37    10 small     
+## 2 logit_tandem_prop Florda_2019 Florda_2021  0.0130    37    41 negligible
+## 3 logit_tandem_prop Florda_2020 Florda_2021  0.417     10    41 small     
 ## -----------------------------------------------------
 ## 
 ## ---------- Comparison of species Cox ----------
@@ -815,15 +1115,15 @@ model.</p>
 ## 
 ## Response: Surv(tan_duration, tan_cens)
 ##         Df  Chisq Pr(&gt;Chisq)    
-## species  1 51.313  7.875e-13 ***
+## species  1 45.558  1.482e-11 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## ---------- Comparison of species LMM ----------
 ## Analysis of Deviance Table (Type II Wald chisquare tests)
 ## 
 ## Response: logit_tandem_prop
-##          Chisq Df Pr(&gt;Chisq)    
-## species 38.222  1  6.315e-10 ***
+##         Chisq Df Pr(&gt;Chisq)    
+## species 20.78  1  5.151e-06 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>

@@ -22,9 +22,9 @@ tandem.detect(dataset = "Mizumoto-etal-2020_JAE")
   
   ## parameters
   
-  
   min.sep.sec <- 2
   min.tandem.sec <- 5
+  tandem_leader_thresh <- .5
 }
 #------------------------------------------------------------------------------#
 
@@ -41,6 +41,7 @@ scale_trajectory <- function(Plot = T, Dataframe = T, dataset = NULL,
   data_loc_met = "data_raw/bodylength/scale_bodylength.csv"
   data_loc_tra = "data_raw/trajectories"
   plot_loc_tra = "output/trajectory/"
+  data_loc_fmt = paste0("data_fmt/data_trajectory.rda")
   if(length(dataset) > 0){
     data_loc_met = paste0("data_raw/bodylength_", dataset, "/scale_bodylength.csv")
     data_loc_tra = paste0("data_raw/trajectories_", dataset)
@@ -135,7 +136,7 @@ tandem.smoothing <- function(vec, min.sec){
 # 2) save data.frame for each tandem event (),
 #    and for summary for each pair (df_sum_tandem.rda)
 #------------------------------------------------------------------------------#
-tandem.detect <- function(dataset = NULL){
+tandem.detect <- function(dataset = NULL, fps_analysis = 5){
   
   if(length(dataset)>0){
     load(paste0("data_fmt/data_trajectory_", dataset, ".rda"))
@@ -160,10 +161,30 @@ tandem.detect <- function(dataset = NULL){
     non.interaction <- !interaction
     
     # remove short separation
-    tandem <- !tandem.smoothing(non.interaction, min.sep.sec*5) 
+    interaction <- !tandem.smoothing(non.interaction, min.sep.sec*5) 
     # remove short tandem
-    tandem <- tandem.smoothing(tandem, min.tandem.sec*5) 
+    interaction <- tandem.smoothing(interaction, min.tandem.sec*5) 
     
+    tandem = interaction
+    
+    # leader role
+    # because we did not identify leader and follower during the tracking,
+    # we estimated the leader role from the relative position and moving direction.
+    # if dot product of these two vectors >0 -> partner is in their heading direction (follower)
+    # if dot product of these two vectors <0 -> leader
+    dx = diff(df_temp$x0)
+    dy = diff(df_temp$y0)
+    rx = (df_temp$x1 - df_temp$x0)[1:(dim(df_temp)[1]-1)]
+    ry = (df_temp$y1 - df_temp$y0)[1:(dim(df_temp)[1]-1)]
+    df_temp$leader0 = c((dx * rx + dy * ry) < 0, NA)
+    
+    dx = diff(df_temp$x1)
+    dy = diff(df_temp$y1)
+    rx = (df_temp$x0 - df_temp$x1)[1:(dim(df_temp)[1]-1)]
+    ry = (df_temp$y0 - df_temp$y1)[1:(dim(df_temp)[1]-1)]
+    df_temp$leader1 = c((dx * rx + dy * ry) < 0, NA)
+    
+    ## for each tandem event
     if(sum(tandem)>0){
       tan.end <- which(tandem)[c(diff(which(tandem))>1,T)]
       tan.sta <- which(tandem)[c(T, diff(which(tandem))>1)]
@@ -176,49 +197,85 @@ tandem.detect <- function(dataset = NULL){
     tan_cens[tan.sta == 1 | tan.end == 9000] <- 0
     
     speed_tandem = (df_temp$speed0[tandem]+df_temp$speed1[tandem])/2
+    
+    
+    leader_clarity <- rep(0, length(tan_duration))
+    if(length(tan_duration)>0){
+      for(i_tan in 1:length(tan_duration)){
+        tan_range <- tan.sta[i_tan]:tan.end[i_tan]
+        leader0 = df_temp$leader0[tan_range]
+        leader1 = df_temp$leader1[tan_range]
+        leader_clarity[i_tan] = 
+          abs(sum(leader0, na.rm = T) - sum(leader1, na.rm = T))/
+          tan_duration[i_tan]
+        if(leader_clarity[i_tan] < tandem_leader_thresh){
+          tandem[tan_range] <- F
+        }
+      }
+    }
+    non_tandem_interaction <- interaction & !tandem
+    
+    # data summarize  
     df_sum_temp <- data.frame(
       name =  name_list[i],
       species = str_split(name_list[i], "_")[[1]][1],
       treatment = str_split(name_list[i], "_")[[1]][2],
-      tandem_total_duration = sum(tandem) / fps_analysis,
+      interaction_total_duration = sum(interaction) / fps_analysis,
+      tandem_total_duration      = sum(tandem) / fps_analysis,
+      non_tandem_interaction_total_duration = sum(non_tandem_interaction) / fps_analysis,
       speed_tandem = mean(speed_tandem, na.rm=T)
     )
-
+    
     df_tandem_temp <- data.frame(
       name =  name_list[i],
       species = str_split(name_list[i], "_")[[1]][1],
       treatment = str_split(name_list[i], "_")[[1]][2],
       tan_duration = tan_duration/fps_analysis,
-      tan_cens
+      tan_cens,
+      leader_clarity
     )
     
     df_sep_temp <- NULL
     if(length(sep_duration)>0){
       sep_thresh = 25
       for(i_sep in 1:length(sep_duration)){
-        if(tan.end[i_sep]>(min.tandem.sec*fps_analysis)+1){
-          if(sep_duration[i_sep] > sep_thresh){
-            sep_range <- -(min.tandem.sec*fps_analysis):sep_thresh+tan.end[i_sep]
-            speed0 = (df_temp$speed0[sep_range])
-            speed1 = (df_temp$speed1[sep_range])
-            if(mean(speed0) < mean(speed1)){
-              temp = speed0 
-              speed0 = speed1
-              speed1 = temp
+        if(leader_clarity[i_sep] > tandem_leader_thresh){
+          if(tan.end[i_sep]>(min.tandem.sec*fps_analysis)+1){
+            if(sep_duration[i_sep] > sep_thresh){
+              
+              sep_range <- -(min.tandem.sec*fps_analysis):sep_thresh+tan.end[i_sep]
+              tan_range <- tan.sta[i_sep]:tan.end[i_sep]
+              speed0 = (df_temp$speed0[sep_range])
+              speed1 = (df_temp$speed1[sep_range])
+              leader0 = df_temp$leader0[tan_range]
+              leader1 = df_temp$leader1[tan_range]
+              
+              if( sum(leader0) > sum(leader1) ){
+                speed_leader   = speed0
+                speed_follower = speed1
+              } else {
+                speed_leader   = speed1
+                speed_follower = speed0
+              }
+              
+              df_sep_temp_temp <- data.frame(
+                name =  name_list[i],
+                species = str_split(name_list[i], "_")[[1]][1],
+                treatment = str_split(name_list[i], "_")[[1]][2],
+                time = (-(min.tandem.sec*fps_analysis):sep_thresh)/fps_analysis,
+                sep_event = i_sep,
+                speed_leader, speed_follower
+              )
+              df_sep_temp <- rbind(df_sep_temp, df_sep_temp_temp)
             }
-            df_sep_temp_temp <- data.frame(
-              name =  name_list[i],
-              species = str_split(name_list[i], "_")[[1]][1],
-              treatment = str_split(name_list[i], "_")[[1]][2],
-              time = (-(min.tandem.sec*fps_analysis):sep_thresh)/fps_analysis,
-              sep_event = i_sep,
-              speed0, speed1
-            )
-            df_sep_temp <- rbind(df_sep_temp, df_sep_temp_temp)
           }
         }
       }
     }
+    
+    
+    
+    
     
     df_sum <- rbind(df_sum, df_sum_temp)
     df_tandem <- rbind(df_tandem, df_tandem_temp)
@@ -234,3 +291,32 @@ tandem.detect <- function(dataset = NULL){
   }
 }
 #------------------------------------------------------------------------------#
+
+tandem.detect()
+load("data_fmt/df_tandem_fmt.rda")
+library(ggplot2)
+ggplot(df_tandem, aes(x=leader_clarity, fill=species))+
+  geom_histogram(alpha=0.7)+
+  facet_grid(species~treatment)
+
+load("data_fmt/df_tandem_fmt.rda")
+df_sum$treatment = factor(df_sum$treatment, levels=c("FM","FF","MM"))
+ggplot(df_sum, aes(x=treatment, y=non_tandem_interaction_total_duration , 
+                   fill=species, col=species))+
+  geom_boxplot(aes(x=treatment), outlier.shape= NA, 
+               alpha = .75, width = .2, colour = "black") + 
+  geom_point(aes(x = as.numeric(treatment)-0.2, fill=species), 
+             position = position_jitter(width = 0.05),
+             alpha = 0.75, shape = 19, size=0.5)+
+  scale_fill_viridis(discrete=T, option = "D", end = .5, labels=c("C. formosanus", "C. gestroi")) +
+  scale_color_viridis(discrete=T, option = "D", end = .5) +
+  scale_y_continuous(breaks = seq(0,1800,600)) +
+  scale_x_discrete(labels = c("Female-Male", "Female-Female", "Male-Male")) +
+  ylab("Tandem duration (sec)") +
+  xlab("") +
+  theme_classic()+
+  theme(legend.position  = c(0.8 , 0.9),
+        legend.title = element_blank(),
+        legend.text = element_text(face = "italic"),
+        text = element_text(size = 12))+
+  guides(col = "none") 
