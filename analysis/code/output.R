@@ -164,7 +164,7 @@ plot_tandem_duration <- function(){
     }
   }
   {
-    image_tan <- image_read("output/termite.png")
+    image_tan <- image_read("data_raw/termite.png")
     p_ter <- image_ggplot(image_tan) + theme_classic() +
       scale_y_continuous(breaks = c(32,107), labels = c("C. gestroi", "C. formosanus"))+
       theme(axis.line = element_blank(),
