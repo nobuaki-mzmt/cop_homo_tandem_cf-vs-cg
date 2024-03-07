@@ -928,8 +928,8 @@ model.</p>
 ## 
 ## Linear Hypotheses:
 ##              Estimate Std. Error z value Pr(&gt;|z|)    
-## FF - FM == 0  1.34591    0.13326  10.100   &lt;1e-05 ***
-## MM - FM == 0  1.42679    0.12233  11.663   &lt;1e-05 ***
+## FF - FM == 0  1.34591    0.13326  10.100   &lt;1e-04 ***
+## MM - FM == 0  1.42679    0.12233  11.663   &lt;1e-04 ***
 ## MM - FF == 0  0.08088    0.14362   0.563    0.839    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
@@ -942,7 +942,130 @@ model.</p>
 <p>Compare the speed difference between followers (faster) and leaders
 (slower) after 5 second after separation.</p>
 <pre class="r"><code>stat_speed_comparison()</code></pre>
-<pre><code>## ---------- Speed diff comparison at 5 sec in Cop ges ----------
+<pre><code>## ---------- Speed comparison Leader VS Follower at 5 sec ----------
+## ###############################
+## 
+##                 species: CF pair: FM 
+## 
+##                 ################################
+##  Welch Two Sample t-test
+## 
+## data:  speed by role
+## t = 16.938, df = 366.82, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means between group follower and group leader is not equal to 0
+## 95 percent confidence interval:
+##  16.58864 20.94630
+## sample estimates:
+## mean in group follower   mean in group leader 
+##              25.006080               6.238607 
+## 
+## # A tibble: 1 × 7
+##   .y.   group1   group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 speed follower leader    1.60   225   225 large    
+## ###############################
+## 
+##                 species: CF pair: FF 
+## 
+##                 ################################
+##  Welch Two Sample t-test
+## 
+## data:  speed by role
+## t = 20.083, df = 1207.5, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means between group follower and group leader is not equal to 0
+## 95 percent confidence interval:
+##  10.72406 13.04620
+## sample estimates:
+## mean in group follower   mean in group leader 
+##               22.21783               10.33270 
+## 
+## # A tibble: 1 × 7
+##   .y.   group1   group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 speed follower leader    1.15   605   605 large    
+## ###############################
+## 
+##                 species: CF pair: MM 
+## 
+##                 ################################
+##  Welch Two Sample t-test
+## 
+## data:  speed by role
+## t = -0.027351, df = 278.52, p-value = 0.9782
+## alternative hypothesis: true difference in means between group follower and group leader is not equal to 0
+## 95 percent confidence interval:
+##  -3.285193  3.195155
+## sample estimates:
+## mean in group follower   mean in group leader 
+##               18.42452               18.46954 
+## 
+## # A tibble: 1 × 7
+##   .y.   group1   group2  effsize    n1    n2 magnitude 
+## * &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;     
+## 1 speed follower leader -0.00326   141   141 negligible
+## ###############################
+## 
+##                 species: CG pair: FM 
+## 
+##                 ################################
+##  Welch Two Sample t-test
+## 
+## data:  speed by role
+## t = 15.737, df = 438.33, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means between group follower and group leader is not equal to 0
+## 95 percent confidence interval:
+##  13.81300 17.75565
+## sample estimates:
+## mean in group follower   mean in group leader 
+##              22.395241               6.610917 
+## 
+## # A tibble: 1 × 7
+##   .y.   group1   group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 speed follower leader    1.34   274   274 large    
+## ###############################
+## 
+##                 species: CG pair: FF 
+## 
+##                 ################################
+##  Welch Two Sample t-test
+## 
+## data:  speed by role
+## t = 3.627, df = 300.05, p-value = 0.0003369
+## alternative hypothesis: true difference in means between group follower and group leader is not equal to 0
+## 95 percent confidence interval:
+##  2.194727 7.401220
+## sample estimates:
+## mean in group follower   mean in group leader 
+##               14.84128               10.04330 
+## 
+## # A tibble: 1 × 7
+##   .y.   group1   group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 speed follower leader   0.390   173   173 small    
+## ###############################
+## 
+##                 species: CG pair: MM 
+## 
+##                 ################################
+##  Welch Two Sample t-test
+## 
+## data:  speed by role
+## t = 2.125, df = 353.08, p-value = 0.03428
+## alternative hypothesis: true difference in means between group follower and group leader is not equal to 0
+## 95 percent confidence interval:
+##  0.2290097 5.9179290
+## sample estimates:
+## mean in group follower   mean in group leader 
+##               18.25307               15.17960 
+## 
+## # A tibble: 1 × 7
+##   .y.   group1   group2 effsize    n1    n2 magnitude
+## * &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+## 1 speed follower leader   0.222   183   183 small    
+## -----------------------------------------------------
+## 
+## ---------- Speed diff comparison at 5 sec in Cop ges ----------
 ## lmer(formula = speed_diff ~ treatment + (1 | name), data = subset(df_sep_ana, 
 ##     species == &quot;CG&quot;))
 ## 
@@ -1005,9 +1128,9 @@ model.</p>
 ## 
 ## Linear Hypotheses:
 ##              Estimate Std. Error z value Pr(&gt;|z|)    
-## FF - FM == 0   -8.275      1.941  -4.264   &lt;1e-04 ***
-## MM - FM == 0  -20.357      2.375  -8.572   &lt;1e-04 ***
-## MM - FF == 0  -12.083      2.125  -5.686   &lt;1e-04 ***
+## FF - FM == 0   -8.275      1.941  -4.264 5.47e-05 ***
+## MM - FM == 0  -20.357      2.375  -8.572  &lt; 1e-05 ***
+## MM - FF == 0  -12.083      2.125  -5.686  &lt; 1e-05 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## (Adjusted p values reported -- single-step method)
@@ -1058,9 +1181,9 @@ model.</p>
 ## 
 ## Linear Hypotheses:
 ##                                Estimate Std. Error z value Pr(&gt;|z|)  
-## Florda_2020 - Florda_2019 == 0  -0.8556     0.4506  -1.899   0.1344  
+## Florda_2020 - Florda_2019 == 0  -0.8556     0.4506  -1.899   0.1343  
 ## Florda_2021 - Florda_2019 == 0   0.2307     0.2829   0.815   0.6877  
-## Florda_2021 - Florda_2020 == 0   1.0862     0.4316   2.517   0.0304 *
+## Florda_2021 - Florda_2020 == 0   1.0862     0.4316   2.517   0.0305 *
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## (Adjusted p values reported -- single-step method)

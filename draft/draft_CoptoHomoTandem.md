@@ -4,7 +4,8 @@ termites****.**
 **Nobuaki Mizumoto**<sup>1,2,3#\*</sup>**, Sang-Bin
 Lee**<sup>4#</sup>**, Thomas Chouvenc**<sup>4</sup>
 
-1: Department of Entomology & Plant Pathology, Auburn, AL, USA
+1: Department of Entomology & Plant Pathology, Auburn University,
+Auburn, AL, 36849, USA
 
 2: Evolutionary Genomics Unit, Okinawa Institute of Science & Technology
 Graduate University, Onna-son, Okinawa, 904-0495, Japan
@@ -14,7 +15,7 @@ Technology Graduate University, Onna-son, Okinawa, 904-0495, Japan
 
 4: Entomology and Nematology Department, Ft. Lauderdale Research and
 Education Center, Institute of Food and Agricultural Sciences,
-University of Florida, Ft. Lauderdale, FL 33314, USA
+University of Florida, Ft. Lauderdale, FL, 33314, USA
 
 \#: These authors contributed equally.
 
@@ -28,34 +29,33 @@ ORCID: NM: 0000-0002-6731-8684; SBL: 0000-0001-7982-0842; TC:
 Same-sex sexual behavior (SSB) is an enigma in behavioral ecology as it
 does not result in reproduction. Proximately, the evolution of sexual
 signals is critical for the evolution of SSB in a sex-specific manner.
-For signal receivers, the loss of sexual signals leads to smaller sex
-differences, leading to frequent accidental SSB between receivers.
-Alternatively, for senders, sexual signals could help locate another
-sender, enhancing intentional SSB as in heterosexual pairing. Here, we
-demonstrate this ink between sex pheromones and the frequency of
-same-sex pairing in two *Coptotermes* termites that use the same
-chemical as sex pheromones but in different quantities. In termites,
-mating pairs engage in tandem runs, where a male follows a female with
-sex pheromones. We found that female-female tandems were more frequently
-observed in *C. formosanus,* whose females produce more pheromones,
-while the male-male tandems were more observed in *C. gestroi*, whose
-females produce fewer pheromones. Thus, stronger pheromones lead to
-sender-sender SSB, while weaker pheromones lead to receiver-receiver
+For signal receivers, the loss of sexual signals leads to smaller
+phenotypic sex differences, leading to frequent accidental SSB between
+receivers. Alternatively, for senders, sexual signals could help locate
+another sender, enhancing intentional SSB as in heterosexual pairing.
+Here, we demonstrate this link between sex pheromone signaling and the
+frequency of same-sex pairing in two *Coptotermes* termites that use the
+same chemical as sex pheromones but in different quantities. In
+termites, mating pairs engage in tandem runs, where a male follows a
+female with sex pheromones. We found that female-female tandems were
+more stable in *C. formosanus,* whose females produce more pheromones,
+while the male-male interactions were more frequent in *C. gestroi*,
+whose females produce fewer pheromones. Thus, stronger pheromones lead
+to sender-sender SSB, while weaker pheromones lead to receiver-receiver
 SSB. In both species, same-sex tandems were less stable than
-heterosexual tandems, contrasting with the finding with
-*Reticulitermes*, another group that shows frequent same-sex tandems.
-The proximate mechanism of SSB is diverse, reflecting the heterosexual
-context.
+heterosexual tandems, contrasting with *Reticulitermes*, another termite
+group that shows frequent same-sex tandems. The proximate mechanism of
+SSB is diverse, reflecting the heterosexual context.
 
 **Keywords**: homosexual behavior, movement coordination, pheromone,
-same-sex sexual behavior, social insects
+same-sex pairing, social insects
 
 **Introduction**
 
 Same-sex sexual behavior (SSB) is widespread among diverse animals with
 considerable variations across taxa \[1–3\]. In most species, the SSB is
-considered the result of mistaken identity \[3,4\], while in some cases,
-SSB provides adaptive value by making the best of a bad job with the
+considered to result from mistaken identity \[3,4\]. In some cases, SSB
+provides adaptive value by making the best of a bad job with the
 shortage of heterosexual partners \[5,6\]. In either case, the
 occurrence of SSB is dependent on the mode of mating strategy in
 heterosexual contexts and strongly affected by the accuracy and
@@ -67,18 +67,18 @@ evolutionary patterns of sexual signals could shape the diversity of SSB
 across species as a by-product. However, the role of sex-specific
 signals in SSB has remained unexplored.
 
-As signal senders and receivers play different roles in mate pairing,
-the effect of sexual signals on SSB should differ between sender-sender
-and receiver-receiver pairs. For example, the strength of sexual signals
-has the opposite effect on the sender-sender SSB and receiver-receiver
-SSB. In the species with weak sex-specific signals, more frequent SSB
-between receivers is expected compared with those with strong signals
-\[8\]. With small sexual differences, receivers can locate other
-receivers as well as senders, which may also provoke mistaken identity
-of the sex of the partner. On the other hand, more SSB between signal
-senders could be possible in the species with strong signals. It is
-rarer to observe SSB between senders as they are usually passive sex
-during mating \[9\]. Nevertheless, with strong signals, it is easier for
+As signal senders and receivers play distinct roles in mate pairing, the
+effect of sexual signals on SSB should differ between sender-sender and
+receiver-receiver pairs. For example, the strength of sexual signals has
+the opposite effect on the sender-sender SSB and receiver-receiver SSB.
+In species with weak sex-specific signals, more frequent SSB between
+receivers is expected compared with those with strong signals \[8\].
+Because it needs more effort for receivers to distinguish senders from
+receivers with weak sexual signals, receivers may mistake the sex of the
+partner. On the other hand, more SSB between signal senders could be
+possible in the species with strong signals. It is rarer to observe SSB
+between senders as they are usually the passive sex during paring \[9\].
+Nevertheless, if the signals are strong enough, it should be easier for
 even senders to find other senders than other receivers. Thus, the
 strength of sexual signals is expected to modify the relative occurrence
 of receiver-receiver and sender-sender SSB across species.
@@ -86,197 +86,250 @@ of receiver-receiver and sender-sender SSB across species.
 Mate pairing in termites provides an ideal model system to study the
 evolution of SSB. Termites form life-long monogamous pairs to establish
 colonies \[10\]. During a brief period, alates (winged adults) disperse
-from their nests. Both females and males land on the ground, shed their
-wings, and run to search for a mating partner. Upon joining, a pair
-performs a tandem run. In neoisopteran termites, the male always follows
-the female with sex pheromones \[11\], maintaining contact in a highly
-coordinated manner while seeking a suitable site for colony foundation.
-Although tandem running involves communication via sex pheromones,
-same-sex tandem running can be observed in either sex \[11,12\]. Sex
-pheromones should play different roles between female-female pairs and
-male-male pairs. In male-male pairs, same-sex tandem can happen once one
-male starts to follow another male. Thus, SSB can happen because of
-mistaken identity. This implies that species with weak sex pheromones
-provoke male-male tandem pairing. On the other hand, female-female
-tandem cannot happen because of mistaken identity. As the sex role is
-fixed (females do not follow males) \[11,13\], female-female tandem runs
-initiate after one female changes sex role in advance. In this
-situation, the sex pheromones of females instead facilitate same-sex
-tandems because females can easily follow another female.
+from their nests. Both females and males land on the ground or trees,
+shed their wings, and run to search for a mating partner. Upon joining,
+a pair performs a tandem run. In neoisopteran termites, the male always
+follows the female that produces sex pheromones \[11\], maintaining
+contact in a highly coordinated manner while seeking a suitable site for
+colony foundation. Although tandem running involves communication via
+sex pheromones, same-sex tandem running can be observed in either sex
+\[11,12\]. Sex pheromones should play different roles between
+female-female pairs and male-male pairs. In male-male pairs, same-sex
+tandem can happen once one male starts following another male. Thus, in
+the case of male-male tandems, SSB can happen because of mistaken
+identity. This implies that species with weak sex pheromones may provoke
+male-male tandem pairing. On the other hand, female-female tandem should
+not come from the mistaken identity because the sex role is fixed
+(females do not follow males) \[11,13\], and one female needs to change
+the sex role before the initiation of female-female tandem runs when not
+approached by males. This implies that female-female tandem runs could
+be intentional. Thus, conversely, the strong pheromone signal of females
+instead facilitates same-sex tandems, where females can easily follow
+another female.
 
 In this study, we compared the same-sex tandem running behavior in two
 *Coptotermes* termites: *Coptotermes formosanus* Shiraki and
-*Coptotermes gestroi* Wasmann. These two species share the same chemical
-for sex-pairing pheromones \[14\] and can form heterosexual tandem runs
-\[15,16\]. However, the quantity of pheromones differs between these two
-species, where *C. formosanus* has ten times more pheromones than *C.
-gestroi* \[14\]. Therefore, we predict that male-male tandem is more
-frequent in *C. gestroi* than *C. formosanus*, while female-female
-tandem is more frequent in *C. formosanus* than *C. gestroi*.
-Furthermore, when a pair is separated during a heterosexual tandem run,
-females pause to wait for males, while males move around to search for
-females in both species \[17,18\]. We tested if they could play the role
-of different sexes in same-sex tandem runs.
+*Coptotermes gestroi* (Wasmann). These two species share the same
+chemical for sex-pairing pheromones ((3Z,6Z,8E)-dodeca-3,6,8-trien-1-ol)
+produced by female tergal glands \[14\] and were previously observed
+forming hetero-specific tandem runs \[15,16\]. However, the quantity of
+pheromones differs between these two species, where *C. formosanus*
+females produce ten times more pheromones than *C. gestroi* females
+\[14\]. Due to this signal difference, we here expect that male-male
+tandem is more frequent in *C. gestroi* than *C. formosanus*, while
+female-female tandem is more frequent in *C. formosanus* than *C.
+gestroi*. Finally, when a pair is separated during a heterosexual tandem
+run, both species display sexual dimorphism, with females pausing to
+wait for males and males moving around to search for females. \[17,18\].
+We, therefore, also investigated if an individual could display the
+typical behavior of the opposite sex in interrupted same-sex tandem
+runs, as shown in another termite lineage \[11\].
 
 **Methods**
 
 *Termites and Experimental Arena*
 
-We collected alates using a light-trapping system at dusk between 27-29
-March for *C. gestroi* and 21-22 April, 1-2 May for *C. formosanus* in
-2021 in Broward County (Florida, USA) during synchronized dispersal
-flights. All alates were collected at a single site. We brought the
-alates to the laboratory and maintained them on wet cardboard at 28°C.
-We used individuals who did not shed their wings by themselves to
-prevent any prior experience with tandem runs. After inducing shedding
-wings, we observed their behaviors within 12 h. Each individual was used
-only once.
+We collected alates using a light-trapping system \[19\] at dusk between
+27-29 March for *C. gestroi* and 21-22 April, 1-2 May for *C.
+formosanus* in 2021 in Broward County (Florida, USA) during synchronized
+dispersal flights. We collected all the alates at a single site. We
+brought the alates to the laboratory and maintained them on wet
+cardboard at 28°C. We used individuals who did not shed their wings by
+themselves to prevent any prior experience with tandem runs. After
+inducing shedding wings, we observed their behaviors within 12 h. We
+used each termite only once.
 
 We performed all observations in an experimental arena made of a Petri
 dish (ø = 150 mm) filled with moistened plaster. The Petri dish had a
-clear lid during observations. A video camera (XXX) above the arena was
-adjusted so that the arena filled the camera frame. We introduced a pair
-of termites into the arena. Each pair was recorded for 30 minutes in 30
-frames per second (FPS). We obtained 49, 61, and 44 videos for
-female-male, female-female, and male-male in *C. formosanus*, and 40,
-40, and 45 videos in *C. gestroi*. We extracted the coordinates of the
-centroids of termite movements from all obtained videos using the
-video-tracking system UMATracker \[19\]. We down-sampled all coordinates
-to a rate of five FPS for subsequent analyses. We measured the diameter
-of the dish and body length of two termites in pixels for each video
-using a Python program.
+clear lid during observations. A video camera (HC-V770, Panasonic,
+Osaka, Japan) was above the arena, adjusted so that the arena filled the
+camera frame. We introduced a pair of termites into the arena. Each pair
+was recorded for 30 minutes in 30 frames per second (FPS). We obtained
+49, 61, and 44 videos for female-male, female-female, and male-male in
+*C. formosanus*, and 40, 40, and 45 videos in *C. gestroi*. We extracted
+the coordinates of the centroids of termite movements from all obtained
+videos using the video-tracking system UMATracker \[20\]. We
+down-sampled all coordinates to a rate of five FPS for subsequent
+analyses. We measured the diameter of the dish and body length of two
+termites in pixels for each video using a Python program.
 
 *Tandem analysis*
 
 To compare the duration of tandem runs between pair combinations and
-species, we automatically determined that pairs were in tandem when the
-distance between their centroids was within the sum of their body
-length. This simplest threshold is used in a previous study \[20\], and
-using other complex definitions (e.g., \[16–18\]) did not change the
-conclusion. We did not count short interactions (\< 5 seconds) as tandem
-runs and short separations (\< 2 seconds) during tandem as
-interruptions.
+species, we automatically determined that pairs were in interactions
+when the distance between their centroids was within the sum of their
+body length. We did not count short interactions (\< 5 seconds) as
+interactions and short separations (\< 2 seconds) during interactions as
+interruptions. Then, for each interaction event, we estimated the leader
+by checking the relative directions of partners and their movement
+directions. We calculated the dot products of these two vectors and
+defined whether each partner was leading the other (dot vector \< 1, the
+partner exists behind the moving direction) or not (dot vector ≧ 1).
+During each interaction event, we regarded termites in tandem only when
+one individual was the predominant leader, where the proportion of time
+being a leader for one individual was more than 50% of the total
+interaction duration. This treatment excluded non-tandem interactions,
+such as inspecting the partner by antennation or staying together while
+inspecting a specific area of the arena.
 
-To compare the duration of tandem runs between species and combinations,
-we used mixed-effects Cox models \[coxme() function in the coxme package
-in R \[21\]\], with pair combination (or species) treated as a fixed
-effect and each pair id as a random effect. We compared the durations
-between species for each combination (heterosexual, female–female, or
-male–male) and among combinations for each species separately. We also
-compared the proportion of the total time spent in tandem runs across
-different pairing combinations (or species). We transformed proportional
-data using logit transformation after adding 0.01 to the observed
-proportions to avoid infinite values \[22\]. We used the Welch t-tests
-to compare species for each pair combination, while one-way ANOVA with
-Tukey’s HSD to compare among combinations for each species. In the
+We compared the proportion of the total time spent in interactions,
+tandem runs, and non-tandem interactions across different pairing
+combinations (heterosexual, female–female, or male–male) for each
+species, or between species for each pairing combination. We transformed
+proportional data using logit transformation after adding 0.01 to the
+observed proportions to avoid infinite values \[21\]. We used the Welch
+t-tests to compare species for each pair combination, while one-way
+ANOVA with Tukey’s HSD to compare combinations for each species. In the
 t-test and Tukey’s HSD, we obtained Cohen’s d value as effect sizes
-\[cohens_d() function in the rstatix package in R\]. Finally, for each
-separation event, we obtained the movement speed of both termites after
-5 seconds of separation and calculated the absolute difference in
-movement speed. We compared the difference of movement speed using
-linear mixed-effects models \[lmer() function in the lme4 package in R
-\[23\]\], as the same approach with the mixed-effect Cox model as above.
+\[cohens_d() function in the rstatix package in R\]. We also studied how
+tandem runs were stable once they started by comparing the duration of
+each tandem running event. We used mixed-effects Cox models \[coxme()
+function in the coxme package in R \[22\]\], with pair combination (or
+species) treated as a fixed effect and each pair id as a random effect.
+We compared the durations between species for each combination and among
+combinations for each species separately.
+
+Finally, for each separation event after tandem running events, we
+obtained the movement speed of both leader and follower termites after 5
+seconds of separation to compare the movement speed between them, using
+a paired t-test with Cohen’s d value as effect sizes. We also calculated
+the absolute difference in movement speed. We compared the difference in
+movement speed using linear mixed-effects models \[lmer() function in
+the lme4 package in R \[23\]\], using the same approach as the above
+mixed-effect Cox models.
 
 All data analyses were performed using R v4.3.0 \[24\], and source codes
 are available on GitHub
-(https://github.com/nobuaki-mzmt/cop_homo_tandem_cf-vs-cg).
+(<https://github.com/nobuaki-mzmt/cop_homo_tandem_cf-vs-cg>).
 
 **Results**
 
 The species difference in tandem running behavior depended on the
-pairing combinations. In heterosexual pairing, *C. formosanus* showed
-more stable tandems (mixed-effects Cox model, χ<sup>2</sup><sub>1</sub>
-= 40.5, *P* \< 0.001, Figure S1) and spent longer time for tandem runs
-than *C. gestroi* (t-test, *t*<sub>82.3</sub> = 5.45, *P* \< 0.001, *d*
-= 1.16, Figure 1). Note that this result contradicts a previous study
+pairing combinations. In heterosexual pairing, *C. formosanus* spent
+longer time for tandem runs than *C. gestroi* (t-test,
+*t*<sub>88.0</sub> = 4.30, *P* \< 0.001, *d* = 0.90, Figure 1C) or
+interactions (t-test, *t*<sub>84.3</sub> = 5.38, *P* \< 0.001, *d* =
+1.14, Figure 1B), but not for non-tandem interactions (t-test,
+*t*<sub>88.0</sub> = 1.04, *P* = 0.299, *d* = 0.22, Figure 1D). Once
+they started tandem runs, *C. formosanus* showed more stable tandems
+(mixed-effects Cox model, χ<sup>2</sup><sub>1</sub> = 40.3, *P* \<
+0.001, Figure S1). Note that this result contradicts a previous study
 that detected no significant difference between these two species
 \[16\], and this contradiction is discussed in the supplementary
-material (see Supplementary Text S1, Figure S2, and Table S1). A
-somewhat similar pattern was observed in female-female pairing, where
-*C. formosanus* showed more stable tandems than *C. gestroi*
-(mixed-effects Cox model, χ<sup>2</sup><sub>1</sub> = 9.30, *P* = 0.002,
-Figure S1), without difference in the time spent in tandem runs (t-test,
-*t*<sub>83.6</sub> = 1.62, *P* = 0.109, *d* = 0.33, Figure 1). On the
-other hand, male-male pairing showed the opposite pattern, where *C.
-gestroi* showed more stable tandems (mixed-effects Cox model,
-χ<sup>2</sup><sub>1</sub> = 33.5, *P* \< 0.001, Figure S1) and spent
-longer time for tandem runs than *C. formosanus* (t-test,
-*t*<sub>73.9</sub> = 6.36, *P* \< 0.001, *d* = 1.35, Figure 1). In
-either species, same-sex pairing was much more unstable than
-heterosexual pairing, with no difference between female-female pairs and
-male-male pairs in *C. gestroi* (comparison of time spent in tandem,
-TukeyHSD, FM-FF: *P* \< 0.001, *d* = 1.72; FM-MM: *P* \< 0.001, *d* =
-2.05; FF-MM: *P* = 0.767, *d* = 0.181; Figure 1), while larger
+material (see Supplementary Text S1, Figure S2, and Table S1). A similar
+pattern was observed in female-female pairing, where *C. formosanus*
+spent longer time for tandem runs (t-test, *t*<sub>96.4</sub> = 8.62,
+*P* \< 0.001, *d* = 1.65, Figure 1C) and showed more stable tandems than
+*C. gestroi* (mixed-effects Cox model, χ<sup>2</sup><sub>1</sub> = 9.42,
+*P* = 0.002, Figure S1). Note that time spent in interactions was not
+different (t-test, *t*<sub>83.6</sub> = 1.62, *P* = 0.11, *d* = 0.33,
+Figure 1B) because *C. gestroi* expended more time for non-tandem
+interactions (t-test, *t*<sub>75.2</sub> = 5.67, *P* \< 0.001, *d* =
+1.17, Figure 1D). On the other hand, male-male pairing showed a distinct
+pattern, where *C. gestroi* spent longer for same-sex interactions than
+*C. formosanus* (t-test, *t*<sub>73.9</sub> = 6.36, *P* \< 0.001, *d* =
+1.35, Figure 1B). The most social interactions in *C. gestroi* did not
+end up tandem runs as there was no difference in the time spent in
+tandem runs between species (t-test, *t*<sub>78.5</sub> = 0.93, *P* \<
+0.353, *d* = 0.20, Figure 1C), but *C. gestroi* expended much more time
+for non-tandem interactions (t-test, *t*<sub>84.9</sub> = 7.43, *P* \<
+0.001, *d* = 1.58, Figure 1D). Interestingly, once tandem started, *C.
+formosanus* showed more stable tandems than *C. gestroi* (mixed-effects
+Cox model, χ<sup>2</sup><sub>1</sub> = 33.4, *P* \< 0.001, Figure S1).
+However, in either species, same-sex tandem runs were much less stable
+than heterosexual pairing, with larger difference between female-female
+pairs and male-male pairs in *C. formosanus* (mixed-effects Cox model,
+χ<sup>2</sup><sub>2</sub> = 481, *P* \< 0.001; Tukey’s HSD, FM-FF: *P*
+\< 0.001; FM-MM: *P* \< 0.001; FF-MM: *P* \< 0.001; Figure S1), while no
 difference between female-female pairs and male-male pairs in *C.
-formosanus* (TukeyHSD, FM-FF: *P* \< 0.001, *d* = 2.79; FM-MM: *P* \<
-0.001, *d* = 4.16; FF-MM: *P* \< 0.001, *d* = 1.65; Figure 1).
+gestroi* (mixed-effects Cox model, χ<sup>2</sup><sub>2</sub> = 174, *P*
+\< 0.001; Tukey’s HSD, FM-FF: *P* \< 0.001; FM-MM: *P* \< 0.001; FF-MM:
+*P* = 0.839; Figure S1). The same pattern was observed in the time spent
+in tandem runs (Figure 1C).
 
-<img src="media/image1.png" style="width:4.04375in;height:4.22639in" />
+<img src="media/image1.png" style="width:6.5in;height:4in" />
 
-> **Figure 1.** Comparison of the total time spent in tandem among
-> pairing combinations and species. The sex-attracting pheromone is
-> visualized below.
+> **Figure 1.** Comparison of the total time spent in mating
+> interactions among pairing combinations and species. The proportion of
+> time spent in interactions (A) was further divided into tandem running
+> (C) and non-tandem interactions (D). (B) The sex-attracting pheromone
+> is visualized. The data is bound to 1,800 sec as the observation ended
+> at this point.
 
-After separations, all combinations showed speed differences between
-partners. As shown in previous studies \[17,18\], in heterosexual pairs,
-male followers sped up while female leaders slowed down after separation
-to enhance the probability of reunions (Figure 2). Similar movement
-differences between partners were observed in same-sex pairings (Figure
-2). However, the levels of difference between partners were smaller in
-same-sex pairing, compared with heterosexual pairs both in *C.
-formosanus* (LMM, χ<sup>2</sup><sub>2</sub> = 55.9, *P* \< 0.001;
-Tukey’s HSD, FM-FF: *z* = 6.77, *P* \< 0.001; FM-FF: *z* = 6.49, *P* \<
-0.001; FM-FF: *z* = 0.573, *P* = 0.834) and *C. gestroi* (LMM,
-χ<sup>2</sup><sub>2</sub> = 28.0, *P* \< 0.001; Tukey’s HSD, FM-FF: *z*
-= 4.18, *P* \< 0.001; FM-FF: *z* = 4.98, *P* \< 0.001; FM-FF: *z* =
-0.71, *P* = 0.757).
+After separations, combinations with stable tandem runs showed clear
+speed differences between partners (Figure 2). As shown in previous
+studies \[17,18\], in heterosexual pairs, male followers sped up while
+female leaders slowed down after separation to enhance the probability
+of reunions in both *C. formosanus* (t-test, *t*<sub>366</sub> = 16.9,
+*P* \< 0.001, *d* = 1.60) and *C. gestroi* (t-test, *t*<sub>438</sub> =
+15.7, *P* \< 0.001, *d* = 1.34). Similar movement differences between
+partners were observed in the female-female pairing of *C. formosanus*
+(t-test, *t*<sub>1208</sub> = 20.1, *P* \< 0.001, *d* = 1.15), which
+shows stable tandem runs (Figure 1C, S1). However, in other same-sex
+pairs, the speed difference between leaders and followers after
+separation was small and had negligible effect sizes; male-male pair in
+*C. formosanus* (t-test, *t*<sub>278</sub> = 0.03, *P* = 0.978, *d* =
+0.003), female-female pair in *C. gestroi* (t-test, *t*<sub>300</sub> =
+3.62, *P* \< 0.001, *d* = 0.39), and male-male pair in *C. gestroi*
+(t-test, *t*<sub>353</sub> = 2.13, *P* = 0.034, *d* = 0.22). Similarly,
+the levels of difference between partners were smaller in same-sex
+pairing, compared with heterosexual pairs both in *C. formosanus* (LMM,
+χ<sup>2</sup><sub>2</sub> = 73.6, *P* \< 0.001; Tukey’s HSD, FM-FF: *z*
+= 4.26, *P* \< 0.001; FM-FF: *z* = 8.57, *P* \< 0.001; FM-FF: *z* =
+5.69, *P* \< 0.001) and *C. gestroi* (LMM, χ<sup>2</sup><sub>2</sub> =
+52.6, *P* \< 0.001; Tukey’s HSD, FM-FF: *z* = 5.65, *P* \< 0.001; FM-FF:
+*z* = 6.56, *P* \< 0.001; FM-FF: *z* = 0.844, *P* = 0.675).
 
 <img src="media/image2.png" style="width:6in;height:4in" />
 
-> **Figure 2.** Movement speed of termites before and after separation.
-> Separation timing was determined when the distances between partners
-> were larger than the sum of their body lengths. Solid lines indicate a
-> partner moved faster, while dashed lines slower. Lines and shaded
-> regions indicate mean ± 95CI.
+> **Figure 2.** Movement speed of termites before and after separation
+> from tandem running. Separation timing (time = 0 sec) was determined
+> when the distances between partners were larger than the sum of their
+> body lengths. Solid lines indicate followers, while dashed lines
+> indicate leaders. Lines and shaded regions indicate mean ± 95%
+> confidence intervals.
 
 **Discussion**
 
 We found an association between same-sex pairing behavior and sex
 pheromone quantity in two termite species with shared chemicals. First,
 female-female pairing was more stable in *C. formosanus*, the species
-with more sex pheromones. Because females usually are leaders in
-*Coptotermes* tandem, females need to decide to play follower roles
-before the initiation of same-sex pairing \[11\], where females could
-use sex pheromones to maintain stable movement coordination with
-same-sex individuals. On the other hand, male-male pairing was more
-frequent in *C. gestroi*, the species with a smaller quantity of sex
-pheromones. Male-male tandem runs of these species could be by mistaken
-identity, where *C. gestroi* more frequently misidentified the partner’s
-sex due to smaller sexual dimorphism. Either way, our study clearly
-demonstrated that the evolution of SSB is inseparable from the evolution
-of sex-attracting signals.
+with more sex pheromones. Because females are leaders in heterosexual
+pairs of *Coptotermes* termites, females need to decide to play follower
+roles before the initiation of same-sex pairing \[11\], where females
+could use sex pheromones to maintain stable movement coordination with
+same-sex individuals. On the other hand, although both species showed
+little male-male tandem running, *C. gestroi* males, the species with a
+smaller quantity of sex pheromones, spent more time interacting with
+same-sex partners. Male-male pairings of these species could be driven
+by mistaken identity, where *C. gestroi* required more time to inspect
+the partner’s sex due to smaller sexual dimorphism. Either way, our
+study clearly demonstrated that the evolution of SSB in termites is
+inseparable from the evolution of sex-attracting signals.
 
-Previous studies on same-sex tandem runs in termites have focused only
-on *Reticulitermes* termites \[11,12,25,26\]. In *Reticulitermes*
+By comparing with other termite lineages, our results suggest that the
+same-sex tandems in *Coptotermes* termites are not functional behaviors
+but could exist because they inherited them from the ancestral state of
+termite tandem running behavior \[11\], as in the framework of the
+previous work \[4\]. Previous studies on same-sex tandem runs in
+termites have focused only on *Reticulitermes* termites \[11,12,25,26\],
+which belong to the same family as *Coptotermes*. In *Reticulitermes*
 termites, same-sex pairing functions by providing survival benefits
 \[5,12,27\] and is not a result of mistaken identity \[11\]. However, a
 distinct pattern observed in *Coptotermes* termites suggests that
-same-sex tandem in *Coptotermes* termites is not a functional behavior
-but rather a behavior expressed outside of its original function. In
-*Reticulitermes* termites, same-sex tandem pairs were as stable as
-heterosexual tandem pairs, and one partner behaves like the other sex
-upon separation \[11\]. In *Coptotermes* termites, on the other hand,
-even once they form a same-sex tandem pair, both female-female and
-male-male tandems were far less stable than heterosexual tandems (Figure
-1, S1). Moving speed was also slower in same-sex tandems than in
-heterosexual pairs (Figure 2). Furthermore, upon separation, movement
-dimorphisms between partners, a key for efficient reunion, were not as
-strong as heterosexual pairs (Fig. 2). These all indicate that
-*Coptotermes* termites do not tend to adjust their movement patterns to
-maintain same-sex tandems actively. The same-sex tandems in
-*Coptotermes* termites could exist due to the ancestral state of termite
-tandem running behavior \[11\], as in the framework of the previous work
-\[4\].
+same-sex tandem in *Coptotermes* termites is rather a behavior expressed
+outside of its original function. In *Reticulitermes* termites, same-sex
+tandem pairs were as stable as heterosexual tandem pairs, and one
+partner behaves like the other sex upon separation \[11\]. In
+*Coptotermes* termites, on the other hand, even once they form a
+same-sex tandem pair, both female-female and male-male tandems were far
+less stable than heterosexual tandems (Figure 1, S1). Furthermore, upon
+separation, movement dimorphisms between partners, a key for efficient
+reunion, were not as strong as heterosexual pairs or even absent (Figure
+2). These all indicate that *Coptotermes* termites do not tend to adjust
+their movement patterns to maintain same-sex tandems actively. The
+exception is *C. formosanus* female-female pairing, which may have an
+unknown behavioral function.
 
 Even though the same-sex pairing of *Coptotermes* termites is not
 adaptive, our study on their interspecific variations shows the
@@ -285,17 +338,18 @@ theoretical study predicted that SSB is caused by the absence of perfect
 sex discrimination, where the loss of sexual signals and indiscriminate
 mating coevolve together \[28\]. Our result supports this idea by
 showing that the species with weaker sexual signals showed more frequent
-same-sex pairing than the other. In other words, *C. gestroi* has a
+same-sex interactions than the other. In other words, *C. gestroi* has a
 broader mating filter than *C. formosanus* and tries to pair with
 non-female individuals, as shown in a cricket \[29\], a burying beetle
 \[30\], and a water strider \[31\]. Furthermore, although all of the
 previous studies have considered the SSB between individuals of
-signal-receiving sex (typically males) \[4,7,28\], we also indicated
-that the evolution of sexual signals could also affect the evolution of
-SSB between signal-sending sex (typically females), where stronger
-signals might attract same-sex individuals and lead to sender-sender
-SSB. This newly suggested relationship needs further empirical tests in
-other animal lineages.
+signal-receiving sex (typically males) \[4,7,28\], our results also
+indicated that the evolution of sexual signals could also affect the
+evolution of SSB between signal-sending sex (typically females), where
+stronger signals might attract same-sex individuals and lead to
+sender-sender SSB. This newly suggested relationship needs further
+empirical tests in other animal lineages, possibly in the context of
+variable densities of available partners.
 
 In summary, our study highlights the diversity of SSB that can exist
 even within a closely related species. By connecting mating behavior in
@@ -325,10 +379,10 @@ The authors declare no competing interest.
 
 **Acknowledgments**
 
-We thank Aoi Mizumoto for assistance during the video analysis. This
-work was supported by a JSPS Research Fellowships for Young Scientists
-CPD, to NM (20J00660), a Grant-in-Aid for Early-Career Scientists
-(21K15168) to NM, and an IPSF fellowship from OIST to N.M.
+We thank Aoi Mizumoto for her assistance during the video analysis. This
+work was supported by a JSPS Research Fellowship for Young Scientists
+CPD to NM (20J00660), a Grant-in-Aid for Early-Career Scientists
+(21K15168) to NM, and an IPSF fellowship from OIST to NM.
 
 **References**
 
@@ -369,7 +423,7 @@ sexual behavior in primates? *Archives of Sexual Behavior* **50**,
 same-sex sexual behaviour in an insect. *Animal Behaviour* **85**,
 759–762. (doi:10.1016/j.anbehav.2013.01.017)
 
-10\. Nutting WL. 1969 8 Flight and colony foundation. In *Biology of
+10\. Nutting WL. 1969 Flight and colony foundation. In *Biology of
 termites* (eds K Krishna, FM Weesner), pp. 233–282. New York: Academic
 Press. (doi:10.1016/B978-0-12-395529-6.50012-X)
 
@@ -381,7 +435,7 @@ America* **119**, e2212401119. (doi:10.1073/pnas.2212401119)
 12\. Matsuura K, Kuno E, Nishida T. 2002 Homosexual tandem running as
 selfish herd in *Reticulitermes speratus*: novel antipredatory behavior
 in termites. *Journal of theoretical biology* **214**, 63–70.
-(doi:https://doi.org/10.1101/2022.06.20.496918)
+(doi:10.1101/2022.06.20.496918)
 
 13\. Park YI, Bland JM, Raina AK. 2004 Factors affecting post-flight
 behavior in primary reproductives of the Formosan subterranean termite,
@@ -411,19 +465,19 @@ enhance mating encounters by changing speed according to density.
 *Journal of Animal Ecology* **89**, 2542–2552.
 (doi:10.1111/1365-2656.13320)
 
-19\. Yamanaka O, Takeuchi R. 2018 UMATracker: An intuitive image-based
+19\. Chouvenc T. 2023 Using *Coptotermes* for laboratory experiments:
+field collection, laboratory rearing, and bioassay visualization. In
+*Biology and Management of the Formosan Subterranean Termite and Related
+Species*, pp. 365–393. CABI.
+
+20\. Yamanaka O, Takeuchi R. 2018 UMATracker: An intuitive image-based
 tracking platform. *Journal of Experimental Biology* **221**, 1–24.
 (doi:10.1242/jeb.182469)
 
-20\. Valentini G, Mizumoto N, Pratt SC, Pavlic TP, Walker SI. 2020
-Revealing the structure of information flows discriminates similar
-animal social behaviors. *eLife* **9**, e55395.
-(doi:10.7554/eLife.55395)
-
-21\. Therneau TM. 2015 coxme: mixed effects Cox models.
-
-22\. Warton DI, Hui FKC. 2011 The arcsine is asinine: The analysis of
+21\. Warton DI, Hui FKC. 2011 The arcsine is asinine: The analysis of
 proportions in ecology. *Ecology* **92**, 3–10. (doi:10.1890/10-0340.1)
+
+22\. Therneau TM. 2015 coxme: mixed effects Cox models.
 
 23\. Bates D, Mächler M, Bolker BM, Walker SC. 2015 Fitting linear
 mixed-effects models using lme4. *Journal of Statistical Software*
@@ -435,11 +489,11 @@ computing.
 25\. Li G, Zou X, Lei C, Huang Q. 2013 Antipredator behavior produced by
 heterosexual and homosexual tandem running in the termite
 *Reticulitermes chinensis* (Isoptera: Rhinotermitidae). *Sociobiology*
-**60**, 198–203. (doi:DOI: 10.13102/sociobiology.v60i2.198-203)
+**60**, 198–203. (doi:10.13102/sociobiology.v60i2.198-203)
 
-26\. Wu J, Wang J, Wang Y, Hassan A. 2023 Same-sex Pairs Retain Their
-Reproductive Capacity as a Potential Opportunity for Individual
-Reproductive Success in Termites. *Journal of Insect Science* **23**, 9.
+26\. Wu J, Wang J, Wang Y, Hassan A. 2023 Same-sex pairs retain their
+reproductive capacity as a potential opportunity for individual
+reproductive success in termites. *Journal of Insect Science* **23**, 9.
 (doi:10.1093/jisesa/ieac073)
 
 27\. Matsuura K, Fujimoto M, Goka K. 2004 Sexual and asexual colony
@@ -492,59 +546,59 @@ Table S1
 **Text S1. Comparison of heterosexual tandems across experimental
 years.**
 
-In this study, we detected the clear difference in stability and time
-spent of heterosexual tandem running behavior between *C. formosanus*
-and *C. gestroi* (Figure 1, S1). However, this result is contradicting
-with the previous study that found a similar level of tandem stability
-between these two species (see Figure 1 of \[16\]). To investigate the
-source of this inconsistency, we reanalyzed the data of previous studies
-using *C. formosanus* and *C. gestroi* in this region \[16,18\] using
-the exact same methodology with this study. We have three different
-datasets, one obtained in 2019 only for *C. gestroi* to investigate
-their density-dependent behavioral change, one obtained in 2020 for both
+This study detected a clear difference in stability and time spent on
+heterosexual tandem running behavior between *C. formosanus* and *C.
+gestroi* (Figure 1, S1). However, this result contradicts the previous
+study that found a similar level of tandem stability between these two
+species (see Figure 1 of \[16\]). To investigate the source of this
+inconsistency, we reanalyzed the data of previous studies using *C.
+formosanus* and *C. gestroi* in this region \[16,18\] using the same
+methodology as this study. We have three different datasets: one
+obtained in 2019 only for *C. gestroi* to investigate their
+density-dependent behavioral change, one obtained in 2020 for both
 species to investigate the heterospecific tandem runs, and one obtained
 in 2021 for both species in this study (Table S1).
 
 In *C. formosanus*, there was no difference between this study and a
 previous study in the duration of each tandem run (mixed-effects Cox
-model, χ<sup>2</sup><sub>1</sub> = 0.557, *P* = 0.456; Figure S2A) and
-total time spent in tandem runs (t-test, *t*<sub>21.3</sub> = 0.969, *P*
-= 0.344, *d* = 0.277; Figure S2B). On the other hand, in *C. gestroi*,
+model, χ<sup>2</sup><sub>1</sub> = 0.132, *P* = 0.716; Figure S2A) and
+total time spent in tandem runs (t-test, *t*<sub>15.7</sub> = 0.162, *P*
+= 0.873, *d* = 0.052; Figure S2B). On the other hand, in *C. gestroi*,
 we found different stabilities of tandem runs across studies, where
 results obtained in 2020 showed marginally higher duration of tandem
 runs compared to others (mixed-effects Cox model,
-χ<sup>2</sup><sub>2</sub> = 6.207, *P* = 0.045; Tukey’s HSD, 2020-2019:
-*z* = -2.16, *P* = 0.075, 2021-2019: *z* = 0.483, *P* = 0.876,
-2021-2020: *z* = 2.48, *P* = 0.034; Figure S2A). Note that the total
-time spent in tandem runs was not different among studies (ANOVA,
-*F*<sub>2</sub> = 1.15, *P* = 0.322; 2020-2019: *d* = -0.521, 2021-2019:
-*d* = -0.060, 2021-2020: *d* = 0.515; Figure S2B). When we compared the
-tandem running behavior between two *Coptotermes* termites by accounting
-for the experimental years as a random effect, *C. formosanus* showed
-higher stability (mixed-effects Cox model, χ<sup>2</sup><sub>1</sub> =
-51.3, *P* \< 0.001, Figure 2A) and longer period of tandem runs than *C.
-gestroi* (linear mixed-effects model, χ<sup>2</sup><sub>1</sub> = 38.2,
-*P* \< 0.001, Figure 2B). Thus, tandem running stability is actually
-difference between *C. gestroi* and *C. formosanus*, but Mizumoto et
-al., 2021 \[16\] failed in detecting it probability due to the smaller
-sample size (Table S1).
+χ<sup>2</sup><sub>2</sub> = 6.36, *P* = 0.042; Tukey’s HSD, 2020-2019:
+*z* = 1.90, *P* = 0.134, 2021-2019: *z* = 0.815, *P* = 0.688, 2021-2020:
+*z* = 2.52, *P* = 0.031; Figure S2A). Note that the total time spent in
+tandem runs was not different among studies (ANOVA, *F*<sub>2</sub> =
+0.51, *P* = 0.603; 2020-2019: *d* = 0.316, 2021-2019: *d* = 0.013,
+2021-2020: *d* = 0.417; Figure S2B). When we compared the tandem running
+behavior between two *Coptotermes* termites by accounting for the
+experimental years as a random effect, *C. formosanus* showed higher
+stability (mixed-effects Cox model, χ<sup>2</sup><sub>1</sub> = 45.6,
+*P* \< 0.001, Figure S2A) and a longer period of tandem runs than *C.
+gestroi* (linear mixed-effects model, χ<sup>2</sup><sub>1</sub> = 20.8,
+*P* \< 0.001, Figure S2B). Thus, tandem running stability is actually
+different between *C. gestroi* and *C. formosanus*, but Mizumoto et al.,
+2021 \[16\] failed to detect the difference probability due to the
+smaller sample size (Table S1).
 
-In *C. gestroi*, why did experiment in 2020 show higher stability of
-tandem runs compared to 2019 and 2021, even the difference is small?
+In *C. gestroi*, why did the experiment in 2020 show higher stability of
+tandem runs compared to 2019 and 2021, even if the difference is small?
 This experiment focused on the interspecific tandem runs between *C.
-gestroi* and *C. formosanus*, thus, they observed their tandem runs on
+gestroi* and *C. formosanus*; thus, they observed their tandem runs on
 the date when both species swarmed together, which needs to be the very
-end of the swarming season of *C. gestroi* \[15\] (Table S1). As
-physiological conditions of termites can change across the swarming
-seasons in both *C. gestroi* and *C. formosanus* \[32\], this
-variability of swarming season might have changed their tandem running
-behavior, too. Further studies need to clarify this hypothesis.
+end of the swarming season of *C. gestroi* and the beginning of that of
+*C. formosanus* \[15\] (Table S1). As physiological conditions of
+termite alates can change across the swarming seasons in both *C.
+gestroi* and *C. formosanus* \[32\], this variability of the swarming
+season might have changed their tandem running behavior, too. Further
+studies need to clarify this hypothesis.
 
 **  
 **
 
-<img src="media/image3.png" style="width:5in;height:3in"
-alt="A graph of two people Description automatically generated" />
+<img src="media/image3.png" style="width:5in;height:3in" />
 
 > **Figure S1.** Comparison of the duration of tandem running until
 > separation across different pairing combinations and species.
@@ -555,7 +609,7 @@ alt="A graph of two people Description automatically generated" />
 **  
 **
 
-<img src="media/image4.png" style="width:6in;height:2.78976in" />
+<img src="media/image4.png" style="width:7in;height:3.5in" />
 
 > **Figure S2.** Comparison of tandem running behavior in heterosexual
 > pairs across different experiments in (A) the duration of tandem
@@ -603,14 +657,14 @@ alt="A graph of two people Description automatically generated" />
 <td>[18]</td>
 </tr>
 <tr class="even">
-<td><em><strong>C. gestroi</strong></em></td>
-<td><strong>Florida 2020</strong></td>
-<td><strong>April 18,20</strong></td>
-<td><strong>89</strong></td>
-<td><strong>10</strong></td>
-<td><strong>28</strong></td>
-<td><strong>140</strong></td>
-<td><strong>[16]</strong></td>
+<td><em>C. gestroi</em></td>
+<td>Florida 2020</td>
+<td>April 18,20</td>
+<td>89</td>
+<td>10</td>
+<td>28</td>
+<td>140</td>
+<td>[16]</td>
 </tr>
 <tr class="odd">
 <td><em>C. gestroi</em></td>

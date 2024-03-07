@@ -177,10 +177,9 @@ plot_tandem_duration <- function(){
             plot.margin = margin(0, 0, 0, 0, "inch"))
   }
   
-  free(p[[1]]) / (p_ter) | p[[2]] / p[[3]] + 
+  (free(p[[1]]) / (p_ter) | p[[2]] / p[[3]]) + 
     plot_annotation(tag_levels = 'A') &
-    theme(plot.tag.position = c(0.025, 0.99),
-          plot.tag = element_text(face="bold", size = 11))
+    theme(plot.tag = element_text(face="bold", size = 11))
   ggsave("output/plot_tandem_duration.pdf", height = 4, width = 6.5)
   ggsave("output/plot_tandem_duration.png", height = 4, width = 6.5)
   }
@@ -233,22 +232,21 @@ stat_tandem_duration <- function(){
 plot_speed_comparison <- function (){
   load("data_fmt/df_tandem_fmt.rda")
   df_sep$treatment = factor(df_sep$treatment, levels=c("FM","FF","MM"))
+  colors <- c("Follower" = viridis(option = "plasma", 3)[1],
+              "Leader"   = viridis(option = "plasma", 3)[2])
   # before/after separation
   ggplot(df_sep)+
-    #stat_smooth(aes(x=time, y=speed0), col=viridis(2)[1], se = FALSE)+
-    #stat_smooth(aes(x=time, y=speed1), col=viridis(2)[2], se = FALSE, linetype="dashed")+
-    stat_summary(aes(x=time, y=speed_follower), fun = 'mean', 
-                 colour = viridis(option = "plasma", 3)[1], 
+    stat_summary(aes(x=time, y=speed_follower, color = "Follower"), 
+                 fun = 'mean', 
                  geom = 'line') +
-    stat_summary(aes(x=time, y=speed_follower), fun.data = 'mean_cl_normal', 
-                 geom = 'ribbon', 
-                 alpha = 0.2, fill = viridis(option = "plasma", 3)[1],) +
-    stat_summary(aes(x=time, y=speed_leader), fun = 'mean', 
-                 colour = viridis(option = "plasma", 3)[2], 
-                 geom = 'line', linetype = "dashed") +
-    stat_summary(aes(x=time, y=speed_leader), fun.data = 'mean_cl_normal', 
-                 geom = 'ribbon', 
-                 alpha = 0.2, fill = viridis(option = "plasma", 3)[2],) +
+    stat_summary(aes(x=time, y=speed_follower, fill = "Follower"), 
+                 fun.data = 'mean_cl_normal', 
+                 geom = 'ribbon', alpha = 0.2) +
+    stat_summary(aes(x=time, y=speed_leader, color = "Leader"), 
+                 fun = 'mean', geom = 'line', linetype = "dashed") +
+    stat_summary(aes(x=time, y=speed_leader, fill = "Leader"), 
+                 fun.data = 'mean_cl_normal', 
+                 geom = 'ribbon', alpha = 0.2) +
     geom_vline(xintercept = 0, linetype = 2, colour="#222222") +
     facet_grid(rows = vars(species),
                cols = vars(treatment),
@@ -263,16 +261,22 @@ plot_speed_comparison <- function (){
     coord_cartesian(ylim = c(0, 30)) +
     scale_x_continuous(breaks = seq(-5, 5, 5))+
     scale_y_continuous(breaks = seq(0, 30, 5))+
+    scale_color_manual(values = colors)+
+    scale_fill_manual(values = colors)+
     xlab("Time (sec)")+
     ylab("Speed (mm/sec)") +
     theme_bw()+
     theme(strip.placement = "outside",
         strip.background = element_blank(),
-        legend.position = c(0.8, 0.9),
+        legend.position = c(0.075,0.6),
         panel.grid = element_blank(),
         legend.title = element_blank(),
         strip.text.y = element_text(face="italic"),
-        text = element_text(size = 12))
+        text = element_text(size = 12),
+        legend.text = element_text(size = 7),
+        legend.key.height= unit(0.3, 'cm'),
+        legend.key.width= unit(0.3, 'cm'))+
+    guides(color = "none", linetype = "none")
   ggsave("output/plot_move_speed_sep.pdf", height = 4, width = 6)
   ggsave("output/plot_move_speed_sep.png", height = 4, width = 6)
 }
@@ -282,8 +286,30 @@ stat_speed_comparison <- function() {
   
   # statistical analysis
   df_sep_ana <- subset(df_sep, time == 5)
-  df_sep_ana$speed_diff <- df_sep_ana$speed_follower - df_sep_ana$speed_leader
   df_sep_ana$sep_event <- paste(df_sep_ana$name, df_sep_ana$sep_event, sep="_")
+  df_sep_ana_long <- pivot_longer(df_sep_ana, cols = starts_with("speed"), 
+                                  names_to = "role", 
+                                  values_to = "speed")
+  df_sep_ana_long$role <- gsub("speed_", "", df_sep_ana_long$role)
+  
+  df_sep_ana$speed_diff <- df_sep_ana$speed_follower - df_sep_ana$speed_leader
+  
+  cat("---------- Speed comparison Leader VS Follower at 5 sec ----------\n")
+  for(i_species in c("CF", "CG")){
+    for(i_pair in c("FM", "FF", "MM")){
+      cat(paste("###############################\n
+                species:", i_species, "pair:", i_pair,"\n
+                ################################"))
+      r <- t.test(speed ~ role, pared = TRUE,
+             data = subset(df_sep_ana_long, species == i_species & treatment == i_pair))
+      print(r)
+      r <- cohens_d(speed ~ role, 
+               data = subset(df_sep_ana_long, species == i_species & treatment == i_pair))
+      print(r)
+    }
+  }
+  cat("-----------------------------------------------------\n\n")
+  
   
   cat("---------- Speed diff comparison at 5 sec in Cop ges ----------\n")
   r <- lmer(speed_diff ~ treatment + (1|name), 
@@ -394,7 +420,7 @@ plot_tandem_duration_surv_comp_years <- function(){
     ylab("Tandem duration (sec)") +
     xlab("") +
     theme_classic()+
-    theme(legend.position  = c(0.5 , 0.2),
+    theme(legend.position  = "top",
           legend.title = element_blank(),
           legend.text = element_text(face = "italic"),
           text = element_text(size = 10))+
