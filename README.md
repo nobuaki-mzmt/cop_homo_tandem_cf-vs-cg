@@ -5,8 +5,7 @@ This repository provides access to the data and source code used for the manuscr
 <!--Author names are commented out for DBR.-->
 #### **Nobuaki Mizumoto, Sang-Bin Lee, Thomas Chouvenc**  
   
-Preprint will be available at bioRxiv. 
-[![DOI:10.1101/2024.03.07.583902](http://img.shields.io/badge/DOI-10.1101/2024.03.07.583902.svg)](https://doi.org/10.1101/2024.03.07.583902)  
+Preprint will be available at bioRxiv: [![DOI:10.1101/2024.03.07.583902](http://img.shields.io/badge/DOI-10.1101/2024.03.07.583902-B31B1B.svg)](https://doi.org/10.1101/2024.03.07.583902)  
 The all data will be uploaded in Zenodo upon acceptance: [![DOI](https://zenodo.org/badge/DOI/XXXDOIXXX.svg)](https://doi.org/XXXDOIXXX)
   
 This study compared the same-sex tandem running behavior between two termtie species (Coptotermes formosanus and Coptotermes gestroi) that use the same chemicals for tandem runs but have it in different quantities.  
