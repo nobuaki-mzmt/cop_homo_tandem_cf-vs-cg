@@ -1,4 +1,6 @@
+##
 ## Data analysis for Coptotermes homosexual tandem analysis
+## 
 
 #------------------------------------------------------------------------------#
 # This file plots trajectories to check tracking errors
@@ -12,6 +14,7 @@ tandem.detect()
 tandem.detect(dataset = "Mizumoto-etal-2021_PRSB")
 tandem.detect(dataset = "Mizumoto-etal-2020_JAE")
 #------------------------------------------------------------------------------#
+
 {
   library(data.table)
   library(stringr)
