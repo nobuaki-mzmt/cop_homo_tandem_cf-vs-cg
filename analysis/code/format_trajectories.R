@@ -75,11 +75,25 @@ scale_trajectory <- function(Plot = T, Dataframe = T, dataset = NULL,
     }else {
       cut_length = (fps_original*60*30+1)
     }
-    d <- d[1:cut_length,]
     
+    if(cut_length - dim(d)[1] > 6){
+      for(i in 2:5){
+        d[,i] = stats::filter(d[,i], rep(1/3, 3), sides = 2)
+      }
+      d <- d[seq(3,cut_length+2, fps_original/fps_analysis),]
+    } else{
+      for(i in 2:5){
+        temp <- stats::filter(d[,i], rep(1/3, 3), sides = 2)
+        temp[1:2] = d[1:2,i]
+        temp[((dim(d)[1]-1):dim(d)[1])] = d[((dim(d)[1]-1):dim(d)[1]),i]
+        d[,i] = temp
+      }
+      d <- d[seq(1,cut_length, fps_original/fps_analysis),]
+    }
+
      # scale
     d[,1] <- d[,1]/fps_original
-    d <- d[seq(1,cut_length, fps_original/fps_analysis),]
+    
     
     
     scale_factor = dish_mm/df_meta[df_meta$name == name,"scale"]
@@ -108,7 +122,7 @@ scale_trajectory <- function(Plot = T, Dataframe = T, dataset = NULL,
     # speed error check
     error_speed_thersh = 30
     error_check <- abs(diff(d$x0)) > 15 | abs(diff(d$x1)) > 15 | abs(diff(d$y0)) > 15 | abs(diff(d$y1)) > 15
-    if( sum(error_check)>0) {
+    if( sum(error_check, na.rm=T)>0) {
       print(d[error_check,])
     }
   }  
@@ -154,6 +168,30 @@ tandem.detect <- function(dataset = NULL, fps_analysis = 5){
   for(i in 1:length(name_list)){
     print(paste(i, "/", length(name_list), "->", name_list[i]))
     
+    if(name_list[i] == "CF_FM_42" ||
+       name_list[i] == "CF_MM_14" ||
+       name_list[i] == "CF_MM_25" ||
+       name_list[i] == "CG_FF_25" ||
+       name_list[i] == "CG_FF_26" ||
+       name_list[i] == "CG_FF_33" ||
+       name_list[i] == "CG_FF_34" ||
+       name_list[i] == "CG_FM_32" ||
+       name_list[i] == "CG_FM_33" ||
+       name_list[i] == "CG_FM_38" ||
+       name_list[i] == "CG_FM_39" ||
+       name_list[i] == "CG_FM_40" ||
+       name_list[i] == "CG_MM_03" ||
+       name_list[i] == "CG_MM_38" ||
+       name_list[i] == "CG_MM_39"
+    ){
+      next;
+    }
+    #(CGFF22-24, maybe but not)
+    #(CGFM7, maybe but not)
+    #(CGFM29-30, maybe but not)
+    #(CGFM46, maybe but not)
+    #(CGMM5, maybe but not)
+
     df_temp <- subset(df_tra, name==name_list[i])
     df_temp$speed0 <- c(NA, sqrt(diff(df_temp$x0)^2 + diff(df_temp$y0)^2))*fps_analysis
     df_temp$speed1 <- c(NA, sqrt(diff(df_temp$x1)^2 + diff(df_temp$y1)^2))*fps_analysis
@@ -164,7 +202,7 @@ tandem.detect <- function(dataset = NULL, fps_analysis = 5){
     non.interaction <- !interaction
     
     # remove short separation
-    interaction <- !tandem.smoothing(non.interaction, min.sep.sec*5) 
+    interaction <- !tandem.smoothing(non.interaction, 5*5) 
     # remove short tandem
     interaction <- tandem.smoothing(interaction, min.tandem.sec*5) 
     
@@ -218,6 +256,68 @@ tandem.detect <- function(dataset = NULL, fps_analysis = 5){
     }
     non_tandem_interaction <- interaction & !tandem
     
+    ## rotation
+    {
+      dx0 = diff(df_temp$x0)
+      dy0 = diff(df_temp$y0)
+      dx1 = diff(df_temp$x1)
+      dy1 = diff(df_temp$y1)
+      
+      leader.vec.length <- sqrt(dx0^2 + dy0^2)
+      x0_vec <- dx0/leader.vec.length
+      y0_vec <- dy0/leader.vec.length
+      
+      leader.vec.length <- sqrt(dx1^2 + dy1^2)
+      x1_vec <- dx1/leader.vec.length
+      y1_vec <- dy1/leader.vec.length
+      
+      x.center <- (df_temp$x0 + df_temp$x1)/2
+      y.center <- (df_temp$y0 + df_temp$y1)/2
+      
+      lv <- length(df_temp$x0)
+      
+      x0.rotation.vec <- df_temp$x0[2:lv-1] - x.center[2:lv-1]
+      y0.rotation.vec <- df_temp$y0[2:lv-1] - y.center[2:lv-1]
+      leader.rotation.vec.length <- sqrt(x0.rotation.vec^2+y0.rotation.vec^2)
+      x0.rotation.vec <- x0.rotation.vec/leader.rotation.vec.length
+      y0.rotation.vec <- y0.rotation.vec/leader.rotation.vec.length
+      
+      x1.rotation.vec <- df_temp$x1[2:lv-1] - x.center[2:lv-1]
+      y1.rotation.vec <- df_temp$y1[2:lv-1] - y.center[2:lv-1]
+      leader.rotation.vec.length <- sqrt(x1.rotation.vec^2+y1.rotation.vec^2)
+      x1.rotation.vec <- x1.rotation.vec/leader.rotation.vec.length
+      y1.rotation.vec <- y1.rotation.vec/leader.rotation.vec.length
+      
+      x0.ang.moment <- x0_vec*x0.rotation.vec - y0_vec*y0.rotation.vec
+      y0.ang.moment <- x0_vec*y0.rotation.vec + y0_vec*x0.rotation.vec
+      x1.ang.moment <- x1_vec*x1.rotation.vec - y1_vec*y1.rotation.vec
+      y1.ang.moment <- x1_vec*y1.rotation.vec + y1_vec*x1.rotation.vec
+      
+      leader.ang.moment.length <- sqrt(x0.ang.moment^2+y0.ang.moment^2)
+      follower.ang.moment.length <- sqrt(x1.ang.moment^2+y1.ang.moment^2)
+      
+      rotation <- sqrt(
+        (x0.ang.moment + x1.ang.moment)^2+
+          (y0.ang.moment + y1.ang.moment)^2
+      )/2
+      
+      while(sum(is.na(rotation))>0){
+        rotation[which(is.na(rotation))] <- rotation[which(is.na(rotation))-1]
+      }
+    }
+    competition <- non_tandem_interaction & ((c(rotation, F) > 0.75) & (ind_dis < sumbodylength*0.2))
+    # remove short competition
+    competition <- !tandem.smoothing(!competition, 2*5) 
+    competition <- tandem.smoothing(competition, 2*5) 
+    
+    competition.sta <- NULL
+    if(sum(competition)>0){
+      competition.end <- which(competition)[c(diff(which(competition))>1,T)]
+      competition.sta <- which(competition)[c(T, diff(which(competition))>1)]
+      print(competition.sta/5)
+      print((competition.end-competition.sta)/5)
+    }
+    
     # data summarize  
     df_sum_temp <- data.frame(
       name =  name_list[i],
@@ -226,6 +326,8 @@ tandem.detect <- function(dataset = NULL, fps_analysis = 5){
       interaction_total_duration = sum(interaction) / fps_analysis,
       tandem_total_duration      = sum(tandem) / fps_analysis,
       non_tandem_interaction_total_duration = sum(non_tandem_interaction) / fps_analysis,
+      rotation = sum(competition),
+      num_comp = length(competition.sta),
       speed_tandem = mean(speed_tandem, na.rm=T)
     )
     
@@ -276,10 +378,6 @@ tandem.detect <- function(dataset = NULL, fps_analysis = 5){
       }
     }
     
-    
-    
-    
-    
     df_sum <- rbind(df_sum, df_sum_temp)
     df_tandem <- rbind(df_tandem, df_tandem_temp)
     df_sep <- rbind(df_sep, df_sep_temp)
@@ -294,32 +392,3 @@ tandem.detect <- function(dataset = NULL, fps_analysis = 5){
   }
 }
 #------------------------------------------------------------------------------#
-
-tandem.detect()
-load("data_fmt/df_tandem_fmt.rda")
-library(ggplot2)
-ggplot(df_tandem, aes(x=leader_clarity, fill=species))+
-  geom_histogram(alpha=0.7)+
-  facet_grid(species~treatment)
-
-load("data_fmt/df_tandem_fmt.rda")
-df_sum$treatment = factor(df_sum$treatment, levels=c("FM","FF","MM"))
-ggplot(df_sum, aes(x=treatment, y=non_tandem_interaction_total_duration , 
-                   fill=species, col=species))+
-  geom_boxplot(aes(x=treatment), outlier.shape= NA, 
-               alpha = .75, width = .2, colour = "black") + 
-  geom_point(aes(x = as.numeric(treatment)-0.2, fill=species), 
-             position = position_jitter(width = 0.05),
-             alpha = 0.75, shape = 19, size=0.5)+
-  scale_fill_viridis(discrete=T, option = "D", end = .5, labels=c("C. formosanus", "C. gestroi")) +
-  scale_color_viridis(discrete=T, option = "D", end = .5) +
-  scale_y_continuous(breaks = seq(0,1800,600)) +
-  scale_x_discrete(labels = c("Female-Male", "Female-Female", "Male-Male")) +
-  ylab("Tandem duration (sec)") +
-  xlab("") +
-  theme_classic()+
-  theme(legend.position  = c(0.8 , 0.9),
-        legend.title = element_blank(),
-        legend.text = element_text(face = "italic"),
-        text = element_text(size = 12))+
-  guides(col = "none") 

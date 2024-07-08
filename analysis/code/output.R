@@ -25,6 +25,9 @@ rm(list = ls())
   library(multcomp)
   library(rstatix)
   
+  library(effectsize)
+  
+  
 }
 #------------------------------------------------------------------------------#
 
@@ -33,10 +36,11 @@ rm(list = ls())
 #------------------------------------------------------------------------------#
 plot_tandem_duration_surv <- function(){
   load("data_fmt/df_tandem_fmt.rda")
-  df_tandem$treatment = factor(df_tandem$treatment, levels=c("FF","MM","FM"))
+  df_tandem$treatment = factor(df_tandem$treatment, levels=c("FM","FF","MM"))
   ggsurv = ggsurvplot(
     fit      = survfit(Surv(tan_duration, tan_cens) ~ species, 
-                       type = "kaplan-meier", data = subset(df_tandem, leader_clarity >= .6)),
+                       type = "kaplan-meier", 
+                       data = subset(df_tandem, leader_clarity >= .6)),
     facet.by = "treatment",
     xlim     = c(0,600),
     conf.int = TRUE,
@@ -52,10 +56,10 @@ plot_tandem_duration_surv <- function(){
     scale_fill_viridis(discrete = T, option = "D", end=.5) +
     scale_linetype(guide="none") +
     facet_wrap(~treatment, 
-               nrow = 2,
-               ncol = 2,
+               nrow = 1,
+               ncol = 3,
                as.table = F,
-               strip.position = "left",
+               strip.position = "top",
                labeller = labeller(
                  treatment = c("FM" = "Female-Male", 
                                "FF" = "Female-Female", 
@@ -69,8 +73,8 @@ plot_tandem_duration_surv <- function(){
           legend.text = element_text(face = "italic", size=12),
           text = element_text(size = 12)) +
     guides(fill = "none")
-  ggsave("output/plot_tandem_surv.pdf", height = 3, width = 5)
-  ggsave("output/plot_tandem_surv.png", height = 3, width = 5)
+  ggsave("output/plot_tandem_surv.pdf", height = 2.5, width = 6)
+  ggsave("output/plot_tandem_surv.png", height = 2.5, width = 6)
 }
 stat_tandem_duration_surv <- function(){
   load("data_fmt/df_tandem_fmt.rda")
@@ -110,119 +114,69 @@ plot_tandem_duration <- function(){
   load("data_fmt/df_tandem_fmt.rda")
   
   df_sum$treatment = factor(df_sum$treatment, levels=c("FM","FF","MM"))
-  {
-    {
-    p <- list()
-    name <- names(df_sum)[4:6]
-    title_names <- c("Interaction", "Tandem run", "Non tandem interaction")
-    for(i in 1:3){
-      if(i == 1){
-        p[[i]] <- ggplot(df_sum, aes_string(x = "treatment", y = name[i], 
-                           fill = "species", col = "species"))+
-          geom_boxplot(aes(x=treatment), outlier.shape= NA, 
-                       alpha = .75, width = .2, colour = "black",
-                       position = position_dodge(0.2)) + 
-          geom_point(aes(x = as.numeric(treatment)-0.25, colour=species), 
-                     position = position_jitter(width = 0.05),
-                     alpha = 0.5,  size=0.5)
-      } else {
-        p[[i]] <- ggplot(df_sum, aes_string(x = "treatment", y = name[i], 
-                                            fill = "species", col = "species"))+
-          geom_boxplot(aes(x=treatment), outlier.shape= NA, 
-                       alpha = .75, width = .1, colour = "black", lwd = .5,
-                       position = position_dodge(0.2)) + 
-          geom_point(aes(x = as.numeric(treatment)-0.25, colour=species), 
-                     position = position_jitter(width = 0.05),
-                     alpha = 0.5,  size=0.1)
-      }
-      p[[i]] = p[[i]] +
-        scale_fill_viridis(discrete=T, option = "D", end = .5, labels=c("C. formosanus", "C. gestroi")) +
-        scale_color_viridis(discrete=T, option = "D", end = .5) +
-        scale_y_continuous(breaks = seq(0,1800,600)) +
-        scale_x_discrete(labels = c("Female-Male", "Female-Female", "Male-Male")) +
-        ggtitle(title_names[i]) +
-        theme_classic()+
-        theme(axis.title.x=element_blank(),
-              legend.title = element_blank(),
-              legend.text = element_text(face = "italic"),
-              text = element_text(size = 9),
-              plot.title = element_text(size = 12))+
-        guides(col = "none") 
-      if(i == 1){
-        p[[i]] <- p[[i]] + theme(legend.position  = c(0.8 , 0.9))+
-          ylab("Duration (sec)")
-      } else {
-        p[[i]] <- p[[i]] + 
-          theme(legend.position  = "none",
-                axis.title.y=element_blank())
-        if(i == 2){
-          p[[i]] <- p[[i]] + 
-            theme(legend.position  = "none",
-                  axis.text.x = element_blank())
-        }
-      }
-    }
-  }
-  {
-    image_tan <- image_read("data_raw/termite.png")
-    p_ter <- image_ggplot(image_tan) + theme_classic() +
-      scale_y_continuous(breaks = c(32,107), labels = c("C. gestroi", "C. formosanus"))+
-      theme(axis.line = element_blank(),
-            axis.ticks = element_blank(),
-            axis.title = element_blank(),
-            axis.text.y = element_text(face="italic", 
-                                       color = c(viridis(3)[2], viridis(3)[1]), 
-                                       size=6),
-            axis.text.x = element_blank(),
-            plot.margin = margin(0, 0, 0, 0, "inch"))
-  }
+  ggplot(df_sum, aes_string(x = "treatment", y = "tandem_total_duration", 
+                            fill = "species", col = "species"))+
+    geom_boxplot(aes(x=treatment), outlier.shape= NA, 
+                 alpha = .75, width = .2, colour = "black",
+                 position = position_dodge(0.2)) + 
+    geom_point(aes(x = as.numeric(treatment)-0.25, colour=species), 
+               position = position_jitter(width = 0.05),
+               alpha = 0.5,  size=0.5)+
+    scale_fill_viridis(discrete=T, option = "D", end = .5, labels=c("C. formosanus", "C. gestroi")) +
+    scale_color_viridis(discrete=T, option = "D", end = .5) +
+    scale_y_continuous(breaks = seq(0,1800,600)) +
+    scale_x_discrete(labels = c("Female-Male", "Female-Female", "Male-Male")) +
+    #ggtitle("Tandem run") +
+    theme_classic()+
+    theme(axis.title.x=element_blank(),
+          legend.title = element_blank(),
+          legend.text = element_text(face = "italic"),
+          text = element_text(size = 9),
+          plot.title = element_text(size = 12))+
+    guides(col = "none")   +
+    theme(legend.position  = c(0.8 , 0.9))+
+          ylab("Tandem duration (sec)")
   
-  (free(p[[1]]) / (p_ter) | p[[2]] / p[[3]]) + 
-    plot_annotation(tag_levels = 'A') &
-    theme(plot.tag = element_text(face="bold", size = 11))
-  ggsave("output/plot_tandem_duration.pdf", height = 4, width = 6.5)
-  ggsave("output/plot_tandem_duration.png", height = 4, width = 6.5)
-  }
+  ggsave("output/plot_tandem_duration.pdf", height = 3, width = 4)
+  ggsave("output/plot_tandem_duration.png", height = 3, width = 4)
 }
 stat_tandem_duration <- function(){
   load("data_fmt/df_tandem_fmt.rda")
   df_sum$treatment = factor(df_sum$treatment, levels=c("FM","FF","MM"))
-  name <- names(df_sum)[4:6]
+
+  cat(paste("-##########################################################-\n"))
+  cat(paste("----------tandem_total_duration----------\n"))
+  y = df_sum[,"tandem_total_duration"] / 1800
+  df_sum$logit_prop = log((y+0.01)/(1-y+0.01))
   
-  for(i in 1:3){
-    cat(paste("-##########################################################-\n"))
-    cat(paste("----------", name[i], "----------\n"))
-    y = df_sum[,name[i]] / 1800
-    df_sum$logit_prop = log((y+0.01)/(1-y+0.01))
-    
-    cat("---------- Comp tandem prop between species for each treat ----------\n")
-    for(i in c("FM", "FF", "MM")){
-      cat(paste0("\n----- treat:", i, ", t.test() -----\n\n"))
-      res = t.test(logit_prop ~ species, 
-                   data=subset(df_sum, treatment == i))
-      print(res)
-      cat(paste0("\n----- cohens_d() -----\n\n"))
-      res_effect = cohens_d(logit_prop ~ species, var.equal = FALSE, data=subset(df_sum, treatment == i))
-      print(res_effect)
-    }
-    cat("-----------------------------------------------------\n\n")
-  
-    cat("---------- Comp tandem prop across treats for each species ----------\n")
-    for(i in c("CF", "CG")){
-      cat(paste0("\n----- treat:", i, ", aov() -----\n\n"))
-      res = aov(logit_prop ~ treatment, 
-                data=df_sum[df_sum$species==i,])
-      print(res)
-      cat(paste0("\n----- treat:", i, ", TukeyHSD() -----\n\n"))
-      print(TukeyHSD(res))
-      
-      cat(paste0("\n----- cohens_d() -----\n\n"))
-      res_effect = cohens_d(logit_prop ~ treatment, var.equal = FALSE, 
-                            data=df_sum[df_sum$species==i,])
-      print(res_effect)
-    }
-    cat("-----------------------------------------------------\n\n")
+  cat("---------- Comp tandem prop between species for each treat ----------\n")
+  for(i in c("FM", "FF", "MM")){
+    cat(paste0("\n----- treat:", i, ", t.test() -----\n\n"))
+    res = t.test(logit_prop ~ species, 
+                 data=subset(df_sum, treatment == i))
+    print(res)
+    cat(paste0("\n----- cohens_d() -----\n\n"))
+    res_effect = rstatix::cohens_d(logit_prop ~ species, var.equal = FALSE, data=subset(df_sum, treatment == i))
+    print(res_effect)
   }
+    
+  cat("-----------------------------------------------------\n\n")
+
+  cat("---------- Comp tandem prop across treats for each species ----------\n")
+  for(i in c("CF", "CG")){
+    cat(paste0("\n----- treat:", i, ", aov() -----\n\n"))
+    res = aov(logit_prop ~ treatment, 
+              data=df_sum[df_sum$species==i,])
+    print(res)
+    cat(paste0("\n----- treat:", i, ", TukeyHSD() -----\n\n"))
+    print(TukeyHSD(res))
+    
+    cat(paste0("\n----- cohens_d() -----\n\n"))
+    res_effect = rstatix::cohens_d(logit_prop ~ treatment, var.equal = FALSE, 
+                          data=df_sum[df_sum$species==i,])
+    print(res_effect)
+  }
+  cat("-----------------------------------------------------\n\n")
 }
 #------------------------------------------------------------------------------#
 
@@ -234,6 +188,7 @@ plot_speed_comparison <- function (){
   df_sep$treatment = factor(df_sep$treatment, levels=c("FM","FF","MM"))
   colors <- c("Follower" = viridis(option = "plasma", 3)[1],
               "Leader"   = viridis(option = "plasma", 3)[2])
+  table(df_sep[df_sep$time == 0,2:3])
   # before/after separation
   ggplot(df_sep)+
     stat_summary(aes(x=time, y=speed_follower, color = "Follower"), 
@@ -300,12 +255,22 @@ stat_speed_comparison <- function() {
       cat(paste("###############################\n
                 species:", i_species, "pair:", i_pair,"\n
                 ################################"))
-      r <- t.test(speed ~ role, pared = TRUE,
-             data = subset(df_sep_ana_long, species == i_species & treatment == i_pair))
-      print(r)
-      r <- cohens_d(speed ~ role, 
-               data = subset(df_sep_ana_long, species == i_species & treatment == i_pair))
-      print(r)
+      #r <- t.test(speed ~ role, pared = TRUE,
+      #       data = subset(df_sep_ana_long, species == i_species & treatment == i_pair))
+      #print(r)
+      #r <- cohens_d(speed ~ role, 
+      #         data = subset(df_sep_ana_long, species == i_species & treatment == i_pair))
+      #print(r)
+      
+      cat(paste("### LMM ###"))
+      r <- lmer(speed ~ role + (1|name/sep_event),
+                  data = subset(df_sep_ana_long, species == i_species & treatment == i_pair))
+      cat(paste("\n#####\n"))
+      print(Anova(r))
+      cat(paste("\n#####\n"))
+      print(effectsize::effectsize(r))
+      
+      
     }
   }
   cat("-----------------------------------------------------\n\n")
@@ -432,7 +397,7 @@ plot_tandem_duration_surv_comp_years <- function(){
   ggsave("output/plot_year_comparison.pdf", height = 3.5, width = 7)
   ggsave("output/plot_year_comparison.png", height = 3.5, width = 7)
 }
-stat_tandem_duration_surv_comp <- function(){
+stat_tandem_duration_surv_comp_years <- function(){
   
   {
     load("data_fmt/df_tandem_fmt.rda")
@@ -485,7 +450,7 @@ stat_tandem_duration_surv_comp <- function(){
             data=df_sum_comp[df_sum_comp$species=="CF",])
   print(res)
   cat(paste0("\n----- cohens_d() -----\n\n"))
-  res_effect = cohens_d(logit_tandem_prop ~ experiment, var.equal = FALSE, 
+  res_effect = rstatix::cohens_d(logit_tandem_prop ~ experiment, var.equal = FALSE, 
                         data=droplevels(df_sum_comp[df_sum_comp$species=="CF",]))
   print(res_effect)
   cat("-----------------------------------------------------\n\n")
@@ -496,7 +461,7 @@ stat_tandem_duration_surv_comp <- function(){
   print(Anova(res))
   
   cat(paste0("\n----- cohens_d() -----\n\n"))
-  res_effect = cohens_d(logit_tandem_prop ~ experiment, var.equal = FALSE, 
+  res_effect = rstatix::cohens_d(logit_tandem_prop ~ experiment, var.equal = FALSE, 
                         data=droplevels(df_sum_comp[df_sum_comp$species=="CG",]))
   print(res_effect)
   cat("-----------------------------------------------------\n\n")
@@ -519,4 +484,55 @@ stat_tandem_duration_surv_comp <- function(){
 }
 #------------------------------------------------------------------------------#
 
-      
+#------------------------------------------------------------------------------#
+# Comparison of tandem attempt period
+#------------------------------------------------------------------------------#
+plot_attempt_duration <- function(){
+  load("data_fmt/df_tandem_fmt.rda")
+  
+  df_sum$species <- factor(df_sum$species)
+  ggplot(subset(df_sum, treatment == "MM"),
+         aes(x=species, y=rotation/5, fill = species, col = species))+
+    geom_boxplot(aes(x=species), outlier.shape= NA, 
+                 alpha = .75, width = .2, colour = "black",
+                 position = position_dodge(0.2)) + 
+    geom_point(aes(x = as.numeric(species)-0.25, colour=species), 
+               position = position_jitter(width = 0.05),
+               alpha = 0.5,  size=0.5)+
+    scale_fill_viridis(discrete=T, option = "D", end = .5) +
+    scale_color_viridis(discrete=T, option = "D", end = .5) +
+    scale_y_continuous(breaks = seq(0,120,60)) +
+    scale_x_discrete(labels = c("C. formosanus", "C. gestroi")) +
+    theme_classic()+
+    theme(axis.title.x=element_blank(),
+          legend.title = element_blank(),
+          legend.text = element_text(face = "italic"),
+          text = element_text(size = 9),
+          plot.title = element_text(size = 12))+
+    guides(col = "none")   +
+    theme(legend.position  = "none")+
+    ylab("Following attempt duration (sec)")
+  ggsave("output/plot_attempt_duration.pdf", height = 3, width = 3)
+  ggsave("output/plot_attempt_duration.png", height = 3, width = 3)
+}
+stat_attempt_duration <- function(){
+  load("data_fmt/df_tandem_fmt.rda")
+  df_sum$species <- factor(df_sum$species)
+  
+  cat(paste("-##########################################################-\n"))
+  cat(paste("----------tandem_attempt_duration----------\n"))
+  y = df_sum[,"rotation"] / 5 / 1800
+  df_sum$logit_prop = log((y+0.01)/(1-y+0.01))
+  
+  cat(paste0("\n----- treat:MM, t.test() -----\n\n"))
+  res = t.test(logit_prop ~ species, 
+               data=subset(df_sum, treatment == "MM"))
+  print(res)
+  cat(paste0("\n----- cohens_d() -----\n\n"))
+  res_effect = rstatix::cohens_d(logit_prop ~ species, var.equal = FALSE, 
+                                 data=subset(df_sum, treatment == "MM"))
+  print(res_effect)
+
+  cat("-----------------------------------------------------\n\n")
+}
+#------------------------------------------------------------------------------#
