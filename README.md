@@ -3,10 +3,10 @@
 This repository provides access to the data and source code used for the manuscript    
 ### **The strength of sexual signals predicts same-sex pairing in two Coptotermes termites.**  
 #### **Nobuaki Mizumoto, Sang-Bin Lee, Thomas Chouvenc**  
-  
-Paper is accepted at [Behavioral Ecology](https://doi.org/link).  
+
+The paper is accepted at Behavioral Ecology.  
 Pre-print is available at bioRxiv: [![DOI:10.1101/2024.03.07.583902](http://img.shields.io/badge/DOI-10.1101/2024.03.07.583902-B31B1B.svg)](https://doi.org/10.1101/2024.03.07.583902)  
-The all data will be uploaded in Zenodo upon acceptance: [![DOI](https://zenodo.org/badge/DOI/XXXDOIXXX.svg)](https://doi.org/XXXDOIXXX)
+All data is in [Dryad](https://doi.org/10.5061/dryad.6t1g1jx67)
   
 This study compared the same-sex tandem running behavior between two termite species (Coptotermes formosanus and Coptotermes gestroi) that use the same chemicals for tandem runs but have it in different quantities.  
 We recorded movement patterns of termite pairs, either in combination of Female-Male, Female-Female, Male-Male, by using a tracking software, [UMATracker](https://ymnk13.github.io/UMATracker/).  
