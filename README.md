@@ -1,14 +1,14 @@
 # README
 ## Article Information
 This repository provides access to the data and source code used for the manuscript    
-### **The strength of sexual signals predicts same-sex paring in termites**  
-<!--Author names are commented out for DBR.-->
+### **The strength of sexual signals predicts same-sex pairing in two Coptotermes termites.**  
 #### **Nobuaki Mizumoto, Sang-Bin Lee, Thomas Chouvenc**  
   
-Preprint will be available at bioRxiv: [![DOI:10.1101/2024.03.07.583902](http://img.shields.io/badge/DOI-10.1101/2024.03.07.583902-B31B1B.svg)](https://doi.org/10.1101/2024.03.07.583902)  
+Paper is accepted at [Behavioral Ecology](https://doi.org/link).  
+Pre-print is available at bioRxiv: [![DOI:10.1101/2024.03.07.583902](http://img.shields.io/badge/DOI-10.1101/2024.03.07.583902-B31B1B.svg)](https://doi.org/10.1101/2024.03.07.583902)  
 The all data will be uploaded in Zenodo upon acceptance: [![DOI](https://zenodo.org/badge/DOI/XXXDOIXXX.svg)](https://doi.org/XXXDOIXXX)
   
-This study compared the same-sex tandem running behavior between two termtie species (Coptotermes formosanus and Coptotermes gestroi) that use the same chemicals for tandem runs but have it in different quantities.  
+This study compared the same-sex tandem running behavior between two termite species (Coptotermes formosanus and Coptotermes gestroi) that use the same chemicals for tandem runs but have it in different quantities.  
 We recorded movement patterns of termite pairs, either in combination of Female-Male, Female-Female, Male-Male, by using a tracking software, [UMATracker](https://ymnk13.github.io/UMATracker/).  
 Also, measured the body length of termites and the size of arena, using a [python program](./analysis/code/video_scale_BL.py). All these raw data were stored at [data_raw](./analysis/data_raw).
 First, run the [format_trajectories.R](./analysis/code/format_trajectories.R) to format data for further statistical analysis and data visualization. Formatted data will be stored at [data_fmt](./analysis/data_fmt).  
@@ -25,7 +25,6 @@ This repository includes tracking data, R codes to analyze it, and Python code f
   * [data_raw](./analysis/data_raw) - folder containing raw data
   * [data_fmt](./analysis/data_fmt) - folder containing data converted from raw data
   * [output](./analysis/output) - folder containing outputs
-* [draft](./draft)
 
 ## Session information
 ```
