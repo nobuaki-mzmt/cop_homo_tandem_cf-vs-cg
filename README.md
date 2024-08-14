@@ -1,16 +1,16 @@
 # README
 ## Article Information
 This repository provides access to the data and source code used for the manuscript    
-### **The strength of sexual signals predicts same-sex pairing in two Coptotermes termites.**  
+### **The strength of sexual signals predicts same-sex pairing in two _Coptotermes_ termites.**  
 #### **Nobuaki Mizumoto, Sang-Bin Lee, Thomas Chouvenc**  
 
 The paper is published in [Behavioral Ecology](https://doi.org/10.1093/beheco/arae067).  
 Pre-print is available at bioRxiv: [![DOI:10.1101/2024.03.07.583902](http://img.shields.io/badge/DOI-10.1101/2024.03.07.583902-B31B1B.svg)](https://doi.org/10.1101/2024.03.07.583902)  
 All data and code can be also found in [Dryad](https://doi.org/10.5061/dryad.6t1g1jx67).
   
-This study compared the same-sex tandem running behavior between two termite species (Coptotermes formosanus and Coptotermes gestroi) that use the same chemicals for tandem runs but have it in different quantities.  
-We recorded movement patterns of termite pairs, either in combination of Female-Male, Female-Female, Male-Male, by using a tracking software, [UMATracker](https://ymnk13.github.io/UMATracker/).  
-Also, measured the body length of termites and the size of arena, using a [python program](./analysis/code/video_scale_BL.py). All these raw data were stored at [data_raw](./analysis/data_raw).
+This study compared the same-sex tandem running behavior between two termite species (_Coptotermes formosanus_ and _Coptotermes gestroi_) that use the same chemicals for tandem runs but have them in different quantities.  
+We recorded movement patterns of termite pairs, either in combination with Female-Male, Female-Female, or Male-Male, by using tracking software, [UMATracker](https://ymnk13.github.io/UMATracker/).  
+Also, we measured the body length of termites and the size of the arena using a [python program](./analysis/code/video_scale_BL.py). All these raw data were stored at [data_raw](./analysis/data_raw).
 First, run the [format_trajectories.R](./analysis/code/format_trajectories.R) to format data for further statistical analysis and data visualization. Formatted data will be stored at [data_fmt](./analysis/data_fmt).  
 Then, run the [output.R](./analysis/code/output.R) to obtain all outputs.  
 
