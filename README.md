@@ -4,7 +4,7 @@ This repository provides access to the data and source code used for the manuscr
 ### **The strength of sexual signals predicts same-sex pairing in two Coptotermes termites.**  
 #### **Nobuaki Mizumoto, Sang-Bin Lee, Thomas Chouvenc**  
 
-The paper is accepted at Behavioral Ecology.  
+The paper is published in [Behavioral Ecology](https://doi.org/10.1093/beheco/arae067).  
 Pre-print is available at bioRxiv: [![DOI:10.1101/2024.03.07.583902](http://img.shields.io/badge/DOI-10.1101/2024.03.07.583902-B31B1B.svg)](https://doi.org/10.1101/2024.03.07.583902)  
 All data and code can be also found in [Dryad](https://doi.org/10.5061/dryad.6t1g1jx67).
   
